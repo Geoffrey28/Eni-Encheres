@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Les objets sont nos amis</title>
 </head>
 <body>
 <form action="login" method="post">
