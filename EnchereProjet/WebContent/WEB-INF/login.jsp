@@ -13,7 +13,7 @@
 
 Enchère Projet
 
-test test
+test test test
 
 <p>email : <input type="email" name="email" value="${cookie.lastLogin.value}"></p>
 <p>mot de passe : <input type="password" name="password"></p>
