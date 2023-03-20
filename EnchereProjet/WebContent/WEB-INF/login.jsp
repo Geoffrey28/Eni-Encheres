@@ -13,6 +13,8 @@
 
 Enchère Projet
 
+<h1>Hello world</h1>
+
 <p>email : <input type="email" name="email" value="${cookie.lastLogin.value}"></p>
 <p>mot de passe : <input type="password" name="password"></p>
 <input type="submit" value="valider">
