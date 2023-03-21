@@ -6,6 +6,10 @@ public abstract class DAOFactory {
 		return new ClientDAO();
 	}
 	
+	public static UtilisateurDAO getUtilisateurDAO() {
+		return new UtilisateurDAO();
+	}
+	
 	public static VoitureDAO getVoitureDAO() {
 		return new VoitureDAO();
 	}

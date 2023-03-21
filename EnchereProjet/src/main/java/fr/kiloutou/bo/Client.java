@@ -20,12 +20,10 @@ public class Client extends Personne {
 		this.typePermis = typePermis;
 	}
 	
-	public Client(int id, String nom, String prenom, String telephone, String email, String password, 
-					Adresse adresse, String typePermis) {
-		super(id, nom, prenom, telephone, email, password, adresse);
+	public Client(int NoUtilisateur, String pseudo, String nom, String prenom, String motDePasse) {
+		//super(NoUtilisateur, pseudo, nom, prenom, motDePasse);
 		this.typePermis = typePermis;
 	}
-
 	/**
 	 * @return the typePermis
 	 */

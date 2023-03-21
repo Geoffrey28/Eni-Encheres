@@ -8,34 +8,30 @@ import java.sql.SQLException;
 import fr.kiloutou.bo.Client;
 import fr.kiloutou.bo.Utilisateur;
 
-public class ClientDAO {
+public class UtilisateurDAO {
 
 	private final static String SQLINSERT="insert into users (pseudo,nom,prenom,motDePasse) values(?,?,?,?)";
 	private final static String SQLLOGIN="select * "
 			+ "from users where email=? and password=?";
 	
-	public ClientDAO() {
+	public UtilisateurDAO() {
 	}
 	
-	public void insert(Utilisateur u) {
+	public static void insert(Utilisateur u) {
 		Connection cnx = null;
 		PreparedStatement stmt;
 		cnx = UtilBDD.getConnection();
 		
 		try {
 			stmt = cnx.prepareStatement(SQLINSERT, PreparedStatement.RETURN_GENERATED_KEYS);
-			stmt.setString(1, u.getNom());
-			stmt.setString(2, c.getPrenom());
-			stmt.setString(3, c.getTelephone());
-			stmt.setString(4, c.getEmail());
-			stmt.setString(5, c.getPassword());
-			stmt.setString(6, c.getTypePermis());
+			stmt.setString(1, u.getPseudo());
+			stmt.setString(2, u.getPrenom());
+			stmt.setString(3, u.getNom());
+			stmt.setString(4, u.getPassword());
 			stmt.executeUpdate();
 			ResultSet rs = stmt.getGeneratedKeys();
 			rs.next();
-			c.setId(rs.getInt(1));
-			c.getAdresse().setId(c.getId());
-			new AdresseDAO().insert(c.getAdresse(), cnx);
+			u.setId(rs.getInt(1));
 			cnx.close();
 			System.out.println("Inscription réussi.");
 		} catch (SQLException e) {
@@ -50,8 +46,8 @@ public class ClientDAO {
 		}
 	}
 	
-	public static Client login(String pseudo, String motDePasse) {
-		Client Utilisateur = null;
+	public static Utilisateur login(String pseudo, String motDePasse) {
+		Utilisateur Utilisateur = null;
 		try {
 			Connection cnx = UtilBDD.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(SQLLOGIN);
@@ -59,7 +55,7 @@ public class ClientDAO {
 			stmt.setString(2, motDePasse);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
-				Utilisateur = rsToClient(rs);
+				Utilisateur = rsToUser(rs);
 			}
 			cnx.close();
 		} catch (SQLException e) {
@@ -68,7 +64,7 @@ public class ClientDAO {
 		return Utilisateur;
 	}
 	
-	private static Client rsToClient(ResultSet rs)
+	private static Utilisateur rsToUser(ResultSet rs)
 	{
 		Utilisateur u = null;
 		try {
@@ -76,7 +72,7 @@ public class ClientDAO {
 							rs.getString("pseudo"),
 							rs.getString("nom"),
 							rs.getString("prenom"),
-							rs.getString("motDePasse");
+							rs.getString("motDePasse"));
 			}
 		catch (SQLException e) 
 		{
