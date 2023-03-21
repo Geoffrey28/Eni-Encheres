@@ -7,26 +7,23 @@
 <meta charset="UTF-8">
 <title>Enchère Projet</title>
 <style><%@include file="/WEB-INF/css/login.css"%></style>
+<%@include file="/WEB-INF/header.jspf"%>
 </head>
 <body>
 	<div id="connect-div">
 		<h1>Enchère Projet</h1>
-		
-		<p>Se Connecter</p>
 		<hr>
 		
 		<c:if test="${ check }">
 			<p>Email ou mot de passe incorrect.</p>
 		</c:if>
 		<form action="Connection" method="post">
-			<label for="email">Email : </label>
-			<input type="email" name="email" placeholder="example@1234.fr"><br>
+			<label for="pseudo">Pseudo : </label>
+			<input type="text" name="pseudo" placeholder="Pseudo"><br>
 			<label for="motdepasse">Mot de Passe : </label>
 			<input type="password" name="motdepasse" placeholder="••••••••"><br>
 			<input type="submit" value="Se connecter">
 		</form>
-		
-		<a href="Inscription">S'inscrire</a>
 	</div>
 	
 </body>

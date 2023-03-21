@@ -32,6 +32,10 @@ body {
     gap: 3px;
 }
 
+#connect-div h1 {
+	margin: 0px 0 35px 0;
+}
+
 #connect-div input {
 	background-color: transparent;
     border-color: deepskyblue;
