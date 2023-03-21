@@ -4,9 +4,9 @@
 			  type="javax.sql.DataSource"
 			
 			  driverClassName="com.mysql.jdbc.Driver"
-			  url="jdbc:mysql://localhost:3306/enchere"
-			  username="root"
-			  password=""
+			  url="jdbc:mysql://mysql-mrtimux62.alwaysdata.net/mrtimux62_enchere-eni"
+			  username="mrtimux62_eni"
+			  password="@+tu}7+vXeF,&amp;d#/"
 	>
 	</Resource>
 </Context>

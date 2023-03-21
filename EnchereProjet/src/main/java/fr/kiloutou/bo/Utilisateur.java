@@ -25,11 +25,7 @@ public class Utilisateur {
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
-		try {
-			this.setPassword(motDePasse);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		this.motDePasse = motDePasse;
 	}
 	
 	public Utilisateur(int NoUtilisateur, String pseudo, String nom, String prenom, String motDePasse) {
