@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+body {
+	margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url(https://static.actu.fr/uploads/2022/05/ventes-aux-encheres-adobe-stock-960x640.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+}
+
+#newAuction-img {
+	position: absolute;
+	top: 20%;
+	left: 10%;
+	width: 250px;
+	height: 250px;
+	background: white;
+	border: 3px inset deepskyblue;
+    border-radius: 3px;
+}
+
+#newAuction-div a {
+	color: white;
+}
+
+#newAuction-div {
+	text-align: center;
+    margin: 0 auto;
+    padding: 2%;
+    width: fit-content;
+    box-shadow: 0px 3px 5px black;
+    font-family: cursive;
+    color: white;
+    background-color: #000000d9;
+}
+
+#newAution-div form {
+	display: grid;
+    gap: 3px;
+}
+
+#newAuction-div div {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 10px;
+}
+
+#newAuction-div input, #newAuction-div a {
+	text-decoration: none;
+	background-color: transparent;
+	border: 2px inset deepskyblue;
+    border-radius: 3px;
+    font-size: 17px;
+    color: white;
+    padding: 1px 8px;
+}
+
+#newAuction-price input {
+	text-align: center;
+	width: 75px;
+	margin-right: 65px;
+	padding: 2px 8px;
+}
+
+#newAuction-form textArea, #newAuction-form select {
+	resize: none;
+	background: #000000d9;
+	border: 2px inset deepskyblue;
+    border-radius: 3px;
+    color: #fff;
+}
+
+#newAuction-picture p {
+	margin: 0;
+}
+
+#newAuction-picture div {
+	margin: 0 75px 0 0;
+	height: fit-content;
+}
+
+#newAuction-picture input, #newAuction-picture input::-webkit-file-upload-button {
+	width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+}
+
+#newAuction-picture label {
+	color: #fff;
+	border: 2px inset deepskyblue;
+    border-radius: 3px;
+	width: 80px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+#newAuction-form fieldset {
+	text-align: left;
+}
+
+#newAuction-submit a, #newAuction-submit input {
+	margin: 0 40px;
+}
