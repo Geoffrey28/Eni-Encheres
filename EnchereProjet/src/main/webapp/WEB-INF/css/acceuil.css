@@ -1,14 +1,7 @@
 @charset "UTF-8";
 
-header {
-	background-image: url(https://t3.ftcdn.net/jpg/01/04/68/64/360_F_104686474_2dzmihGndEe9K6kTJ8yDomKDAgTT1dct.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    margin: 0;
-    width: 100%;
-    height: auto;
+body {
+	margin: 0;
 }
 
 main {
@@ -21,12 +14,6 @@ main {
     background-position: center;
     display: flex;
     align-items: center;
-}
-
-#header-user div {
-  position: absolute;
-  top: 30px;
-  right: 10px;
 }
 
 #connect-div h2 {

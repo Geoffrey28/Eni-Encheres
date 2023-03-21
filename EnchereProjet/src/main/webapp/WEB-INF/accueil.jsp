@@ -7,17 +7,9 @@
 		<meta charset="UTF-8">
 		<title>Les objets sont nos amis - Accueil</title>
 		<style><%@include file="/WEB-INF/css/acceuil.css"%></style>
+		<%@include file="/WEB-INF/header.jspf"%>
 	</head>
 	<body>
-		<header id="header-user">
-			<nav>
-    			<h2>ENI - Encheres</h2>
-       			<div>
-       				<a href="inscription">Inscription</a> | <a href="connexion">Connexion</a>
-        		</div>	
-			</nav>
-			<hr>
-		</header>
 	
 		<main>
 			<div id="connect-div">
