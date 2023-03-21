@@ -1,7 +1,7 @@
 <style><%@include file="/WEB-INF/css/header.css"%></style>
 <header id="header">
 	<div id="header-logo">
-		<a href="Connection">ENI-Encheres</a>
+		<a href="Accueil">ENI-Encheres</a>
 	</div>
 	<nav id="header-nav">
 		<c:choose>
