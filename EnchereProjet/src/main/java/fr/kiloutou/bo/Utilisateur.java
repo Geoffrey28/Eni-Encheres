@@ -3,6 +3,8 @@ package fr.kiloutou.bo;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import fr.kiloutou.dal.UtilisateurDAO;
+
 public class Utilisateur {
 	
 	private int NoUtilisateur;
@@ -10,6 +12,12 @@ public class Utilisateur {
 	private String nom;
 	private String prenom;
 	private String motDePasse;
+	private String email;
+	private int telephone;
+	private String rue;
+	private int codePostal;
+	private int credit;
+	private boolean administrateur;
 	
 	/**
 	 * 
@@ -34,6 +42,13 @@ public class Utilisateur {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.motDePasse = motDePasse;
+	}
+	
+	public Utilisateur(int NoUtilisateur, String pseudo, String nom, String prenom, String email, int telephone,
+			String motDePasse, String rue, int codePostal) {
+		
+		//WIP
+		
 	}
 
 	/**
