@@ -1,41 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>KILOUTOU - Profil</title>
+<title>ENI-Enchères - Profil</title>
+<style><%@include file="/WEB-INF/css/profil.css"%></style>
 </head>
 <body>
-	<h1>KILOUTOU</h1>
+	<div id="profil">
 	
-	<h3>Profil</h3>
-	<ul>
-		<li>
-			<label>Nom : </label>
-			<input type="text" value="${ clientConnecte.nom }">
-		</li>
-		<li>
-			<label>Prénom : </label>
-			<input type="text" value="${ clientConnecte.prenom }">
-		</li>
-		<li>
-			<label>Téléphone : </label>
-			<input type="text" value="${ clientConnecte.telephone }">
-		</li>
-		<li>
-			<label>Type de permis : </label>
-			<input type="text" value="${ clientConnecte.typePermis }">
-		</li>
-		<li>
-			<label>Email : </label>
-			<input type="email" value="${ clientConnecte.email }">
-		</li>
-		<li>
-			<label>Mot de passe : </label>
-			<input type="password" value="${ clientConnecte.password }">
-		</li>		
-	</ul>
-	<a href="Accueil">Retour</a>
+		<h2>Mon Profil</h2>
+		
+		<div id="profil-content">
+			<div>
+				<p>Pseudo :</p>
+				<p>TEST</p>
+			</div>
+			<div>
+				<p>Nom :</p>
+				<p>TEST</p>
+			</div>
+			<div>
+				<p>Prénom :</p>
+				<p>TEST</p>
+			</div>
+			<div>
+				<p>Email :</p>
+				<p>TEST</p>
+			</div>
+			<div>
+				<p>Téléphone :</p>
+				<p>TEST</p>
+			</div>
+			<div>
+				<p>Rue :</p>
+				<p>TEST</p>
+			</div>
+			<div>
+				<p>Code postal :</p>
+				<p>TEST</p>
+			</div>
+			<div>
+				<p>Ville :</p>
+				<p>TEST</p>
+			</div>
+			<c:if test="${ userConnected.id == this.id }">
+				<a href="">Modifier</a>
+			</c:if>
+		</div>		
+	</div>
 </body>
 </html>
