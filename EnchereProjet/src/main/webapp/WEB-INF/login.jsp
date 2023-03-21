@@ -11,17 +11,15 @@
 </head>
 <body>
 	<div id="connect-div">
-		<h1>Enchère Projet</h1>
+		<img src="https://cdn-icons-png.flaticon.com/512/456/456112.png">
 		<hr>
 		
 		<c:if test="${ check }">
 			<p>Email ou mot de passe incorrect.</p>
 		</c:if>
 		<form action="Connection" method="post">
-			<label for="pseudo">Pseudo : </label>
 			<input type="text" name="pseudo" placeholder="Pseudo"><br>
-			<label for="motdepasse">Mot de Passe : </label>
-			<input type="password" name="motdepasse" placeholder="••••••••"><br>
+			<input type="password" name="motdepasse" placeholder="Mot de Passe"><br>
 			<input type="submit" value="Se connecter">
 		</form>
 	</div>

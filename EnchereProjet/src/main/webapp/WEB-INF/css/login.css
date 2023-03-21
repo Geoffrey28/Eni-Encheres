@@ -10,37 +10,61 @@ body {
     background-position: center;
     display: flex;
     align-items: center;
+    font-family: cursive;
 }
 
-#connect-div a {
+a {
 	color: white;
+}
+
+img {
+	max-height: 100px;
 }
 
 #connect-div {
 	text-align: center;
     margin: 0 auto;
-    padding: 2%;
+    padding: 3%;
     width: fit-content;
-    box-shadow: 0px 3px 5px black;
+    box-shadow: 0px 5px 5px #00000094;
     font-family: cursive;
     color: white;
     background-color: #000000d9;
+    border-radius: 10px;
 }
 
-#connect-div form {
+form {
 	display: grid;
-    gap: 3px;
 }
 
-#connect-div h1 {
-	margin: 0px 0 35px 0;
+hr {
+	border-color: #ffffff30;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 2px;
 }
 
-#connect-div input {
+input {
 	background-color: transparent;
     border-color: deepskyblue;
     border-radius: 3px;
-    margin: 10px;
+    margin-top: 10px;
     font-size: 17px;
     color: white;
+    font-family: cursive;
+    padding: 5px;
+    text-align: center;
+}
+
+
+input[type="submit"]:hover {
+	color: black;
+	background-color: white;
+	transition: all 500ms;
+}
+
+input[type="submit"] {
+	cursor: pointer;
+	margin-top: 50px;
+	transition: all 500ms;
 }
