@@ -10,7 +10,7 @@ import fr.kiloutou.bo.Utilisateur;
 
 public class UtilisateurDAO {
 
-	private final static String SQLINSERT="insert into users (pseudo,nom,prenom,motDePasse) values(?,?,?,?)";
+	private final static String SQLINSERT="insert into users (pseudo,nom,prenom,MotDePasse) values(?,?,?,?)";
 	private final static String SQLLOGIN="select * "
 			+ "from users where email=? and password=?";
 	

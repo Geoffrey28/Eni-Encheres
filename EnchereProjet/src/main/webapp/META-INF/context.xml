@@ -3,10 +3,10 @@
 	<Resource name="jdbc/pool_cnx"
 			  type="javax.sql.DataSource"
 			
-			  driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-			  url="jdbc:sqlserver://localhost:1433;database=KILOUTOU_DB;encrypt=false;trustServerCertificate=true"
-			  username="sa"
-			  password="Pa$$w0rd"
+			  driverClassName="com.mysql.jdbc.Driver"
+			  url="jdbc:mysql://localhost:3306/enchere"
+			  username="root"
+			  password=""
 	>
 	</Resource>
 </Context>
