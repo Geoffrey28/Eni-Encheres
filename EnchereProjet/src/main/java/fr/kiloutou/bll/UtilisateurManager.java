@@ -31,7 +31,7 @@ public class UtilisateurManager {
 	}
 	
 	public Utilisateur login(String pseudo,String motdepasse) {
-		return utilisateurDAO.login(pseudo, Utilisateur.hashPwd(motdepasse));
+		return utilisateurDAO.login(pseudo, motdepasse);
 	}
 
 }
