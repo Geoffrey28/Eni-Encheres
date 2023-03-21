@@ -4,8 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-< %@include file="/WEB-INF/header.jspf"%>
 <style><%@include file="/WEB-INF/css/inscription.css"%></style>
+<%@include file="/WEB-INF/header.jspf"%>
 <title>ENCHERES - Inscription</title>
 </head>
 <body>
