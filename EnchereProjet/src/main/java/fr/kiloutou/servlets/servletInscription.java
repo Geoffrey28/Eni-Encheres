@@ -9,10 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.kiloutou.bll.ClientManager;
 import fr.kiloutou.bll.UtilisateurManager;
-import fr.kiloutou.bo.Adresse;
-import fr.kiloutou.bo.Client;
 import fr.kiloutou.bo.Utilisateur;
 import fr.kiloutou.bo.exceptions.CodePostalException;
 import fr.kiloutou.bo.exceptions.NumeroException;

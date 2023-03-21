@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import fr.kiloutou.bo.Client;
 import fr.kiloutou.bo.Utilisateur;
 
 public class UtilisateurDAO {
