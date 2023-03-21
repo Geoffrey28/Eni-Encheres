@@ -27,7 +27,7 @@ public class servletConnection extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String email, motdepasse;
+		/*String email, motdepasse;
 		Client c = null;
 		Boolean check = false;
 		email = request.getParameter("email");
@@ -50,7 +50,9 @@ public class servletConnection extends HttpServlet {
 			response.sendRedirect("Accueil");
 		} else {
 			doGet(request, response);
-		}
+		}*/
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+		rd.forward(request, response);
 	}
 
 }
