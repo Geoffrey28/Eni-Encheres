@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>ENI-Enchères - Profil</title>
 <style><%@include file="/WEB-INF/css/profil.css"%></style>
+<%@include file="/WEB-INF/header.jspf"%>
 </head>
 <body>
 	<div id="profil">
@@ -46,9 +47,7 @@
 				<p>Ville :</p>
 				<p>TEST</p>
 			</div>
-			<c:if test="${ userConnected.id == this.id }">
 				<a href="">Modifier</a>
-			</c:if>
 		</div>		
 	</div>
 </body>
