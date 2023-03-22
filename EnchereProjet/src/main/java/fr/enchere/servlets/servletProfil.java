@@ -26,8 +26,7 @@ public class servletProfil extends HttpServlet {
 			
 			Utilisateur u = UtilisateurManager.getInstance().show(id);
 			
-			request.setAttribute("userConnected", u);
-			request.setAttribute("other_user", true);
+			request.setAttribute("user", u);
 		}
 		
 		
