@@ -48,6 +48,7 @@
 				<p>${ userConnected.ville }</p>
 			</div>
 				<a href="">Modifier</a>
+				<a href="Supprimer">Supprimer mon compte</a>
 		</div>		
 	</div>
 </body>

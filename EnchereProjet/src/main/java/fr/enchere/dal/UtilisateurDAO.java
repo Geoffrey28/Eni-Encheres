@@ -4,20 +4,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import fr.enchere.bo.Utilisateur;
 
 public class UtilisateurDAO {
 
-	private final static String SQLINSERT="insert into users (pseudo,nom,prenom,MotDePasse,email,telephone,"
+	private final String SQLINSERT="insert into users (pseudo,nom,prenom,MotDePasse,email,telephone,"
 			+ "rue,codePostal,ville) values(?,?,?,?,?,?,?,?,?)";
-	private final static String SQLLOGIN="select * "
+	private final String SQLLOGIN="select * "
 			+ "from users where pseudo=? and MotDePasse=?";
+	private final String SQLDELETE="delete from users where noUtilisateur=?";
 	
 	public UtilisateurDAO() {
 	}
 	
-	public static void insert(Utilisateur u) {
+	public void insert(Utilisateur u) {
 		Connection cnx = null;
 		PreparedStatement stmt;
 		cnx = UtilBDD.getConnection();
@@ -51,7 +53,23 @@ public class UtilisateurDAO {
 		}
 	}
 	
-	public static Utilisateur login(String pseudo, String motDePasse) {
+	public void delete(int id)
+	{
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		try {
+			stmt = cnx.prepareStatement(SQLDELETE);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			cnx.close();
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Utilisateur login(String pseudo, String motDePasse) {
 		Utilisateur Utilisateur = null;
 		try {
 			Connection cnx = UtilBDD.getConnection();
