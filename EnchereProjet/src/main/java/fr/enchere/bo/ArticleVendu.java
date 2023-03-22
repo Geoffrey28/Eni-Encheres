@@ -10,6 +10,7 @@ public class ArticleVendu {
 	private int miseAPrix;
 	private int prixVente;
 	private String etatVente;
+	private int noUtilisateur;
 	
 	public ArticleVendu(int noArticle, String nomArticle, String description, String dateDebutEncheres,
 			String dateFinEncheres, int miseAPrix, int prixVente, String etatVente) {
@@ -81,6 +82,18 @@ public class ArticleVendu {
 	}
 	public void setEtatVente(String etatVente) {
 		this.etatVente = etatVente;
+	}
+
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+
+	public String getEtatVente() {
+		return etatVente;
 	}
 	@Override
 	public String toString() {
