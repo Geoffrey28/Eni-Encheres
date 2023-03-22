@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.enchere.bll.UtilisateurManager;
+import fr.enchere.bo.Utilisateur;
+
 /**
  * Servlet implementation class servletProfil
  */
@@ -17,6 +20,16 @@ public class servletProfil extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		if (request.getParameter("pseudo") != null) {
+			String pseudo = request.getParameter("pseudo");
+			
+			Utilisateur u = UtilisateurManager.getInstance().show(pseudo);
+			
+			request.setAttribute("user", u);
+		}
+		
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/profil.jsp");
 		rd.forward(request, response);
 	}

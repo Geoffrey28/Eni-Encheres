@@ -15,6 +15,7 @@ public class UtilisateurDAO {
 	private final String SQLLOGIN="select * "
 			+ "from users where pseudo=? and MotDePasse=?";
 	private final String SQLDELETE="delete from users where noUtilisateur=?";
+	private final static String SQLSHOW="select * from users where pseudo=?";
 	
 	public UtilisateurDAO() {
 	}
@@ -76,6 +77,23 @@ public class UtilisateurDAO {
 			PreparedStatement stmt = cnx.prepareStatement(SQLLOGIN);
 			stmt.setString(1, pseudo);
 			stmt.setString(2, motDePasse);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				Utilisateur = rsToUser(rs);
+			}
+			cnx.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Utilisateur;
+	}
+	
+	public static Utilisateur show(String pseudo) {
+		Utilisateur Utilisateur = null;
+		try {
+			Connection cnx = UtilBDD.getConnection();
+			PreparedStatement stmt = cnx.prepareStatement(SQLSHOW);
+			stmt.setString(1, pseudo);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
 				Utilisateur = rsToUser(rs);

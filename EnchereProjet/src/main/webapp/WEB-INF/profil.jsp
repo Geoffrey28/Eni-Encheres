@@ -12,43 +12,69 @@
 <body>
 	<div id="profil">
 	
-		<h2>Mon Profil</h2>
-		
-		<div id="profil-content">
-			<div>
-				<p>Pseudo :</p>
-				<p>${ userConnected.pseudo }</p>
-			</div>
-			<div>
-				<p>Nom :</p>
-				<p>${ userConnected.nom }</p>
-			</div>
-			<div>
-				<p>Prénom :</p>
-				<p>${ userConnected.prenom }</p>
-			</div>
-			<div>
-				<p>Email :</p>
-				<p>${ userConnected.email }</p>
-			</div>
-			<div>
-				<p>Téléphone :</p>
-				<p>${ userConnected.telephone }</p>
-			</div>
-			<div>
-				<p>Rue :</p>
-				<p>${ userConnected.rue }</p>
-			</div>
-			<div>
-				<p>Code postal :</p>
-				<p>${ userConnected.codePostal }</p>
-			</div>
-			<div>
-				<p>Ville :</p>
-				<p>${ userConnected.ville }</p>
-			</div>
-				<a href="">Modifier</a>
-				<a href="Supprimer">Supprimer mon compte</a>
+		<c:if test="${ empty user }"><h2>Mon Profil</h2></c:if>
+		<c:if test="${ !empty user }"><h2>Profil de ${ user.pseudo }</h2></c:if>
+
+			<c:if test="${ empty user }">
+				<div>
+					<p>Pseudo :</p>
+					<p>${ userConnected.pseudo }</p>
+				</div>
+				<div>
+					<p>Nom :</p>
+					<p>${ userConnected.nom }</p>
+				</div>
+				<div>
+					<p>Prénom :</p>
+					<p>${ userConnected.prenom }</p>
+				</div>
+				<div>
+					<p>Email :</p>
+					<p>${ userConnected.email }</p>
+				</div>
+				<div>
+					<p>Téléphone :</p>
+					<p>${ userConnected.telephone }</p>
+				</div>
+				<div>
+					<p>Rue :</p>
+					<p>${ userConnected.rue }</p>
+				</div>
+				<div>
+					<p>Code postal :</p>
+					<p>${ userConnected.codePostal }</p>
+				</div>
+				<div>
+					<p>Ville :</p>
+					<p>${ userConnected.ville }</p>
+				</div>
+					<a href="">Modifier</a>
+					<a href="Supprimer">Supprimer mon compte</a>
+			</c:if>
+			
+			<c:if test="${ !empty user }">
+				<div>
+					<p>Pseudo :</p>
+					<p>${ user.pseudo }</p>
+				</div>
+				<div>
+					<p>Nom :</p>
+					<p>${ user.nom }</p>
+				</div>
+				<div>
+					<p>Prénom :</p>
+					<p>${ user.prenom }</p>
+				</div>
+				<div>
+					<p>Email :</p>
+					<p>${ user.email }</p>
+				</div>
+				<div>
+					<p>Téléphone :</p>
+					<p>${ user.telephone }</p>
+				</div>
+			</c:if>
+>>>>>>> feature/Feature-tb-09-show-other-user-profil
 		</div>		
 	</div>
 </body>
