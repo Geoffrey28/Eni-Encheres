@@ -18,10 +18,7 @@
 			<c:when test="${ !empty userConnected }">
 				<ul>
 					<li>
-						<a href="Encheres">Enchères</a>
-					</li>
-					<li>
-						<a href="Vendre">Vendre un article</a>
+						<a href="AjoutVente">Vendre un article</a>
 					</li>
 					<li>
 						<a href="Profil">Mon profil</a>
