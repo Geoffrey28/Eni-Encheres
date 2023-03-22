@@ -23,6 +23,12 @@ body {
     border-radius: 3px;
 }
 
+#newAuction-img img {
+	width: 60%;
+	height: 60%;
+	margin: 20% 0 0 20%;
+}
+
 #newAuction-div a {
 	color: white;
 }
