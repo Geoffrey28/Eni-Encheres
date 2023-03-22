@@ -34,8 +34,8 @@ public class UtilisateurManager {
 		return utilisateurDAO.login(pseudo, motdepasse);
 	}
 	
-	public Utilisateur show(String noUtilisateur) {
-		return utilisateurDAO.show(noUtilisateur);
+	public Utilisateur show(String pseudo) {
+		return utilisateurDAO.show(pseudo);
 	}
 
 }

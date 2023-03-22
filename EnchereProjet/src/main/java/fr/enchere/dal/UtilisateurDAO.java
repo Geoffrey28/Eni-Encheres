@@ -13,7 +13,7 @@ public class UtilisateurDAO {
 			+ "rue,codePostal,ville) values(?,?,?,?,?,?,?,?,?)";
 	private final static String SQLLOGIN="select * "
 			+ "from users where pseudo=? and MotDePasse=?";
-	private final static String SQLSHOW="select * from users where noUtilisateur=?";
+	private final static String SQLSHOW="select * from users where pseudo=?";
 	
 	public UtilisateurDAO() {
 	}
@@ -70,12 +70,12 @@ public class UtilisateurDAO {
 		return Utilisateur;
 	}
 	
-	public static Utilisateur show(String noUtilisateur) {
+	public static Utilisateur show(String pseudo) {
 		Utilisateur Utilisateur = null;
 		try {
 			Connection cnx = UtilBDD.getConnection();
 			PreparedStatement stmt = cnx.prepareStatement(SQLSHOW);
-			stmt.setInt(1, Integer.parseInt(noUtilisateur));
+			stmt.setString(1, pseudo);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
 				Utilisateur = rsToUser(rs);

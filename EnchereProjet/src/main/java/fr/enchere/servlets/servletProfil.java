@@ -21,10 +21,10 @@ public class servletProfil extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if (request.getParameter("id") != null) {
-			String id = request.getParameter("id");
+		if (request.getParameter("pseudo") != null) {
+			String pseudo = request.getParameter("pseudo");
 			
-			Utilisateur u = UtilisateurManager.getInstance().show(id);
+			Utilisateur u = UtilisateurManager.getInstance().show(pseudo);
 			
 			request.setAttribute("user", u);
 		}
