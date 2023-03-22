@@ -31,7 +31,7 @@
 		 	<input type="number" name="codepostal" placeholder="Code Postal" required><br>
 		 	
 		 	<label for="motdepasse">Mot de passe : </label>
-		 	<input type="password" placeholder="Mot de passe" id="password" required><br>
+		 	<input type="password" name="password" placeholder="Mot de passe" id="password" required><br>
 		
 			<label for="nom">Nom : </label>
 		 	<input type="text" name="nom" placeholder="Nom" required><br>

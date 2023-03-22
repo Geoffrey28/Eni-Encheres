@@ -15,14 +15,14 @@ public class Utilisateur {
 	private String email;
 	private int telephone;
 	private String rue;
+	private String ville;
 	private int codePostal;
 	private int credit;
 	private boolean administrateur;
 	
 	
-	
 	public Utilisateur(String pseudo, String nom, String prenom, String motDePasse, String email, int telephone,
-			String rue, int codePostal, int credit, boolean administrateur) {
+			String rue, String ville, int codePostal) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -31,15 +31,14 @@ public class Utilisateur {
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
+		this.ville = ville;
 		this.codePostal = codePostal;
-		this.credit = credit;
-		this.administrateur = administrateur;
 	}
 
 
 
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String motDePasse, String email,
-			int telephone, String rue, int codePostal, int credit, boolean administrateur) {
+			int telephone, String rue, String ville, int codePostal) {
 		super();
 		NoUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -49,9 +48,37 @@ public class Utilisateur {
 		this.email = email;
 		this.telephone = telephone;
 		this.rue = rue;
+		this.ville = ville;
+		this.codePostal = codePostal;
+	}
+	
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String motDePasse, String email,
+			int telephone, String rue, String ville, int codePostal, int credit, boolean administrateur) {
+		super();
+		NoUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.motDePasse = motDePasse;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.ville = ville;
 		this.codePostal = codePostal;
 		this.credit = credit;
 		this.administrateur = administrateur;
+	}
+
+	
+	
+	public String getVille() {
+		return ville;
+	}
+
+
+
+	public void setVille(String ville) {
+		this.ville = ville;
 	}
 
 
