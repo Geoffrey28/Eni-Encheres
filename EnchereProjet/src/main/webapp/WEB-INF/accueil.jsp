@@ -23,7 +23,7 @@
  				<select name="Catégorie" size="1" >  	
     			<option value="toutes">Toutes</option>
     			<option value="Informatique">Informatique</option>
-    			<option value="Ammeublement">Ammeublement</option>
+    			<option value="Ammeublement">Ameublement</option>
     			<option value="Vêtement">Vêtement</option>
     			<option value="Sport&Loisirs">Sport&Loisirs</option>
     			</select>
