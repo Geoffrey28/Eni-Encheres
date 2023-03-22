@@ -6,7 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Les objets sont nos amis - Accueil</title>
-		<style><%@include file="/WEB-INF/css/acceuil.css"%></style>
+		<style><%@include file="/WEB-INF/css/accueil.css"%></style>
 		<%@include file="/WEB-INF/header.jspf"%>
 	</head>
 	<body>
