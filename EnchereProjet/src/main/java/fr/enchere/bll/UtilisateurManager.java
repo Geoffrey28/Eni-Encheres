@@ -20,7 +20,7 @@ public class UtilisateurManager {
 		return instance;
 	}
 	
-	public static void ajouter(Utilisateur utilisateur) {
+	public void ajouter(Utilisateur utilisateur) {
 		utilisateur.setNom(utilisateur.getNom().toUpperCase());
 		try {
 			utilisateurDAO.insert(utilisateur);
@@ -35,3 +35,4 @@ public class UtilisateurManager {
 	}
 
 }
+
