@@ -14,8 +14,9 @@
 	
 		<c:if test="${ empty user }"><h2>Mon Profil</h2></c:if>
 		<c:if test="${ !empty user }"><h2>Profil de ${ user.pseudo }</h2></c:if>
-
+		<div id="profil-content">
 			<c:if test="${ empty user }">
+			
 				<div>
 					<p>Pseudo :</p>
 					<p>${ userConnected.pseudo }</p>
@@ -74,7 +75,6 @@
 					<p>${ user.telephone }</p>
 				</div>
 			</c:if>
->>>>>>> feature/Feature-tb-09-show-other-user-profil
 		</div>		
 	</div>
 </body>
