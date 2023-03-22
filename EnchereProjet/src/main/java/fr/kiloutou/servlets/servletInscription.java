@@ -28,15 +28,21 @@ public class servletInscription extends HttpServlet {
 		// CLIENT
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
+		int telephone = Integer.parseInt(request.getParameter("telephone"));
+		int codePostal = Integer.parseInt(request.getParameter("codepostal"));
 		String prenom = request.getParameter("prenom");
+		String email = request.getParameter("email");
+		String rue = request.getParameter("rue");
+		String ville = request.getParameter("ville");
 		String MotDePasse = request.getParameter("password");
 		
 		UtilisateurManager utilisateurManager = UtilisateurManager.getInstance();
-		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, MotDePasse);
+		Utilisateur utilisateur = new Utilisateur(pseudo, nom, prenom, MotDePasse, email, telephone, rue, ville ,codePostal);
 		utilisateur.toString();
 		UtilisateurManager.ajouter(utilisateur);
 		request.setAttribute("utilisateur", utilisateur);
-		//response.sendRedirect("Connection");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+		rd.forward(request, response);
 	}
 
 }

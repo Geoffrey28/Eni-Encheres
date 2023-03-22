@@ -8,7 +8,8 @@ import fr.kiloutou.bo.Utilisateur;
 
 public class UtilisateurDAO {
 
-	private final static String SQLINSERT="insert into users (pseudo,nom,prenom,MotDePasse) values(?,?,?,?)";
+	private final static String SQLINSERT="insert into users (pseudo,nom,prenom,MotDePasse,email,telephone,"
+			+ "rue,codePostal,ville) values(?,?,?,?,?,?,?,?,?)";
 	private final static String SQLLOGIN="select * "
 			+ "from users where email=? and password=?";
 	
@@ -26,6 +27,11 @@ public class UtilisateurDAO {
 			stmt.setString(2, u.getPrenom());
 			stmt.setString(3, u.getNom());
 			stmt.setString(4, u.getMotDePasse());
+			stmt.setString(5, u.getEmail());
+			stmt.setInt(6, u.getTelephone());
+			stmt.setString(7, u.getRue());
+			stmt.setInt(8, u.getCodePostal());
+			stmt.setString(9, u.getVille());
 			stmt.executeUpdate();
 			ResultSet rs = stmt.getGeneratedKeys();
 			rs.next();
@@ -74,6 +80,7 @@ public class UtilisateurDAO {
 							rs.getString("email"),
 							rs.getInt("telephone"),
 							rs.getString("rue"),
+							rs.getString("ville"),
 							rs.getInt("codePostal"),
 							rs.getInt("credit"),
 							rs.getBoolean("administrateur"));
