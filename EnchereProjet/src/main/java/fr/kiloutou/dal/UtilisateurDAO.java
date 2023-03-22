@@ -11,7 +11,7 @@ public class UtilisateurDAO {
 	private final static String SQLINSERT="insert into users (pseudo,nom,prenom,MotDePasse,email,telephone,"
 			+ "rue,codePostal,ville) values(?,?,?,?,?,?,?,?,?)";
 	private final static String SQLLOGIN="select * "
-			+ "from users where email=? and password=?";
+			+ "from users where pseudo=? and MotDePasse=?";
 	
 	public UtilisateurDAO() {
 	}
