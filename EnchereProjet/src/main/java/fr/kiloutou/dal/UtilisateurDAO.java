@@ -25,11 +25,11 @@ public class UtilisateurDAO {
 			stmt.setString(1, u.getPseudo());
 			stmt.setString(2, u.getPrenom());
 			stmt.setString(3, u.getNom());
-			stmt.setString(4, u.getPassword());
+			stmt.setString(4, u.getMotDePasse());
 			stmt.executeUpdate();
 			ResultSet rs = stmt.getGeneratedKeys();
 			rs.next();
-			u.setId(rs.getInt(1));
+			u.setNoUtilisateur(rs.getInt(1));
 			cnx.close();
 			System.out.println("Inscription réussi.");
 		} catch (SQLException e) {
@@ -70,7 +70,13 @@ public class UtilisateurDAO {
 							rs.getString("pseudo"),
 							rs.getString("nom"),
 							rs.getString("prenom"),
-							rs.getString("motDePasse"));
+							rs.getString("motDePasse"),
+							rs.getString("email"),
+							rs.getInt("telephone"),
+							rs.getString("rue"),
+							rs.getInt("codePostal"),
+							rs.getInt("credit"),
+							rs.getBoolean("administrateur"));
 			}
 		catch (SQLException e) 
 		{

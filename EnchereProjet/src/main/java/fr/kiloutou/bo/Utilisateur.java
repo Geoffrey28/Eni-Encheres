@@ -19,123 +19,175 @@ public class Utilisateur {
 	private int credit;
 	private boolean administrateur;
 	
-	/**
-	 * 
-	 */
-	public Utilisateur() {
-	}
-
-	/**
-	 * @param nom
-	 * @param prenom
-	 */
-	public Utilisateur(String pseudo, String nom, String prenom, String motDePasse) {
+	
+	
+	public Utilisateur(String pseudo, String nom, String prenom, String motDePasse, String email, int telephone,
+			String rue, int codePostal, int credit, boolean administrateur) {
+		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.motDePasse = motDePasse;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.credit = credit;
+		this.administrateur = administrateur;
 	}
-	
-	public Utilisateur(int NoUtilisateur, String pseudo, String nom, String prenom, String motDePasse) {
-		this.NoUtilisateur = NoUtilisateur;
+
+
+
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String motDePasse, String email,
+			int telephone, String rue, int codePostal, int credit, boolean administrateur) {
+		super();
+		NoUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.motDePasse = motDePasse;
-	}
-	
-	public Utilisateur(int NoUtilisateur, String pseudo, String nom, String prenom, String email, int telephone,
-			String motDePasse, String rue, int codePostal) {
-		
-		//WIP
-		
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.credit = credit;
+		this.administrateur = administrateur;
 	}
 
-	/**
-	 * @return the id
-	 */
-	public int getId() {
+
+
+	public int getNoUtilisateur() {
 		return NoUtilisateur;
 	}
 
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(int id) {
-		this.NoUtilisateur = id;
+
+
+	public void setNoUtilisateur(int noUtilisateur) {
+		NoUtilisateur = noUtilisateur;
 	}
 
-	/**
-	 * @return the nom
-	 */
-	public String getNom() {
-		return nom;
-	}
 
-	/**
-	 * @param nom the nom to set
-	 */
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
 
-	/**
-	 * @return the prenom
-	 */
-	public String getPrenom() {
-		return prenom;
-	}
-
-	/**
-	 * @param prenom the prenom to set
-	 */
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
-
-	/**
-	 * @return the telephone
-	 */
 	public String getPseudo() {
 		return pseudo;
 	}
 
-	/**
-	 * @param telephone the telephone to set
-	 */
+
+
 	public void setPseudo(String pseudo) {
 		this.pseudo = pseudo;
 	}
-	
-	/**
-	 * @return the password
-	 */
-	public String getPassword() 
-	{
+
+
+
+	public String getNom() {
+		return nom;
+	}
+
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+
+	public String getPrenom() {
+		return prenom;
+	}
+
+
+
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
+
+
+
+	public String getMotDePasse() {
 		return motDePasse;
 	}
-	
-	/**
-	 * @param password the password to set
-	 * @throws Exception 
-	 */
-	public void setPassword(String password) throws Exception 
-	{
-		if (password.length()>4)
-		{
-			this.motDePasse = hashPwd(password);
-		}
-		else
-		{
-			throw new Exception("mot de passe invalide");
-		}
+
+
+
+	public void setMotDePasse(String motDePasse) {
+		this.motDePasse = motDePasse;
 	}
-	
-	@Override
-	public String toString() {
-		return "Personne [id="+NoUtilisateur + "pseudo=" + pseudo + "nom=" + nom + ", prenom=" + prenom + "]";
+
+
+
+	public String getEmail() {
+		return email;
 	}
-	
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+
+	public int getTelephone() {
+		return telephone;
+	}
+
+
+
+	public void setTelephone(int telephone) {
+		this.telephone = telephone;
+	}
+
+
+
+	public String getRue() {
+		return rue;
+	}
+
+
+
+	public void setRue(String rue) {
+		this.rue = rue;
+	}
+
+
+
+	public int getCodePostal() {
+		return codePostal;
+	}
+
+
+
+	public void setCodePostal(int codePostal) {
+		this.codePostal = codePostal;
+	}
+
+
+
+	public int getCredit() {
+		return credit;
+	}
+
+
+
+	public void setCredit(int credit) {
+		this.credit = credit;
+	}
+
+
+
+	public boolean isAdministrateur() {
+		return administrateur;
+	}
+
+
+
+	public void setAdministrateur(boolean administrateur) {
+		this.administrateur = administrateur;
+	}
+
+
+
 	public static String hashPwd(String pwd)
 	{
 		MessageDigest md = null;

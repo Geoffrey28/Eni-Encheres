@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>ENI-Encheres - Ajouter une vente</title>
 <style><%@include file="/WEB-INF/css/ajoutVente.css"%></style>
+<%@include file="/WEB-INF/header.jspf"%>
 </head>
 <body>
 	<div id="newAuction-img">
