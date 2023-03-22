@@ -12,7 +12,9 @@
 <body>
 	<div id="profil">
 	
-		<h2>Mon Profil</h2>
+		<c:if test="${ empty other_user }"><h2>Mon Profil</h2></c:if>
+		<c:if test="${ !empty other_user }"><h2>Profil de ${ userConnected.pseudo }</h2></c:if>
+		
 		
 		<div id="profil-content">
 			<div>
@@ -47,7 +49,7 @@
 				<p>Ville :</p>
 				<p>${ userConnected.ville }</p>
 			</div>
-				<a href="">Modifier</a>
+				<c:if test="${ empty other_user }"><a href="">Modifier</a></c:if>
 		</div>		
 	</div>
 </body>
