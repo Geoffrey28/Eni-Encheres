@@ -17,35 +17,35 @@
 		<div id="profil-content">
 			<div>
 				<p>Pseudo :</p>
-				<p>TEST</p>
+				<p>${ userConnected.pseudo }</p>
 			</div>
 			<div>
 				<p>Nom :</p>
-				<p>TEST</p>
+				<p>${ userConnected.nom }</p>
 			</div>
 			<div>
 				<p>Prénom :</p>
-				<p>TEST</p>
+				<p>${ userConnected.prenom }</p>
 			</div>
 			<div>
 				<p>Email :</p>
-				<p>TEST</p>
+				<p>${ userConnected.email }</p>
 			</div>
 			<div>
 				<p>Téléphone :</p>
-				<p>TEST</p>
+				<p>${ userConnected.telephone }</p>
 			</div>
 			<div>
 				<p>Rue :</p>
-				<p>TEST</p>
+				<p>${ userConnected.rue }</p>
 			</div>
 			<div>
 				<p>Code postal :</p>
-				<p>TEST</p>
+				<p>${ userConnected.codePostal }</p>
 			</div>
 			<div>
 				<p>Ville :</p>
-				<p>TEST</p>
+				<p>${ userConnected.ville }</p>
 			</div>
 				<a href="">Modifier</a>
 		</div>		
