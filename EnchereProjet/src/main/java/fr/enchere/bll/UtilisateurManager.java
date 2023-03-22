@@ -1,8 +1,8 @@
-package fr.kiloutou.bll;
+package fr.enchere.bll;
 
-import fr.kiloutou.bo.Utilisateur;
-import fr.kiloutou.dal.UtilisateurDAO;
-import fr.kiloutou.dal.DAOFactory;
+import fr.enchere.bo.Utilisateur;
+import fr.enchere.dal.DAOFactory;
+import fr.enchere.dal.UtilisateurDAO;
 
 public class UtilisateurManager {
 	

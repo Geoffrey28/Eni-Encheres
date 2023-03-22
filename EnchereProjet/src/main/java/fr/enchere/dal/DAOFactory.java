@@ -1,4 +1,4 @@
-package fr.kiloutou.dal;
+package fr.enchere.dal;
 
 public abstract class DAOFactory {
 	

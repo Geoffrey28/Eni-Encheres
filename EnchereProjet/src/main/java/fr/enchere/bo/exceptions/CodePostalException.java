@@ -1,4 +1,4 @@
-package fr.kiloutou.bo.exceptions;
+package fr.enchere.bo.exceptions;
 
 @SuppressWarnings("serial")
 public class CodePostalException extends Exception {

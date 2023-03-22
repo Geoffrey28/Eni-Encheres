@@ -1,4 +1,4 @@
-package fr.kiloutou.servlets;
+package fr.enchere.servlets;
 
 import java.io.IOException;
 
@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.kiloutou.bll.UtilisateurManager;
-import fr.kiloutou.bo.Utilisateur;
+import fr.enchere.bll.UtilisateurManager;
+import fr.enchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class ServletConnection

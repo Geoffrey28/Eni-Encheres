@@ -1,4 +1,4 @@
-package fr.kiloutou.dal;
+package fr.enchere.dal;
 
 import java.sql.Connection;
 import java.sql.SQLException;

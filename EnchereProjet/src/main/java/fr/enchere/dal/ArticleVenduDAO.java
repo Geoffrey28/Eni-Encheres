@@ -1,4 +1,4 @@
-package fr.kiloutou.dal;
+package fr.enchere.dal;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.kiloutou.bo.ArticleVendu;
+import fr.enchere.bo.ArticleVendu;
 
 public class ArticleVenduDAO {
 

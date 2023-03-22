@@ -1,9 +1,9 @@
-package fr.kiloutou.bo;
+package fr.enchere.bo;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import fr.kiloutou.dal.UtilisateurDAO;
+import fr.enchere.dal.UtilisateurDAO;
 
 public class Utilisateur {
 	

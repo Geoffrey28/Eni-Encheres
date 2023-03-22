@@ -1,7 +1,6 @@
-package fr.kiloutou.servlets;
+package fr.enchere.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,28 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.kiloutou.bll.ArticleVenduManager;
-import fr.kiloutou.bo.ArticleVendu;
-
 /**
- * Servlet implementation class servletAccueil
+ * Servlet implementation class ServletAjoutVente
  */
-@WebServlet("/Accueil")
-public class servletAccueil extends HttpServlet {
+@WebServlet("/AjoutVente")
+public class ServletAjoutVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		List<ArticleVendu> lstArticleVendu;
-		lstArticleVendu = ArticleVenduManager.getInstance().afficherListe();
-		
-		request.setAttribute("listeArticleVendu", lstArticleVendu);
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ajoutVente.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doGet(request, response);
 	}
 
 }

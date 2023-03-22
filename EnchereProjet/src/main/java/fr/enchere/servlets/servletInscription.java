@@ -1,4 +1,4 @@
-package fr.kiloutou.servlets;
+package fr.enchere.servlets;
 
 import java.io.IOException;
 
@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.kiloutou.bll.UtilisateurManager;
-import fr.kiloutou.bo.Utilisateur;
-import fr.kiloutou.bo.exceptions.CodePostalException;
-import fr.kiloutou.bo.exceptions.NumeroException;
+import fr.enchere.bll.UtilisateurManager;
+import fr.enchere.bo.Utilisateur;
+import fr.enchere.bo.exceptions.CodePostalException;
+import fr.enchere.bo.exceptions.NumeroException;
 
 @WebServlet("/Inscription")
 public class servletInscription extends HttpServlet {

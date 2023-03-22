@@ -1,4 +1,4 @@
-package fr.kiloutou.bo;
+package fr.enchere.bo;
 
 public class ArticleVendu {
 	

@@ -1,12 +1,12 @@
-package fr.kiloutou.bll;
+package fr.enchere.bll;
 
 import java.util.List;
 
-import fr.kiloutou.bo.ArticleVendu;
-import fr.kiloutou.bo.Utilisateur;
-import fr.kiloutou.dal.UtilisateurDAO;
-import fr.kiloutou.dal.ArticleVenduDAO;
-import fr.kiloutou.dal.DAOFactory;
+import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Utilisateur;
+import fr.enchere.dal.ArticleVenduDAO;
+import fr.enchere.dal.DAOFactory;
+import fr.enchere.dal.UtilisateurDAO;
 
 public class ArticleVenduManager {
 	
