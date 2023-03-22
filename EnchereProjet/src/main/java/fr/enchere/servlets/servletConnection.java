@@ -30,7 +30,6 @@ public class servletConnection extends HttpServlet {
 		String pseudo, motdepasse;
 		Utilisateur u = null;
 		Boolean check = false;
-		System.out.println("ok");
 		pseudo = request.getParameter("pseudo");
 		motdepasse = request.getParameter("motdepasse");
 		HttpSession session;
@@ -42,8 +41,6 @@ public class servletConnection extends HttpServlet {
 			check = true;
 		}
 		session.setAttribute("check", check);
-		System.out.println(pseudo);
-		System.out.println(u);
 		if(u != null) {
 			session.setAttribute("userConnected", u);
 			Cookie connectionMemo;
