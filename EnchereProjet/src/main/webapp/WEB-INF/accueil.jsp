@@ -19,13 +19,13 @@
 						<div id="filter-name" style="display: grid;">
 						
 							<label for="article-name">Nom de l'article :</label>
-							<input type="text" name="article-name">
+							<input type="text" name="article-name" value="${ name }">
 							
 							<label for="categorie">Catégorie :</label>
 					 		<select name="categorie" size="1">  	
-					 			<option value="-1" selected>Toutes</option>
+					 			<option value="-1" <c:if test="${ categorie == -1 }">selected</c:if>>Toutes</option>
 					 			<c:forEach items="${ listeCategorie }" var="c">
-									<option value="${ c.noCategorie }">${ c.libelle }</option>
+									<option value="${ c.noCategorie }" <c:if test="${ categorie == c.noCategorie }">selected</c:if>>${ c.libelle }</option>
 								</c:forEach>
 					   		</select>
 						

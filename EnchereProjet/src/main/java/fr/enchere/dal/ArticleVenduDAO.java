@@ -18,9 +18,9 @@ public class ArticleVenduDAO {
 	private final static String SQLSELECTALL="select * "
 			+ "from ArticleVendu where true";
 	private final static String SQLSELECTALLWITHFILTER="select * "
-			+ "from ArticleVendu where nomArticle = ? and noCategorie = ? ";
+			+ "from ArticleVendu where nomArticle like CONCAT( '%',?,'%') and noCategorie = ? ";
 	private final static String SQLSELECTALLWITHFILTER_without_categorie="select * "
-			+ "from ArticleVendu where nomArticle = ? ";
+			+ "from ArticleVendu where nomArticle like CONCAT( '%',?,'%') ";
 	private final static String SQLSELECTALLWITHFILTER_without_name="select * "
 			+ "from ArticleVendu where noCategorie = ? ";
 	private final String SQLDELETEBYID = "DELETE FROM ArticleVendu WHERE noArticle=?";
@@ -93,7 +93,7 @@ public class ArticleVenduDAO {
 		
 		try {
 			
-			if (name == null && categorie == -1) {
+			if (name == "" && categorie == -1) {
 				stmt = cnx.prepareStatement(SQLSELECTALL, PreparedStatement.RETURN_GENERATED_KEYS);
 				rs = stmt.executeQuery();
 			} else if(name != "" && categorie == -1) {

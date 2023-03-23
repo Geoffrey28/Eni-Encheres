@@ -51,6 +51,9 @@ public class servletAccueil extends HttpServlet {
 		lstCategorie = CategorieManager.getInstance().afficherListe();
 		request.setAttribute("listeCategorie", lstCategorie);
 		
+		request.setAttribute("categorie", categorie);
+		request.setAttribute("name", name);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
 		rd.forward(request, response);
 	}
