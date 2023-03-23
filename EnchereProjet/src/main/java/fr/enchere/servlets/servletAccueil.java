@@ -38,7 +38,7 @@ public class servletAccueil extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String name = request.getParameter("name");
+		String name = request.getParameter("article-name");
 		int categorie = Integer.parseInt(request.getParameter("categorie"));
 		int type = Integer.parseInt(request.getParameter("achat-vente"));
 		int checked = Integer.parseInt(request.getParameter("checked-info"));

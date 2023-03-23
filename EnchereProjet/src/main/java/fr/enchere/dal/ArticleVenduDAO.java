@@ -18,9 +18,9 @@ public class ArticleVenduDAO {
 	private final static String SQLSELECTALL="select * "
 			+ "from ArticleVendu where true";
 	private final static String SQLSELECTALLWITHFILTER="select * "
-			+ "from ArticleVendu where nomArticle like %?% and noCategorie = ? ";
+			+ "from ArticleVendu where nomArticle = ? and noCategorie = ? ";
 	private final static String SQLSELECTALLWITHFILTER_without_categorie="select * "
-			+ "from ArticleVendu where nomArticle like %?% ";
+			+ "from ArticleVendu where nomArticle = ? ";
 	private final static String SQLSELECTALLWITHFILTER_without_name="select * "
 			+ "from ArticleVendu where noCategorie = ? ";
 	private final String SQLDELETEBYID = "DELETE FROM ArticleVendu WHERE noArticle=?";
@@ -83,20 +83,33 @@ public class ArticleVenduDAO {
 	
 	public List<ArticleVendu> selectAllWithFilter(String name, int categorie, int type, int checked) {
 		Connection cnx;
-		Statement stmt;
+		PreparedStatement stmt;
 		ResultSet rs;
 		ArrayList<ArticleVendu> listeArticleVendu = null;
 		cnx = UtilBDD.getConnection();
 		
+		System.out.println(name);
+		System.out.println(categorie);
+		
 		try {
-			stmt = cnx.createStatement();
-			
-			rs = null;
 			
 			if (name == null && categorie == -1) {
-				rs = stmt.executeQuery(SQLSELECTALL);
+				stmt = cnx.prepareStatement(SQLSELECTALL, PreparedStatement.RETURN_GENERATED_KEYS);
+				rs = stmt.executeQuery();
+			} else if(name != "" && categorie == -1) {
+				stmt = cnx.prepareStatement(SQLSELECTALLWITHFILTER_without_categorie, PreparedStatement.RETURN_GENERATED_KEYS);
+				stmt.setString(1, name);
+				rs = stmt.executeQuery();
+			} else if(name == "" && categorie != -1) {
+				stmt = cnx.prepareStatement(SQLSELECTALLWITHFILTER_without_name, PreparedStatement.RETURN_GENERATED_KEYS);
+				stmt.setInt(1, categorie);
+				rs = stmt.executeQuery();
+			} else {
+				stmt = cnx.prepareStatement(SQLSELECTALLWITHFILTER, PreparedStatement.RETURN_GENERATED_KEYS);
+				stmt.setString(1, name);
+				stmt.setInt(2, categorie);
+				rs = stmt.executeQuery();
 			}
-			
 			
 			listeArticleVendu = new ArrayList<>();
 			
