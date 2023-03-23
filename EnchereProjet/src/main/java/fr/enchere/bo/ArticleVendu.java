@@ -28,7 +28,7 @@ public class ArticleVendu {
 		this.noCategorie = noCategorie;
 	}
 	public ArticleVendu(String nomArticle, String description, String dateDebutEncheres, String dateFinEncheres,
-			int miseAPrix, int prixVente, String etatVente, int noUtilisateur, int noCategorie) {
+			int miseAPrix, int prixVente, int noUtilisateur, int noCategorie) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
