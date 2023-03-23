@@ -21,11 +21,10 @@
 						<input type="text" placeholder="Nom de l'article"><br>
 				 		<label for="categorie">Catégorie :</label>
 				 		<select name="categorie" size="1">  	
-				   			<option value="toutes">Toutes</option>
-			    			<option value="Informatique">Informatique</option>
-				   			<option value="Ammeublement">Ameublement</option>
-			   				<option value="Vêtement">Vêtement</option>
-			   				<option value="SportLoisirs">Sport&Loisirs</option>
+				 			<option value="" selected>Toutes</option>
+				 			<c:forEach items="${ listeCategorie }" var="c">
+								<option value="${ c.noCategorie }">${ c.libelle }</option>
+							</c:forEach>
 				   		</select>
 					</div>
 		    		<input type="submit" value="Rechercher">

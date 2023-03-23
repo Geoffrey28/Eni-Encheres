@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.enchere.bll.ArticleVenduManager;
+import fr.enchere.bll.CategorieManager;
 import fr.enchere.bll.UtilisateurManager;
 import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Categorie;
 import fr.enchere.bo.Utilisateur;
 
 /**
@@ -31,7 +33,11 @@ public class servletEnchereDetail extends HttpServlet {
 			
 			Utilisateur u = UtilisateurManager.getInstance().showById(a.getNoUtilisateur());
 			
+			Categorie c = CategorieManager.getInstance().selectById(a.getNoCategorie());
+			
 			request.setAttribute("user", u);
+			
+			request.setAttribute("categorie", c);
 			
 			request.setAttribute("article", a);
 			

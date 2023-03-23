@@ -60,7 +60,7 @@ select option {
 	justify-content: space-around;
 }
 
-#accueil-form-filtre input {
+#accueil-form-filtre input[type="submit"] {
 	width: 400px;
 	cursor: pointer;
 }

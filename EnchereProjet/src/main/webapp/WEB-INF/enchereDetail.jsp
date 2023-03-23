@@ -23,7 +23,7 @@
 				<span><p>Description :</p><p>${ article.description }</p></span>
 			</div>
 			<div>
-				<span><p>Catégorie :</p><p>categorie</p></span>
+				<span><p>Catégorie :</p><p>${ categorie.libelle }</p></span>
 			</div>
 			<div>
 				<span><p>Meilleur Offre :</p><p>${ article.prixVente }</p></span>

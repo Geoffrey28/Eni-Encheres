@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.enchere.bll.ArticleVenduManager;
+import fr.enchere.bll.CategorieManager;
 import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Categorie;
 
 /**
  * Servlet implementation class servletAccueil
@@ -24,8 +26,12 @@ public class servletAccueil extends HttpServlet {
 		
 		List<ArticleVendu> lstArticleVendu;
 		lstArticleVendu = ArticleVenduManager.getInstance().afficherListe();
-		
 		request.setAttribute("listeArticleVendu", lstArticleVendu);
+		
+		List<Categorie> lstCategorie;
+		lstCategorie = CategorieManager.getInstance().afficherListe();
+		request.setAttribute("listeCategorie", lstCategorie);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
 		rd.forward(request, response);
 	}
