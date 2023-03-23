@@ -29,6 +29,14 @@ public class servletProfil extends HttpServlet {
 			request.setAttribute("user", u);
 		}
 		
+		if (request.getParameter("id") != null) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			
+			Utilisateur u = UtilisateurManager.getInstance().showById(id);
+			
+			request.setAttribute("user", u);
+		}
+		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/profil.jsp");
 		rd.forward(request, response);

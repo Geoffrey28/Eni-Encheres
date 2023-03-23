@@ -37,10 +37,10 @@
 					<article id="accueil-article">		
 						<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png"><br>
 						<div>
-							<a href="/EnchereDetail?id=${ a.noArticle }">${ a.nomArticle }</a>
+							<a href="EnchereDetail?id=${ a.noArticle }">${ a.nomArticle }</a>
 							<p>Prix: ${ a.prixVente } points</p>
 							<p>Fin de l'enchère: ${ a.dateFinEncheres }</p>
-							<p>Vendeur: <a href="/Profil?pseudo=${ a.noUtilisateur }">${ a.noUtilisateur }</a></p>	
+							<p>Vendeur: <a href="Profil?id=${ a.noUtilisateur }">Voir l'utilisateur</a></p>	
 						</div>
 					</article>
 				</c:forEach>

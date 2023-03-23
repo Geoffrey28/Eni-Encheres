@@ -30,8 +30,6 @@ public class servletEnchereDetail extends HttpServlet {
 			ArticleVendu a = ArticleVenduManager.getInstance().show(Integer.parseInt(id));
 			
 			Utilisateur u = UtilisateurManager.getInstance().showById(a.getNoUtilisateur());
-		
-			System.out.println(u);
 			
 			request.setAttribute("user", u);
 			
