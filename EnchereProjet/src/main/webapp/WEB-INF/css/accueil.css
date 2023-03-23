@@ -60,6 +60,10 @@ select option {
 	justify-content: space-around;
 }
 
+#accueil-form-filtre div{
+	margin: 0 auto;
+}
+
 #accueil-form-filtre input[type="submit"] {
 	width: 400px;
 	cursor: pointer;

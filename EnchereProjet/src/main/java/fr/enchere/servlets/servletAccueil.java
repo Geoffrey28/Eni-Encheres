@@ -38,6 +38,21 @@ public class servletAccueil extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String name = request.getParameter("name");
+		int categorie = Integer.parseInt(request.getParameter("categorie"));
+		int type = Integer.parseInt(request.getParameter("achat-vente"));
+		int checked = Integer.parseInt(request.getParameter("checked-info"));
+		
+		List<ArticleVendu> lstArticleVendu;
+		lstArticleVendu = ArticleVenduManager.getInstance().afficherListeWithFilter(name, categorie, type, checked);
+		request.setAttribute("listeArticleVendu", lstArticleVendu);
+		
+		List<Categorie> lstCategorie;
+		lstCategorie = CategorieManager.getInstance().afficherListe();
+		request.setAttribute("listeCategorie", lstCategorie);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
+		rd.forward(request, response);
 	}
 
 }

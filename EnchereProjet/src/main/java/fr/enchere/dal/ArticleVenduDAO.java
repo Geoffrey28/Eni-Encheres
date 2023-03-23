@@ -17,6 +17,12 @@ public class ArticleVenduDAO {
 			+ "dateFinEncheres, miseAPrix, prixVente) values(?,?,?,?,?,?)";
 	private final static String SQLSELECTALL="select * "
 			+ "from ArticleVendu where true";
+	private final static String SQLSELECTALLWITHFILTER="select * "
+			+ "from ArticleVendu where nomArticle like %?% and noCategorie = ? ";
+	private final static String SQLSELECTALLWITHFILTER_without_categorie="select * "
+			+ "from ArticleVendu where nomArticle like %?% ";
+	private final static String SQLSELECTALLWITHFILTER_without_name="select * "
+			+ "from ArticleVendu where noCategorie = ? ";
 	private final String SQLDELETEBYID = "DELETE FROM ArticleVendu WHERE noArticle=?";
 	private final static String SQLSHOW="select * from ArticleVendu where noArticle=?";
 	
@@ -64,6 +70,34 @@ public class ArticleVenduDAO {
 		try {
 			stmt = cnx.createStatement();
 			rs = stmt.executeQuery(SQLSELECTALL);
+			listeArticleVendu = new ArrayList<>();
+			
+			while (rs.next()) {
+				listeArticleVendu.add(rsToArticleVendu(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listeArticleVendu;
+	}
+	
+	public List<ArticleVendu> selectAllWithFilter(String name, int categorie, int type, int checked) {
+		Connection cnx;
+		Statement stmt;
+		ResultSet rs;
+		ArrayList<ArticleVendu> listeArticleVendu = null;
+		cnx = UtilBDD.getConnection();
+		
+		try {
+			stmt = cnx.createStatement();
+			
+			rs = null;
+			
+			if (name == null && categorie == -1) {
+				rs = stmt.executeQuery(SQLSELECTALL);
+			}
+			
+			
 			listeArticleVendu = new ArrayList<>();
 			
 			while (rs.next()) {
