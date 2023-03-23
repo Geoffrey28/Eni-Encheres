@@ -3,18 +3,22 @@ package fr.enchere.bll;
 import java.util.List;
 
 import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Retrait;
 import fr.enchere.bo.Utilisateur;
 import fr.enchere.dal.ArticleVenduDAO;
 import fr.enchere.dal.DAOFactory;
+import fr.enchere.dal.RetraitDAO;
 import fr.enchere.dal.UtilisateurDAO;
 
 public class ArticleVenduManager {
 	
 	private static ArticleVenduManager instance = null;
 	private static ArticleVenduDAO articleVenduDAO;
+	private static RetraitDAO retraitDAO;
 	
 	private ArticleVenduManager() {
 		this.articleVenduDAO = DAOFactory.getArticleVenduDAO();
+		this.retraitDAO = DAOFactory.getRetraitDAO();
 	}
 	
 	public static ArticleVenduManager getInstance() {
@@ -28,7 +32,6 @@ public class ArticleVenduManager {
 		try {
 			articleVenduDAO.insert(articleVendu);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -43,6 +46,18 @@ public class ArticleVenduManager {
 	
 	public void supprimer(int id) {
 		articleVenduDAO.deleteById(id);
+	}
+	
+	public Retrait getRetraitById(int noArticle) {
+		return retraitDAO.selectByNoArticle(noArticle);
+	}
+	
+	public static void ajouterRetrait(Retrait retrait) {
+		try {
+			retraitDAO.insert(retrait);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

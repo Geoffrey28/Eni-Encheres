@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import fr.enchere.bll.UtilisateurManager;
 import fr.enchere.bo.Utilisateur;
 import fr.enchere.bo.exceptions.CodePostalException;
-import fr.enchere.bo.exceptions.NumeroException;
 
 @WebServlet("/Inscription")
 public class servletInscription extends HttpServlet {

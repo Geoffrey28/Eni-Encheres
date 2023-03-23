@@ -35,7 +35,13 @@
 				<span><p>Fin de l'enchère :</p><p>${ article.dateFinEncheres }</p></span>
 			</div>
 			<div>
-				<span><p>Retrait :</p><p>lieu retrait</p></span>
+				<span>
+					<p>Retrait :</p>
+					<p>
+						${ retrait.rue } <br>
+						${ retrait.codePostal } ${ retrait.ville }
+					<p>
+				</span>
 			</div>
 			<div>
 				<span><p>Vendeur :</p><p>${ user.pseudo }</p></span>
