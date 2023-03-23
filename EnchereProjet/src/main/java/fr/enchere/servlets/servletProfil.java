@@ -24,7 +24,7 @@ public class servletProfil extends HttpServlet {
 		if (request.getParameter("pseudo") != null) {
 			String pseudo = request.getParameter("pseudo");
 			
-			Utilisateur u = UtilisateurManager.getInstance().show(pseudo);
+			Utilisateur u = UtilisateurManager.getInstance().showByPseudo(pseudo);
 			
 			request.setAttribute("user", u);
 		}

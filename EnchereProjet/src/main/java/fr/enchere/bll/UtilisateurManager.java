@@ -38,8 +38,12 @@ public class UtilisateurManager {
 		utilisateurDAO.delete(id);
 	}
 	
-	public Utilisateur show(String pseudo) {
-		return utilisateurDAO.show(pseudo);
+	public Utilisateur showByPseudo(String pseudo) {
+		return utilisateurDAO.showByPseudo(pseudo);
+	}
+	
+	public Utilisateur showById(int id) {
+		return utilisateurDAO.showById(id);
 	}
 
 }

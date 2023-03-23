@@ -37,6 +37,10 @@ public class ArticleVenduManager {
 		return articleVenduDAO.selectAll();
 	}
 	
+	public ArticleVendu show(int id) {
+		return ArticleVenduDAO.show(id);
+	}
+	
 	public void supprimer(int id) {
 		articleVenduDAO.deleteById(id);
 	}

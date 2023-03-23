@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Utilisateur;
 
 public class ArticleVenduDAO {
 
@@ -16,7 +17,8 @@ public class ArticleVenduDAO {
 			+ "dateFinEncheres, miseAPrix, prixVente) values(?,?,?,?,?,?)";
 	private final static String SQLSELECTALL="select * "
 			+ "from ArticleVendu where true";
-	private final String SQLDELETEBYID = "DELETE FROM Voiture WHERE id=?";
+	private final String SQLDELETEBYID = "DELETE FROM ArticleVendu WHERE noArticle=?";
+	private final static String SQLSHOW="select * from ArticleVendu where noArticle=?";
 	
 	public ArticleVenduDAO() {
 	}
@@ -84,13 +86,32 @@ public class ArticleVenduDAO {
 							rs.getString("dateFinEncheres"),
 							rs.getInt("miseAPrix"),
 							rs.getInt("prixVente"),
-							rs.getString("etatVente"));
+							rs.getString("etatVente"),
+							rs.getInt("noUtilisateur"),
+							rs.getInt("noCategorie"));
 			}
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
 		}
 		return a;
+	}
+	
+	public static ArticleVendu show(int id) {
+		ArticleVendu ArticleVendu = null;
+		try {
+			Connection cnx = UtilBDD.getConnection();
+			PreparedStatement stmt = cnx.prepareStatement(SQLSHOW);
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				ArticleVendu = rsToArticleVendu(rs);
+			}
+			cnx.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ArticleVendu;
 	}
 
 	public void deleteById(int id) {
