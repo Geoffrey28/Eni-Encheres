@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.enchere.bll.ArticleVenduManager;
 import fr.enchere.bll.UtilisateurManager;
 import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Retrait;
 import fr.enchere.bo.Utilisateur;
 
 /**
@@ -25,15 +26,16 @@ public class servletEnchereDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		if (request.getParameter("id") != null) {
-			String id = request.getParameter("id");
+			int id = Integer.parseInt(request.getParameter("id"));
 			
-			ArticleVendu a = ArticleVenduManager.getInstance().show(Integer.parseInt(id));
-			
+			ArticleVendu a = ArticleVenduManager.getInstance().show(id);
+			Retrait r = ArticleVenduManager.getInstance().getRetraitById(id);
 			Utilisateur u = UtilisateurManager.getInstance().showById(a.getNoUtilisateur());
 			
-			request.setAttribute("user", u);
-			
 			request.setAttribute("article", a);
+			request.setAttribute("user", u);
+			request.setAttribute("retrait", r);
+			
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/enchereDetail.jsp");
 			rd.forward(request, response);
