@@ -35,9 +35,16 @@
 			<div id="accueil-liste">
 				<c:forEach items="${ listeArticleVendu }" var="a">
 					<article id="accueil-article">		
-						<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png"><br>
+						<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png">
 						<div>
-							<a href="EnchereDetail?id=${ a.noArticle }">${ a.nomArticle }</a>
+							<c:choose>
+								<c:when test="${ !empty userConnected }">
+									<a href="EnchereDetail?id=${ a.noArticle }">${ a.nomArticle }</a>
+								</c:when>
+								<c:when test="${ empty userConnected }">
+									<p id="accueil-article-nom">${ a.nomArticle }</p>
+								</c:when>
+							</c:choose>
 							<p>Prix: ${ a.prixVente } points</p>
 							<p>Fin de l'enchère: ${ a.dateFinEncheres }</p>
 							<p>Vendeur: <a href="Profil?id=${ a.noUtilisateur }">Voir l'utilisateur</a></p>	
