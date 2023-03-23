@@ -38,7 +38,7 @@
 				<span><p>Retrait :</p><p>lieu retrait</p></span>
 			</div>
 			<div>
-				<span><p>Vendeur :</p><p>vendeur</p></span>
+				<span><p>Vendeur :</p><p>${ user.pseudo }</p></span>
 			</div>
 			<div>
 				<span><p>Ma Proposition :</p><p><input type="number" style="width: 75px;" min="${ article.prixVente }"> <input type="submit" value="Enchérir" style="cursor: pointer;"></p></span>

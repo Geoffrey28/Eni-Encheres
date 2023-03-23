@@ -10,9 +10,11 @@ public class ArticleVendu {
 	private int miseAPrix;
 	private int prixVente;
 	private String etatVente;
+	private int noUtilisateur;
+	private int noCategorie;
 	
 	public ArticleVendu(int noArticle, String nomArticle, String description, String dateDebutEncheres,
-			String dateFinEncheres, int miseAPrix, int prixVente, String etatVente) {
+			String dateFinEncheres, int miseAPrix, int prixVente, String etatVente, int noUtilisateur, int noCategorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -22,9 +24,11 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
 	}
 	public ArticleVendu(String nomArticle, String description, String dateDebutEncheres, String dateFinEncheres,
-			int miseAPrix, int prixVente, String etatVente) {
+			int miseAPrix, int prixVente, String etatVente, int noUtilisateur, int noCategorie) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
@@ -33,6 +37,27 @@ public class ArticleVendu {
 		this.miseAPrix = miseAPrix;
 		this.prixVente = prixVente;
 		this.etatVente = etatVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+	}
+	
+	
+	
+	
+	public int getNoCategorie() {
+		return noCategorie;
+	}
+	public void setNoCategorie(int noCategorie) {
+		this.noCategorie = noCategorie;
+	}
+	public int getNoUtilisateur() {
+		return noUtilisateur;
+	}
+	public void setNoUtilisateur(int noUtilisateur) {
+		this.noUtilisateur = noUtilisateur;
+	}
+	public String getEtatVente() {
+		return etatVente;
 	}
 	public int getNoArticle() {
 		return noArticle;
@@ -86,7 +111,8 @@ public class ArticleVendu {
 	public String toString() {
 		return "ArticleVendu [noArticle=" + noArticle + ", nomArticle=" + nomArticle + ", description=" + description
 				+ ", dateDebutEncheres=" + dateDebutEncheres + ", dateFinEncheres=" + dateFinEncheres + ", miseAPrix="
-				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + "]";
+				+ miseAPrix + ", prixVente=" + prixVente + ", etatVente=" + etatVente + ", noUtilisateur="
+				+ noUtilisateur + ", noCategorie=" + noCategorie + "]";
 	}
 	
 	
