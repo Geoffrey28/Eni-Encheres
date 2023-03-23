@@ -2,45 +2,64 @@
 
 body {
 	margin: 0;
-}
-
-main {
-	margin: 0;
     width: 100%;
     height: 100vh;
     background-image: url(https://www.huissiers41-tc.fr/assets/img/p5/2_vente_img_1.jpg?t=1649748636);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    display: flex;
-    align-items: center;
+    overflow: hidden;
 }
 
-#connect-div h2 {
+#accueil h2 {
 	text-align: center;
 }
 
-#connect-div select {
-	display : inline-block;
-}
-
-#connect-div {
+#accueil {
 	text-align: center;
-    margin: 0 auto;
-    padding: 2%;
-    width: fit-content;
+    margin: 10vh auto 0 auto;
+    width: 90%;
+    max-height: 90vh;
     box-shadow: 0px 3px 5px black;
     font-family: cursive;
     color: white;
     background-color: #000000d9;
+    overflow-y: scroll;
 }
 
-#connect-div form {
+#accueil::-webkit-scrollbar {
+  width: 6px;
+}
+
+#accueil::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 20px;
+}
+
+#accueil-form {
 	display: grid;
     gap: 3px;
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
 }
 
-#connect-div input, button, select, option {
+#accueil-form h3 {
+	margin: 0;
+}
+
+#accueil-form-filtre {
+	display: flex;
+	justify-content: space-around;
+}
+
+#accueil-form-filtre input {
+	width: 400px;
+	cursor: pointer;
+}
+
+
+#accueil input, button, select, option {
 	background-color: transparent;
     border-color: deepskyblue;
     border-radius: 3px;
@@ -49,16 +68,46 @@ main {
     color: white;
 }
 
-#connect-div button {
-  width: 200px;
-  height: 40px;
-  font-size: 16px;
-  padding: 12px;
-  margin: 12px;
+
+#accueil-liste {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 0 auto;
 }
 
-#connect-div form {
-	text-align: center;
-	position: relative;
-	top: 20px;
+#accueil-article {
+	border: 2px inset deepskyblue;
+	display: flex;
+	max-width: 30%;
+	margin: 10px;
+	text-align: left;
+	padding: 10px 0;
 }
+
+#accueil-article div {
+	margin: 0 10px;
+}
+
+#accueil-article div:last-child {
+	width: 60%;
+}
+
+#accueil-article img {
+	height: 150px;
+	width: 150px;
+	background: #fff;
+	margin-left: 10px;
+}
+
+#accueil-article a {
+	color: #fff;
+}
+
+#accueil-article-btn {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
+	padding-right: 50px;
+}
+
