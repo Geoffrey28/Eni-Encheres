@@ -99,6 +99,10 @@ body {
 	margin-left: 10px;
 }
 
+#accueil-article-nom {
+	margin: 0;
+}
+
 #accueil-article a {
 	color: #fff;
 }
