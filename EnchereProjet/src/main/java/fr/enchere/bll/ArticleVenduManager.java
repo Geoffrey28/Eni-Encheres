@@ -40,6 +40,10 @@ public class ArticleVenduManager {
 		return articleVenduDAO.selectAll();
 	}
 	
+	public List<ArticleVendu> afficherListeWithFilter(String name, int categorie, int type, int checked) {
+		return articleVenduDAO.selectAllWithFilter(name,categorie,type,checked);
+	}
+	
 	public ArticleVendu show(int id) {
 		return ArticleVenduDAO.show(id);
 	}

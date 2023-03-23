@@ -60,6 +60,10 @@ select option {
 	justify-content: space-around;
 }
 
+#accueil-form-filtre div{
+	margin: 0 auto;
+}
+
 #accueil-form-filtre input[type="submit"] {
 	width: 400px;
 	cursor: pointer;
@@ -72,6 +76,7 @@ select option {
     border-radius: 3px;
     margin: 10px;
     font-size: 17px;
+    max-height: 30px;
     color: white;
 }
 

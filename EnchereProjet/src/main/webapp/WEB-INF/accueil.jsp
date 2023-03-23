@@ -14,20 +14,49 @@
 		<div id="accueil">
 			<h2>Liste des enchères</h2>
 			<hr>
-			<form id="accueil-form">
-				<h3>Filtres :</h3>
+			<form id="accueil-form" action="Accueil" method="post">
 				<div id="accueil-form-filtre">
-					<div>
-						<input type="text" placeholder="Nom de l'article"><br>
-				 		<label for="categorie">Catégorie :</label>
-				 		<select name="categorie" size="1">  	
-				 			<option value="" selected>Toutes</option>
-				 			<c:forEach items="${ listeCategorie }" var="c">
-								<option value="${ c.noCategorie }">${ c.libelle }</option>
-							</c:forEach>
-				   		</select>
-					</div>
-		    		<input type="submit" value="Rechercher">
+						<div id="filter-name" style="display: grid;">
+						
+							<label for="article-name">Nom de l'article :</label>
+							<input type="text" name="article-name" value="${ name }">
+							
+							<label for="categorie">Catégorie :</label>
+					 		<select name="categorie" size="1">  	
+					 			<option value="-1" <c:if test="${ categorie == -1 }">selected</c:if>>Toutes</option>
+					 			<c:forEach items="${ listeCategorie }" var="c">
+									<option value="${ c.noCategorie }" <c:if test="${ categorie == c.noCategorie }">selected</c:if>>${ c.libelle }</option>
+								</c:forEach>
+					   		</select>
+						
+						</div>
+				   		
+				   		<div id="filter-achats-ventes">
+				   		
+					   		<select name="achat-vente" id="achat-vente" size="1" onchange="switchAchatVentes()"> 
+					   			<option value="0" selected>Achats</option>
+					   			<option value="1">Mes ventes</option>
+					   		</select> 
+					   		
+					   		<div id="achats">
+					   			<p>Enchères ouvertes<input type="checkbox" class="achats-check" checked></p>
+					   			<p>Mes enchères<input type="checkbox" class="achats-check"></p>
+					   			<p>Mes enchères remportés<input type="checkbox" class="achats-check"></p>
+					   		</div>
+					   		<div id="ventes" style="display: none;">
+					   			<p>Mes ventes en cours<input type="checkbox" class="ventes-check" checked></p>
+					   			<p>Ventes non débutées<input type="checkbox" class="ventes-check"></p>
+					   			<p>Ventes terminées<input type="checkbox" class="ventes-check"></p>
+					   		</div>
+				   		
+				   		</div>
+				   		
+				   		<input type="hidden" name="checked-info" value="0">
+				   		
+				   		<div style="align-self: center;">
+							<input type="submit" value="Appliquer" style="width: 300px;">
+						</div>
+				   		
 				</div>
 		 	</form>
 			<hr>
@@ -52,6 +81,20 @@
 				</c:forEach>
  			</div>
 		</div>
+	
+	<script type="text/javascript">
+	
+		function switchAchatVentes(){
+			if (document.getElementById("achat-vente").value == 0) {
+				document.getElementById("achats").style.display = "";
+				document.getElementById("ventes").style.display = "none";
+			} else {
+				document.getElementById("achats").style.display = "none";
+				document.getElementById("ventes").style.display = "";
+			}
+		}
+	
+	</script>
 	
 	</body>
 	

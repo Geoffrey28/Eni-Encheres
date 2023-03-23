@@ -17,6 +17,12 @@ public class ArticleVenduDAO {
 			+ "dateFinEncheres, miseAPrix, prixVente) values(?,?,?,?,?,?)";
 	private final static String SQLSELECTALL="select * "
 			+ "from ArticleVendu where true";
+	private final static String SQLSELECTALLWITHFILTER="select * "
+			+ "from ArticleVendu where nomArticle like CONCAT( '%',?,'%') and noCategorie = ? ";
+	private final static String SQLSELECTALLWITHFILTER_without_categorie="select * "
+			+ "from ArticleVendu where nomArticle like CONCAT( '%',?,'%') ";
+	private final static String SQLSELECTALLWITHFILTER_without_name="select * "
+			+ "from ArticleVendu where noCategorie = ? ";
 	private final String SQLDELETEBYID = "DELETE FROM ArticleVendu WHERE noArticle=?";
 	private final static String SQLSHOW="select * from ArticleVendu where noArticle=?";
 	
@@ -64,6 +70,47 @@ public class ArticleVenduDAO {
 		try {
 			stmt = cnx.createStatement();
 			rs = stmt.executeQuery(SQLSELECTALL);
+			listeArticleVendu = new ArrayList<>();
+			
+			while (rs.next()) {
+				listeArticleVendu.add(rsToArticleVendu(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listeArticleVendu;
+	}
+	
+	public List<ArticleVendu> selectAllWithFilter(String name, int categorie, int type, int checked) {
+		Connection cnx;
+		PreparedStatement stmt;
+		ResultSet rs;
+		ArrayList<ArticleVendu> listeArticleVendu = null;
+		cnx = UtilBDD.getConnection();
+		
+		System.out.println(name);
+		System.out.println(categorie);
+		
+		try {
+			
+			if (name == "" && categorie == -1) {
+				stmt = cnx.prepareStatement(SQLSELECTALL, PreparedStatement.RETURN_GENERATED_KEYS);
+				rs = stmt.executeQuery();
+			} else if(name != "" && categorie == -1) {
+				stmt = cnx.prepareStatement(SQLSELECTALLWITHFILTER_without_categorie, PreparedStatement.RETURN_GENERATED_KEYS);
+				stmt.setString(1, name);
+				rs = stmt.executeQuery();
+			} else if(name == "" && categorie != -1) {
+				stmt = cnx.prepareStatement(SQLSELECTALLWITHFILTER_without_name, PreparedStatement.RETURN_GENERATED_KEYS);
+				stmt.setInt(1, categorie);
+				rs = stmt.executeQuery();
+			} else {
+				stmt = cnx.prepareStatement(SQLSELECTALLWITHFILTER, PreparedStatement.RETURN_GENERATED_KEYS);
+				stmt.setString(1, name);
+				stmt.setInt(2, categorie);
+				rs = stmt.executeQuery();
+			}
+			
 			listeArticleVendu = new ArrayList<>();
 			
 			while (rs.next()) {
