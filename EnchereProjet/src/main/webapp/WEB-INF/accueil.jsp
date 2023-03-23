@@ -14,33 +14,33 @@
 		<div id="accueil">
 			<h2>Liste des enchères</h2>
 			<hr>
-			<!--<div>
-				<form class="search-form">
-						<h3>Filtres :</h3>
-		 				<input type="text" placeholder="Nom de l'article">
-		 				<h5>Catégorie :</h5>
-		 				<select name="Catégorie" size="1" >  	
-		    			<option value="toutes">Toutes</option>
-		    			<option value="Informatique">Informatique</option>
-		    			<option value="Ammeublement">Ameublement</option>
-		    			<option value="Vêtement">Vêtement</option>
-		    			<option value="Sport&Loisirs">Sport&Loisirs</option>
-		    			</select>
-		    			<button type="submit">Rechercher</button>
-		 			</form>
-			</div> -->
+			<form id="accueil-form">
+				<h3>Filtres :</h3>
+				<div id="accueil-form-filtre">
+					<div>
+						<input type="text" placeholder="Nom de l'article"><br>
+				 		<label for="categorie">Catégorie :</label>
+				 		<select name="categorie" size="1">  	
+				   			<option value="toutes">Toutes</option>
+			    			<option value="Informatique">Informatique</option>
+				   			<option value="Ammeublement">Ameublement</option>
+			   				<option value="Vêtement">Vêtement</option>
+			   				<option value="SportLoisirs">Sport&Loisirs</option>
+				   		</select>
+					</div>
+		    		<input type="submit" value="Rechercher">
+				</div>
+		 	</form>
+			<hr>
 			<div id="accueil-liste">
 				<c:forEach items="${ listeArticleVendu }" var="a">
-					<article id="accueil-article">	
-							<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png">
+					<article id="accueil-article">		
+						<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png"><br>
 						<div>
-							<h1>${ a.nomArticle }</h1>
-							<p>Prix : ${ a.prixVente } points</p>
-							<p>Fin de l'enchère : ${ a.dateFinEncheres }</p>
-							<div id="accueil-article-btn">
-								<p>Vendeur : <a href="/Profil?pseudo=${ a.noUtilisateur }">${ a.noUtilisateur }</a></p>
-								<a href="/EnchereDetail?id=${ a.noArticle }">Details</a>
-							</div>
+							<a href="/EnchereDetail?id=${ a.noArticle }">${ a.nomArticle }</a>
+							<p>Prix: ${ a.prixVente } points</p>
+							<p>Fin de l'enchère: ${ a.dateFinEncheres }</p>
+							<p>Vendeur: <a href="/Profil?pseudo=${ a.noUtilisateur }">${ a.noUtilisateur }</a></p>	
 						</div>
 					</article>
 				</c:forEach>
