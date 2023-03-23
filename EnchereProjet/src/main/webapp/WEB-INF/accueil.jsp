@@ -15,19 +15,47 @@
 			<h2>Liste des enchères</h2>
 			<hr>
 			<form id="accueil-form">
-				<h3>Filtres :</h3>
 				<div id="accueil-form-filtre">
-					<div>
-						<input type="text" placeholder="Nom de l'article"><br>
-				 		<label for="categorie">Catégorie :</label>
-				 		<select name="categorie" size="1">  	
-				 			<option value="" selected>Toutes</option>
-				 			<c:forEach items="${ listeCategorie }" var="c">
-								<option value="${ c.noCategorie }">${ c.libelle }</option>
-							</c:forEach>
-				   		</select>
-					</div>
-		    		<input type="submit" value="Rechercher">
+				
+						<div id="filter-name">
+						
+							<label for="article-name">Nom de l'article :</label>
+							<input type="text" name="article-name">
+						
+						</div>
+				
+						<div id="filter-categorie">
+						
+					 		<label for="categorie">Catégorie :</label>
+					 		<select name="categorie" size="1">  	
+					 			<option value="" selected>Toutes</option>
+					 			<c:forEach items="${ listeCategorie }" var="c">
+									<option value="${ c.noCategorie }">${ c.libelle }</option>
+								</c:forEach>
+					   		</select>
+				   		
+				   		</div>
+				   		
+				   		<div id="filter-achats-ventes">
+				   		
+					   		<select name="achat-vente" size="1"> 
+					   			<option selected>Achats</option>
+					   			<option>Mes ventes</option>
+					   		</select> 
+					   		
+					   		<div id="achats">
+					   			<p>Enchères ouvertes<input type="checkbox" class="achats-check" name="open" checked></p>
+					   			<p>Mes enchères<input type="checkbox" class="achats-check" name="enchere"></p>
+					   			<p>Mes enchères remportés<input type="checkbox" class="achats-check" name="enchere-win"></p>
+					   		</div>
+					   		<div id="ventes" style="display: none;">
+					   			<p>Mes ventes en cours<input type="checkbox" class="achats-check" name="open" checked></p>
+					   			<p>Ventes non débutées<input type="checkbox" class="achats-check" name="enchere"></p>
+					   			<p>Ventes terminées<input type="checkbox" class="achats-check" name="enchere-win"></p>
+					   		</div>
+				   		
+				   		</div>
+				   		
 				</div>
 		 	</form>
 			<hr>
