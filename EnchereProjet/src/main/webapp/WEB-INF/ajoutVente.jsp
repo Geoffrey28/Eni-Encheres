@@ -11,11 +11,11 @@
 </head>
 <body>
 	<div id="newAuction-img">
-		<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png">
+		<img alt="Image vente" id="preview" src="https://cdn-icons-png.flaticon.com/512/251/251319.png">
 	</div>
 	<div id="newAuction-div">
 		<h2>Nouvelle vente</h2>	
-		<form id="newAuction-form" action="AjoutVente" method="post">
+		<form id="newAuction-form" action="AjoutVente" method="post" enctype="multipart/form-data">
 			<div>
 				<label for="nomArticle">Article : </label>
 				<input type="text" name="nomArticle">
@@ -37,7 +37,7 @@
 			<div id="newAuction-picture">
 				<p>Photo : </p>
 				<div>
-					<input type="file" id="picture" name="image">
+					<input type="file" name="img" id="picture" multiple onchange="readFilesAndDisplayPreview(this.files);">
 					<label for="image">
 						<span>Uploader</span>
 					</label>
@@ -76,5 +76,27 @@
 			</div>
 		</form>
 	</div>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/javascript-canvas-to-blob/3.4.0/js/canvas-to-blob.min.js"></script>
+	
+	<script>
+            /* Cette fonction permet d'afficher une vignette pour chaque image sélectionnée */
+            function readFilesAndDisplayPreview(files) {
+                let imageList = document.querySelector('#newAuction-img'); 
+                imageList.innerHTML = "";
+                
+                for ( let file of files ) {
+                    let reader = new FileReader();
+                    
+                    reader.addEventListener( "load", function( event ) {
+                        let span = document.createElement('span');
+                        span.innerHTML = '<img height="60" src="' + event.target.result + '" />';
+                        imageList.appendChild( span );
+                    });
+
+                    reader.readAsDataURL( file );
+                }
+            }
+        </script>
 </body>
 </html>

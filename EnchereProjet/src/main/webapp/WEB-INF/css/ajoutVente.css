@@ -91,11 +91,11 @@ body {
 }
 
 #newAuction-picture input, #newAuction-picture input::-webkit-file-upload-button {
-	width: 0.1px;
-    height: 0.1px;
+	width: 60px;
     opacity: 0;
-    z-index: -1;
+    z-index: 1;
     position: absolute;
+    cursor: pointer;
 }
 
 #newAuction-picture label {
