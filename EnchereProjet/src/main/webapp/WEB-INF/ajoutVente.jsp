@@ -17,57 +17,57 @@
 		<h2>Nouvelle vente</h2>	
 		<form id="newAuction-form" action="AjoutVente" method="post">
 			<div>
-				<label for="article">Article : </label>
-				<input type="text" name="article" required>
+				<label for="nomArticle">Article : </label>
+				<input type="text" name="nomArticle">
 			</div>
 			<div>
 				<label for="description">Description : </label>
-				<textArea name="description" rows="4" cols="30" maxlength="128" required></textArea>
+				<textArea name="description" rows="4" cols="30" maxlength="128"></textArea>
 			</div>
 			<div>
-				<label for="category">Catégorie : </label>
-				<select name="category" required>
+				<label for="categorie">Catégorie : </label>
+				<select name="categorie">
 					<option hidden="true">- Sélectionnez une catégorie -</option>
-					<option value="Decoration">Décoration</option>
-					<option value="Animaux">Animaux</option>
-					<option value="Sports">Sports</option>
-					<option value="Automobile">Automobile</option>
+					<option value="1">Vêtements</option>
+					<option value="2">Ameublement</option>
+					<option value="3">Informatique</option>
+					<option value="4">Sports&Loisirs</option>
 				</select>
 			</div>
 			<div id="newAuction-picture">
 				<p>Photo : </p>
 				<div>
-					<input type="file" id="picture" name="picture">
-					<label for="picture">
+					<input type="file" id="picture" name="image">
+					<label for="image">
 						<span>Uploader</span>
 					</label>
 				</div>
 			</div>
 			<div id="newAuction-price">
-				<label for="price">Mise à prix : </label>
-				<input type="number" name="price" required>
+				<label for="prix">Mise à prix : </label>
+				<input type="number" name="prix">
 			</div>
 			<div>
-				<label for="auctionStart">Début de l'enchère : </label>
-				<input type="date" name="auctionStart" required>
+				<label for="dateDebut">Début de l'enchère : </label>
+				<input type="date" name="dateDebut" required>
 			</div>
 			<div>
-				<label for="auctionEnd">Fin de l'enchère : </label>
-				<input type="date" name="auctionEnd" required>
+				<label for="dateFin">Fin de l'enchère : </label>
+				<input type="date" name="dateFin" required>
 			</div>
 			<fieldset>
 				<legend>Retrait</legend>
 				<div>
-					<label for="street">Rue : </label>
-					<input type="text" name="street" required>
+					<label for="rue">Rue : </label>
+					<input type="text" name="rue">
 				</div>
 				<div>
-					<label for="zipCode">Code postal : </label>
-					<input type="text" name="zipCode" maxlength="5" required>
+					<label for="codePostal">Code postal : </label>
+					<input type="text" name="codePostal" maxlength="5">
 				</div>
 				<div>
-					<label for="city">Ville : </label>
-					<input type="text" name="city" required>
+					<label for="ville">Ville : </label>
+					<input type="text" name="ville">
 				</div>
 			</fieldset>
 			<div id="newAuction-submit">

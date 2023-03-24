@@ -1,10 +1,8 @@
 package fr.enchere.servlets;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -15,7 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.enchere.bll.ArticleVenduManager;
 import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Retrait;
 import fr.enchere.bo.Utilisateur;
 
 /**
@@ -36,46 +36,39 @@ public class ServletAjoutVente extends HttpServlet {
 		HttpSession session=request.getSession();
         session.getAttribute("userConnected");
         Utilisateur u = (Utilisateur) session.getAttribute("userConnected");
-       
-		Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        String strDate = dateFormat.format(date);
-        System.out.println("Converted String: " + strDate);
 		
-		String nomArticle = request.getParameter("article");
+		String nom = request.getParameter("nomArticle");
 		String description = request.getParameter("description");
-		String img = request.getParameter("img");
-		int codePostal = Integer.parseInt(request.getParameter("codepostal"));
-		int miseAPrix = Integer.parseInt(request.getParameter("miseAPrix"));
-		String email = request.getParameter("email");
-		String rue = request.getParameter("rue");
-		String ville = request.getParameter("ville");
+		String img = request.getParameter("image");
+		int prix = Integer.parseInt(request.getParameter("prix"));
+        		
+		String dateDebut = request.getParameter("dateDebut");
+		String dateFin = request.getParameter("dateFin");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+		try {
+			Date date = sdf.parse(dateDebut);
+			dateDebut = sdf2.format(date);
+
+			date = sdf.parse(dateFin);
+			dateFin = sdf2.format(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+	    int noUtilisateur = u.getNoUtilisateur();
 		int categorie = Integer.parseInt(request.getParameter("categorie"));
-		String dateDebutEncheres = request.getParameter("dateDebut");
-	    String dateFinEncheres = request.getParameter("dateFin");
-
-	    Date dateDebut = null;
-	    if(dateDebutEncheres != null && !dateDebutEncheres.isEmpty()) {
-	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	        try {
-	            dateDebut = formatter.parse(dateDebutEncheres);
-	        } catch (ParseException e) {
-	            e.printStackTrace();
-	        }
-	    }
-
-	    Date dateFin = null;
-	    if(dateFinEncheres != null && !dateFinEncheres.isEmpty()) {
-	        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	        try {
-	            dateFin = formatter.parse(dateFinEncheres);
-	        } catch (ParseException e) {
-	            e.printStackTrace();
-	        }
-	    
-	    }
-		ArticleVendu ArticleVendu = new ArticleVendu (nomArticle, description, img, dateDebutEncheres, dateFinEncheres, miseAPrix, miseAPrix, u.getNoUtilisateur(), categorie);
-		ArticleVendu.toString();
-		request.setAttribute("utilisateur", ArticleVendu);
+		
+		ArticleVendu articleVendu = new ArticleVendu (nom, description, img, dateDebut, dateFin, prix, prix, "etat vente", noUtilisateur, categorie);
+		ArticleVenduManager.ajouter(articleVendu);
+		
+		System.out.println(articleVendu.toString());
+		
+		String rue = request.getParameter("rue");
+		int codePostal = Integer.parseInt(request.getParameter("codePostal"));
+		String ville = request.getParameter("ville");
+		
+		Retrait retrait = new Retrait(rue, codePostal, ville, articleVendu.getNoArticle());
+		ArticleVenduManager.ajouterRetrait(retrait);
 	}
 }
