@@ -15,7 +15,7 @@ public class ArticleVendu {
 	private int noCategorie;
 	
 	public ArticleVendu(int noArticle, String nomArticle, String description, String img, String dateDebutEncheres,
-			String dateFinEncheres, int miseAPrix, int prixVente, String etatVente, int noUtilisateur, int noCategorie) {
+			String dateFinEncheres, int miseAPrix, int prixVente, int noUtilisateur, int noCategorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
@@ -29,8 +29,8 @@ public class ArticleVendu {
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 	}
-	public ArticleVendu(String nomArticle, String description, String img, String dateDebutEncheres, String dateFinEncheres,
-			int miseAPrix, int prixVente, String etatVente, int noUtilisateur, int noCategorie) {
+	public ArticleVendu(String nomArticle, String description,String img, String dateDebutEncheres, String dateFinEncheres,
+			int miseAPrix, int prixVente, int noUtilisateur, int noCategorie) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;

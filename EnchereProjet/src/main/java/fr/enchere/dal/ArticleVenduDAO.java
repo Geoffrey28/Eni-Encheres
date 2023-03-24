@@ -137,7 +137,6 @@ public class ArticleVenduDAO {
 							rs.getString("dateFinEncheres"),
 							rs.getInt("miseAPrix"),
 							rs.getInt("prixVente"),
-							rs.getString("etatVente"),
 							rs.getInt("noUtilisateur"),
 							rs.getInt("noCategorie"));
 			}
