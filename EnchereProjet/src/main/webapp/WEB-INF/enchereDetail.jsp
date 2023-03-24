@@ -15,7 +15,7 @@
 	</div>
 	<div id="newAuction-div">
 		<h2>Détail vente</h2>	
-		<form id="newAuction-form" action="Encherir" method="post">
+		<form id="newAuction-form" action="EnchereDetail" method="post">
 			<div>
 				${ article.nomArticle }
 			</div>
@@ -47,7 +47,14 @@
 				<span><p>Vendeur :</p><p>${ user.pseudo }</p></span>
 			</div>
 			<div>
-				<span><p>Ma Proposition :</p><p><input type="number" style="width: 75px;" min="${ article.prixVente }"> <input type="submit" value="Enchérir" style="cursor: pointer;"></p></span>
+				<span>
+					<p>Ma Proposition :</p>
+					<p>
+						<input type="hidden" name="id" value="${ article.noArticle }">
+						<input type="number" name="montant" style="width: 75px;" min="${ article.prixVente }">
+						<input type="submit" value="Enchérir" style="cursor: pointer;">
+					</p>
+				</span>
 			</div>
 		</form>
 	</div>

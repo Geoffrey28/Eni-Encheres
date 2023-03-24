@@ -1,7 +1,8 @@
 package fr.enchere.servlets;
 
 import java.io.IOException;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.enchere.bll.ArticleVenduManager;
 import fr.enchere.bll.CategorieManager;
+import fr.enchere.bll.EnchereManager;
 import fr.enchere.bll.UtilisateurManager;
 import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Categorie;
+import fr.enchere.bo.Enchere;
 import fr.enchere.bo.Retrait;
 import fr.enchere.bo.Utilisateur;
 
@@ -33,7 +36,7 @@ public class servletEnchereDetail extends HttpServlet {
 			ArticleVendu a = ArticleVenduManager.getInstance().show(id);
 			Retrait r = ArticleVenduManager.getInstance().getRetraitById(id);
 			Utilisateur u = UtilisateurManager.getInstance().showById(a.getNoUtilisateur());
-			Categorie c = CategorieManager.getInstance().selectById(a.getNoCategorie());
+			Categorie c = CategorieManager.getInstance().selectById(a.getNoCategorie());			
 			
 			request.setAttribute("user", u);
 			
@@ -55,6 +58,19 @@ public class servletEnchereDetail extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	    String date = sdf.format(new Date()).toString();
+		int montant = Integer.parseInt(request.getParameter("montant"));
+		Utilisateur userConnected = (Utilisateur) request.getSession().getAttribute("userConnected");
+		int noUser = userConnected.getNoUtilisateur();
+		int noArticle = Integer.parseInt(request.getParameter("id"));
+
+		Enchere enchere = new Enchere(date, montant, noUser, noArticle);
+		EnchereManager.getInstance().ajouter(enchere);
+		System.out.println(ArticleVenduManager.getInstance().show(noArticle));
+		ArticleVenduManager.getInstance().miseAJourPrix(noArticle);
+		
+		doGet(request, response);
 	}
 
 }

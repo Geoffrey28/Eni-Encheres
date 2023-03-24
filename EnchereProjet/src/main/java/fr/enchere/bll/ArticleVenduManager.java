@@ -63,5 +63,13 @@ public class ArticleVenduManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public void miseAJourArticle(int id) {
+		articleVenduDAO.updateById(id);
+	}
+	
+	public void miseAJourPrix(int id) {
+		articleVenduDAO.updatePrixVenteById(id);
+	}
 
 }

@@ -17,4 +17,8 @@ public abstract class DAOFactory {
 	public static RetraitDAO getRetraitDAO() {
 		return new RetraitDAO();
 	}
+	
+	public static EnchereDAO getEnchereDAO() {
+		return new EnchereDAO();
+	}
 }
