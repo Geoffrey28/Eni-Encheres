@@ -61,9 +61,14 @@
 		 	</form>
 			<hr>
 			<div id="accueil-liste">
+				<img src="" id="image">
 				<c:forEach items="${ listeArticleVendu }" var="a">
-					<article id="accueil-article">		
-						<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png">
+					<article class="accueil-article">	
+					
+						<div class="div-img">
+							<img alt="Image vente" class="img-vente" src="${ a.img }">
+						</div>	
+						
 						<div>
 							<c:choose>
 								<c:when test="${ !empty userConnected }">
@@ -93,6 +98,8 @@
 				document.getElementById("ventes").style.display = "";
 			}
 		}
+		
+		
 	
 	</script>
 	

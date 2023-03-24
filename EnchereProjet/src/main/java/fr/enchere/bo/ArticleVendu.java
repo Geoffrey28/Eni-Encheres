@@ -5,6 +5,7 @@ public class ArticleVendu {
 	private int noArticle;
 	private String nomArticle;
 	private String description;
+	private String img;
 	private String dateDebutEncheres;
 	private String dateFinEncheres;
 	private int miseAPrix;
@@ -13,12 +14,13 @@ public class ArticleVendu {
 	private int noUtilisateur;
 	private int noCategorie;
 	
-	public ArticleVendu(int noArticle, String nomArticle, String description, String dateDebutEncheres,
+	public ArticleVendu(int noArticle, String nomArticle, String description, String img, String dateDebutEncheres,
 			String dateFinEncheres, int miseAPrix, int prixVente, String etatVente, int noUtilisateur, int noCategorie) {
 		super();
 		this.noArticle = noArticle;
 		this.nomArticle = nomArticle;
 		this.description = description;
+		this.img = img;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
@@ -27,11 +29,12 @@ public class ArticleVendu {
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
 	}
-	public ArticleVendu(String nomArticle, String description, String dateDebutEncheres, String dateFinEncheres,
+	public ArticleVendu(String nomArticle, String description, String img, String dateDebutEncheres, String dateFinEncheres,
 			int miseAPrix, int prixVente, String etatVente, int noUtilisateur, int noCategorie) {
 		super();
 		this.nomArticle = nomArticle;
 		this.description = description;
+		this.img = img;
 		this.dateDebutEncheres = dateDebutEncheres;
 		this.dateFinEncheres = dateFinEncheres;
 		this.miseAPrix = miseAPrix;
@@ -42,8 +45,12 @@ public class ArticleVendu {
 	}
 	
 	
-	
-	
+	public String getImg() {
+		return img;
+	}
+	public void setImg(String img) {
+		this.img = img;
+	}
 	public int getNoCategorie() {
 		return noCategorie;
 	}
