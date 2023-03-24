@@ -13,7 +13,7 @@ public class EnchereDAO {
 	
 	private final String SQLINSERT= "insert into enchere (dateEnchere, montant_enchere, "
 			+ "noUtilisateur, noArticle) values(?,?,?,?)";
-	private final String SQLSELECTBYNOARTICLE = "select * from enchere where noArticle=?";
+	private final static String SQLSELECTBYNOARTICLE = "select * from enchere where noArticle=?";
 	
 	public void insert(Enchere e) {
 		Connection cnx = null;
@@ -34,7 +34,7 @@ public class EnchereDAO {
 		}
 	}
 	
-	public List<Enchere> selectAllByNoArticle(int noArticle) {
+	public static List<Enchere> selectAllByNoArticle(int noArticle) {
 		Connection cnx = null;
 		PreparedStatement stmt;
 		cnx = UtilBDD.getConnection();
@@ -54,10 +54,27 @@ public class EnchereDAO {
 			e.printStackTrace();
 		}	
 		return encheres;
-
 	}
 	
-	private Enchere rsToEnchere(ResultSet rs) {
+	public static Enchere getBestEnchere(int id) {
+		List<Enchere> encheres = new ArrayList<Enchere>();
+		Enchere enchere = null;
+		int montant = 0;
+		try {
+			encheres = selectAllByNoArticle(id);
+			for (Enchere e : encheres) {
+				if (montant < e.getMontant()) {
+					enchere = e;
+					montant = enchere.getMontant();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return enchere;
+	}
+	
+	private static Enchere rsToEnchere(ResultSet rs) {
 		Enchere enchere = null;
 		
 		String date;

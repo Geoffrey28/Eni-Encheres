@@ -9,16 +9,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Enchere;
 import fr.enchere.bo.Utilisateur;
 
 public class ArticleVenduDAO {
 
-	private final static String SQLINSERT="insert into ArticleVendu (nomArticle,description, dateDebutEncheres,"
+	private final static String SQLINSERT = "insert into ArticleVendu (nomArticle,description, dateDebutEncheres,"
 			+ "dateFinEncheres, miseAPrix, prixVente) values(?,?,?,?,?,?)";
-	private final static String SQLSELECTALL="select * "
-			+ "from ArticleVendu where true";
+	private final static String SQLSELECTALL = "select * from ArticleVendu where true";
 	private final String SQLDELETEBYID = "DELETE FROM ArticleVendu WHERE noArticle=?";
-	private final static String SQLSHOW="select * from ArticleVendu where noArticle=?";
+	private final static String SQLSHOW = "select * from ArticleVendu where noArticle=?";
+	private final static String SQLUPDATE = "update ArticleVendu set nomArticle=?,description=?,dateDebutEncheres=?,"
+			+ "dateFinEncheres=?,miseAPrix=?,prixVente=? where id=?";
+	private final static String SQLUPDATEPRIXVENTE = "update ArticleVendu set prixVente=? where noArticle=?";
 	
 	public ArticleVenduDAO() {
 	}
@@ -122,6 +125,47 @@ public class ArticleVenduDAO {
 		try {
 			stmt = cnx.prepareStatement(SQLDELETEBYID);
 			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			cnx.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateById(int id) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		ArticleVendu article = show(id);
+		try {
+			stmt = cnx.prepareStatement(SQLUPDATE);
+			stmt.setInt(7, id);
+		
+			stmt.setString(1, article.getNomArticle());
+			stmt.setString(2, article.getDescription());
+			stmt.setString(3, article.getDateDebutEncheres());
+			stmt.setString(4, article.getDateFinEncheres());
+			stmt.setInt(5, article.getMiseAPrix());
+			stmt.setInt(6, article.getPrixVente());
+			stmt.executeUpdate();
+			cnx.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updatePrixVenteById(int id) {
+		Connection cnx;
+		PreparedStatement stmt;
+		ArticleVendu article = show(id);
+		cnx = UtilBDD.getConnection();
+		
+		try {
+			stmt = cnx.prepareStatement(SQLUPDATEPRIXVENTE);
+			stmt.setInt(2, id);
+
+			Enchere enchere = EnchereDAO.getBestEnchere(id);
+			stmt.setInt(1, enchere.getMontant());
 			stmt.executeUpdate();
 			cnx.close();
 		} catch (Exception e) {

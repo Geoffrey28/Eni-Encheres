@@ -67,6 +67,8 @@ public class servletEnchereDetail extends HttpServlet {
 
 		Enchere enchere = new Enchere(date, montant, noUser, noArticle);
 		EnchereManager.getInstance().ajouter(enchere);
+		System.out.println(ArticleVenduManager.getInstance().show(noArticle));
+		ArticleVenduManager.getInstance().miseAJourPrix(noArticle);
 		
 		doGet(request, response);
 	}

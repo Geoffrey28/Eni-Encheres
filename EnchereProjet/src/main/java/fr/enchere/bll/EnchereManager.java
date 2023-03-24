@@ -33,4 +33,8 @@ public class EnchereManager {
 	public List<Enchere> showByNoArticle(int id) {
 		return enchereDAO.selectAllByNoArticle(id);
 	}
+	
+	public Enchere getBestEnchere(int id) {
+		return enchereDAO.getBestEnchere(id);
+	}
 }
