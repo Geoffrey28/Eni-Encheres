@@ -129,6 +129,7 @@ public class ArticleVenduDAO {
 			a = new ArticleVendu( rs.getInt("NoArticle"),
 							rs.getString("nomArticle"),
 							rs.getString("description"),
+							rs.getString("img"),
 							rs.getString("dateDebutEncheres"),
 							rs.getString("dateFinEncheres"),
 							rs.getInt("miseAPrix"),

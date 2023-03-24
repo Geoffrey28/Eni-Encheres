@@ -3,7 +3,7 @@
 	<Resource name="jdbc/pool_cnx"
 			  type="javax.sql.DataSource"
 			
-			  driverClassName="com.mysql.jdbc.Driver"
+			  driverClassName="com.mysql.cj.jdbc.Driver"
 			  url="jdbc:mysql://mysql-mrtimux62.alwaysdata.net/mrtimux62_enchere-eni"
 			  username="mrtimux62_eni"
 			  password="@+tu}7+vXeF,&amp;d#/"

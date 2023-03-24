@@ -87,35 +87,44 @@ select option {
 	margin: 0 auto;
 }
 
-#accueil-article {
+.accueil-article {
 	border: 2px inset deepskyblue;
 	display: flex;
-	max-width: 30%;
+	width: 400px;
 	margin: 10px;
 	text-align: left;
 	padding: 10px 0;
 }
 
-#accueil-article div {
+.accueil-article div {
 	margin: 0 10px;
 }
 
-#accueil-article div:last-child {
+.accueil-article div:last-child {
 	width: 60%;
 }
 
-#accueil-article img {
+.div-img {
 	height: 150px;
 	width: 150px;
 	background: #fff;
+	border-radius: 5px;
 	margin-left: 10px;
+	display: grid;
+    align-content: center;
+}
+
+.div-img img {
+	max-width: 150px;
+    max-height: 150px;
+    border-radius: 5px;
 }
 
 #accueil-article-nom {
 	margin: 0;
 }
 
-#accueil-article a {
+.accueil-article a {
 	color: #fff;
 }
 
