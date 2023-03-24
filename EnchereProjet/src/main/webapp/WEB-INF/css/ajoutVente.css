@@ -119,4 +119,5 @@ span {
 	display: flex;
     width: 100%;
     justify-content: space-between;
+    border-bottom: 1px solid #ffffff59;
 }

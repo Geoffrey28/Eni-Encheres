@@ -16,9 +16,10 @@
 	<div id="newAuction-div">
 		<h2>Détail vente</h2>	
 		<form id="newAuction-form" action="EnchereDetail" method="post">
-			<div>
+			<div style="place-content: center; font-size: larger;">
 				${ article.nomArticle }
 			</div>
+			<hr>
 			<div>
 				<span><p>Description :</p><p>${ article.description }</p></span>
 			</div>
@@ -37,10 +38,10 @@
 			<div>
 				<span>
 					<p>Retrait :</p>
-					<p>
+					<p style="text-align: right;">
 						${ retrait.rue } <br>
 						${ retrait.codePostal } ${ retrait.ville }
-					<p>
+					</p>
 				</span>
 			</div>
 			<div>

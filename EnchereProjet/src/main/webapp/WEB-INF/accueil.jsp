@@ -61,7 +61,6 @@
 		 	</form>
 			<hr>
 			<div id="accueil-liste">
-				<img src="" id="image">
 				<c:forEach items="${ listeArticleVendu }" var="a">
 					<article class="accueil-article">	
 					
