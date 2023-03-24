@@ -14,8 +14,8 @@ import fr.enchere.bo.Utilisateur;
 
 public class ArticleVenduDAO {
 
-	private final static String SQLINSERT = "insert into ArticleVendu (nomArticle,description, dateDebutEncheres,"
-			+ "dateFinEncheres, miseAPrix, prixVente) values(?,?,?,?,?,?)";
+	private final static String SQLINSERT = "insert into ArticleVendu (nomArticle,description,img,dateDebutEncheres,"
+			+ "dateFinEncheres, miseAPrix, prixVente, etatVente, noUtilisateur, noCategorie) values(?,?,?,?,?,?,?,?,?,?)";
 	private final static String SQLSELECTALLWITHFILTER="select * "
 			+ "from ArticleVendu where nomArticle like CONCAT( '%',?,'%') and noCategorie = ? ";
 	private final static String SQLSELECTALLWITHFILTER_without_categorie="select * "
@@ -41,10 +41,14 @@ public class ArticleVenduDAO {
 			stmt = cnx.prepareStatement(SQLINSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, a.getNomArticle());
 			stmt.setString(2, a.getDescription());
-			stmt.setString(3, a.getDateDebutEncheres());
-			stmt.setString(4, a.getDateFinEncheres());
-			stmt.setInt(5, a.getMiseAPrix());
-			stmt.setInt(6, a.getPrixVente());
+			stmt.setString(3, a.getImg());
+			stmt.setString(4, a.getDateDebutEncheres());
+			stmt.setString(5, a.getDateFinEncheres());
+			stmt.setInt(6, a.getMiseAPrix());
+			stmt.setInt(7, a.getPrixVente());
+			stmt.setString(8, a.getEtatVente());
+			stmt.setInt(9, a.getNoUtilisateur());
+			stmt.setInt(10, a.getNoCategorie());
 			stmt.executeUpdate();
 			ResultSet rs = stmt.getGeneratedKeys();
 			rs.next();
@@ -54,7 +58,6 @@ public class ArticleVenduDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			try {
-				cnx.rollback();
 				cnx.close();
 			} catch (Exception e2) {
 				e2.printStackTrace();
@@ -137,6 +140,7 @@ public class ArticleVenduDAO {
 							rs.getString("dateFinEncheres"),
 							rs.getInt("miseAPrix"),
 							rs.getInt("prixVente"),
+							rs.getString("etatvente"),
 							rs.getInt("noUtilisateur"),
 							rs.getInt("noCategorie"));
 			}
