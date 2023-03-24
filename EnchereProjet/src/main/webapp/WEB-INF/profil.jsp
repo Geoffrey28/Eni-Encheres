@@ -49,7 +49,7 @@
 					<p>Ville :</p>
 					<p>${ userConnected.ville }</p>
 				</div>
-					<a href="">Modifier</a>
+					<a href="Inscription">Modifier</a>
 					<a href="Supprimer">Supprimer mon compte</a>
 			</c:if>
 			

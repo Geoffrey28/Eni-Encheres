@@ -70,16 +70,14 @@
 		confirm_password.onkeyup = validatePassword;
 		 </script>
 		 <div class="boutons">
-			 <a href="accueil.jsp">
+			 <a href="Accueil">
 				<button type="submit">Créer</button>
 			</a>
 		</div>
 				
 	</form>
 	<div class="boutons">
-		<a href="accueil.jsp">
-			<button>Annuler</button>
-		</a>
+		<a href="Accueil">Annuler</a>
 	</div>
 	
 	</c:if>
@@ -90,45 +88,40 @@
 	
 
 	
-		<form action="Modification" method="post">
+		<form action="Inscription" method="post">
 	<div class="form">
+	
+			<input type="hidden" value="${userConnected.noUtilisateur}" name="noUtilisateur">
 		
 			<label for="pseudo">Pseudo : </label>
-			<input type="text" name="pseudo" placeholder="Pseudo" required><br>
+			<input type="text" name="pseudo" placeholder="Pseudo" value="${userConnected.pseudo}" required><br>
 			
 			<label for="prenom">Prénom : </label>
-			<input type="text" name="prenom" placeholder="Prénom" required><br>
+			<input type="text" name="prenom" placeholder="Prénom" value="${userConnected.prenom}" required><br>
 			
 			<label for="nom">Nom : </label>
-		 	<input type="text" name="nom" placeholder="Nom" required><br>
+		 	<input type="text" name="nom" placeholder="Nom" value="${userConnected.nom}" required><br>
 			
 			<label for="telephone">Téléphone : </label>
-			<input type="tel" name="telephone" placeholder="Téléphone" required><br>
+			<input type="tel" name="telephone" placeholder="Téléphone" value="${userConnected.telephone}" required><br>
 			
 			<label for="codepostal">Code postal : </label>
-		 	<input type="number" name="codepostal" placeholder="Code Postal" required><br>
-		 	
-		 <c:if test="${ check }">
-			<p>Email ou mot de passe incorrect.</p>
-		 	<label for="motdepasse">Mot de passe : </label>
-		 	<input type="password" name="password" placeholder="Ancien Mot de passe" id="password" required><br>
-		 	
-		</c:if>
-		
-			<label for="email">Email : </label>
-		 	<input type="email" name="email" placeholder="Email" required><br>
+		 	<input type="number" name="codepostal" placeholder="Code Postal" value="${userConnected.codePostal}" required><br>
+		 				
+		 	<label for="email">Email : </label>
+		 	<input type="email" name="email" placeholder="Email" value="${userConnected.email}" required><br>
 			
 			<label for="rue">Nom de rue : </label>
-		 	<input type="text" name="rue" placeholder="Nom de rue" required><br>	
+		 	<input type="text" name="rue" placeholder="Nom de rue" value="${userConnected.rue}" required><br>	
 		 			
 			<label for="ville">Ville : </label>
-		 	<input type="text" name="ville" placeholder="Ville" required><br>
+		 	<input type="text" name="ville" placeholder="Ville" value="${userConnected.ville}" required><br>
 		 	
 		 	<label for="nouveaumotdepasse">Confirmation : </label>
-		 <input type="password" placeholder="Nouveau mot de passe" id="new_password" required><br>
+		 <input type="password" placeholder="Nouveau mot de passe" id="new_password" ><br>
 		 		 
 		 <label for="motdepasseconfirmation">Confirmation : </label>
-		 <input type="password" placeholder="Confirmer mot de passe" id="confirm_password" required><br>
+		 <input type="password" placeholder="Confirmer mot de passe" id="confirm_password" ><br>
 		</div> 
 		
 		 <!-- Script pour vérifier si les mots de passe correspondent -->
@@ -148,7 +141,7 @@
 		 </script>
 		 
 		 <div class="boutons">
-			 <a href="accueil.jsp">
+			 <a href="Accueil">
 				<button type="submit">Modifier</button>
 			</a>
 		</div>
@@ -156,9 +149,8 @@
 	</form>
 	
 	<div class="boutons">
-		<a href="accueil.jsp">
-			<button>Supprimer mon compte</button>
-		</a>
+		<a href="Supprimer">Supprimer mon compte</a>
+		
 	</div>
 	
 	</c:if>
