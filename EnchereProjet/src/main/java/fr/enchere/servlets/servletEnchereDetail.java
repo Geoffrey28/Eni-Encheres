@@ -36,7 +36,13 @@ public class servletEnchereDetail extends HttpServlet {
 			ArticleVendu a = ArticleVenduManager.getInstance().show(id);
 			Retrait r = ArticleVenduManager.getInstance().getRetraitById(id);
 			Utilisateur u = UtilisateurManager.getInstance().showById(a.getNoUtilisateur());
-			Categorie c = CategorieManager.getInstance().selectById(a.getNoCategorie());			
+			Categorie c = CategorieManager.getInstance().selectById(a.getNoCategorie());
+			Enchere e = EnchereManager.getInstance().getBestEnchere(a.getNoArticle());
+			
+			if (e != null) {
+				Utilisateur encherisseur = UtilisateurManager.getInstance().showById(e.getNoUtilisateur());
+				request.setAttribute("encherisseur", encherisseur);	
+			}
 			
 			request.setAttribute("user", u);
 			

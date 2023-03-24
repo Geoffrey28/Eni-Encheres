@@ -27,7 +27,22 @@
 				<span><p>Catégorie :</p><p>${ categorie.libelle }</p></span>
 			</div>
 			<div>
-				<span><p>Meilleur Offre :</p><p>${ article.prixVente }</p></span>
+				<span>
+					<p>Meilleur Offre :</p>
+					<c:choose>
+						<c:when test="${ article.prixVente != article.miseAPrix }">
+							<p>
+								${ article.prixVente } 
+								<c:if test="${ !empty encherisseur }">
+									(${ encherisseur.pseudo })
+								</c:if>
+								</p>
+						</c:when>
+						<c:when test="${ article.prixVente == article.miseAPrix }">
+							<p>Aucune Enchère</p>
+						</c:when>
+					</c:choose>
+				</span>
 			</div>
 			<div>
 				<span><p>Mise à prix :</p><p>${ article.miseAPrix }</p></span>
@@ -52,7 +67,7 @@
 					<p>Ma Proposition :</p>
 					<p>
 						<input type="hidden" name="id" value="${ article.noArticle }">
-						<input type="number" name="montant" style="width: 75px;" min="${ article.prixVente }">
+						<input type="number" name="montant" style="width: 75px;" min="${ article.prixVente + 1 }">
 						<input type="submit" value="Enchérir" style="cursor: pointer;">
 					</p>
 				</span>
