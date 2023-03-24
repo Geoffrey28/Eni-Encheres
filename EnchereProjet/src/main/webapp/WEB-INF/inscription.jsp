@@ -90,6 +90,8 @@
 	
 		<form action="Inscription" method="post">
 	<div class="form">
+	
+			<input type="hidden" value="${userConnected.noUtilisateur}" name="noUtilisateur">
 		
 			<label for="pseudo">Pseudo : </label>
 			<input type="text" name="pseudo" placeholder="Pseudo" value="${userConnected.pseudo}" required><br>

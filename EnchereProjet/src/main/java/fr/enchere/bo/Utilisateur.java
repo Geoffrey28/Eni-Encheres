@@ -71,6 +71,22 @@ public class Utilisateur {
 
 	
 	
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, int telephone,
+			String rue, String ville, int codePostal) {
+		super();
+		NoUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.ville = ville;
+		this.codePostal = codePostal;
+	}
+
+
+
 	public String getVille() {
 		return ville;
 	}

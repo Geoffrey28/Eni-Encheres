@@ -17,7 +17,7 @@ public class UtilisateurDAO {
 	private final String SQLDELETE="delete from users where noUtilisateur=?";
 	private final static String SQLSHOW="select * from users where pseudo=?";
 	private final static String SQLSHOWID="select * from users where noUtilisateur=?";
-	private final static String SQLUPDATE="update users set pseudo=?, nom=?, prenom=?, MotDePasse=?, email=?, telephone=?, rue=?, ville=?, codePostal=? where noUtilisateur=?";
+	private final static String SQLUPDATE="update users set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, ville=?, codePostal=? where noUtilisateur=?";
 	
 	public UtilisateurDAO() {
 	}
@@ -66,13 +66,12 @@ public class UtilisateurDAO {
 			stmt.setString(1, u.getPseudo());
 			stmt.setString(2, u.getNom());
 			stmt.setString(3, u.getPrenom());
-			stmt.setString(4, u.getMotDePasse());
-			stmt.setString(5, u.getEmail());
-			stmt.setInt(6, u.getTelephone());
-			stmt.setString(7, u.getRue());
-			stmt.setString(8, u.getVille());
-			stmt.setInt(9, u.getCodePostal());
-			stmt.setInt(10, u.getNoUtilisateur());
+			stmt.setString(4, u.getEmail());
+			stmt.setInt(5, u.getTelephone());
+			stmt.setString(6, u.getRue());
+			stmt.setString(7, u.getVille());
+			stmt.setInt(8, u.getCodePostal());
+			stmt.setInt(9, u.getNoUtilisateur());
 			stmt.executeUpdate();
 			ResultSet rs = stmt.getGeneratedKeys();
 			rs.next();

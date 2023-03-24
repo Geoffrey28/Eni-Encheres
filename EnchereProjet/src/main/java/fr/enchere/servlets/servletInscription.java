@@ -67,8 +67,12 @@ public class servletInscription extends HttpServlet {
 		}
 		else {
 			System.out.println("test");
-			Utilisateur user = new Utilisateur(Integer.parseInt(noUtilisateur), pseudo, nom, prenom, MotDePasse, email, telephone, rue, ville, codePostal);
+			Utilisateur user = new Utilisateur(Integer.parseInt(noUtilisateur), pseudo, nom, prenom, email, telephone, rue, ville, codePostal);
 			UtilisateurManager.getInstance().modifier(user);
+			response.sendRedirect("Profil");
+			HttpSession session;
+			session = request.getSession();
+			session.setAttribute("userConnected", user);
 		}
 		
 	}	
