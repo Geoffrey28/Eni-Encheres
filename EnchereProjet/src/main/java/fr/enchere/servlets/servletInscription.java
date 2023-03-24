@@ -29,7 +29,8 @@ public class servletInscription extends HttpServlet {
 		// CLIENT
 		
 		Utilisateur u = null;
-		String noUtilisateur = request.getParameter("noUtilisateur");
+		String noUtilisateur = null;
+		noUtilisateur = request.getParameter("noUtilisateur");
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		int telephone = Integer.parseInt(request.getParameter("telephone"));
@@ -39,6 +40,8 @@ public class servletInscription extends HttpServlet {
 		String email = request.getParameter("email");
 		String ville = request.getParameter("ville");
 		String MotDePasse = request.getParameter("password");
+		
+		System.out.println(noUtilisateur);
 				
 		if (noUtilisateur == null) {
 			System.out.println("testsecond");

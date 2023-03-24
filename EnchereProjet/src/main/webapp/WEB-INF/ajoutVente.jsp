@@ -59,19 +59,19 @@
 				<legend>Retrait</legend>
 				<div>
 					<label for="rue">Rue : </label>
-					<input type="text" name="rue">
+					<input type="text" name="rue" value="${ userConnected.rue }">
 				</div>
 				<div>
 					<label for="codePostal">Code postal : </label>
-					<input type="text" name="codePostal" maxlength="5">
+					<input type="text" name="codePostal" maxlength="5" value="${ userConnected.codePostal }">
 				</div>
 				<div>
 					<label for="ville">Ville : </label>
-					<input type="text" name="ville">
+					<input type="text" name="ville" value="${ userConnected.ville }">
 				</div>
 			</fieldset>
 			<div id="newAuction-submit">
-				<input type="submit" value="Enregistrer">
+				<input type="submit" value="Enregistrer" >
 				<a href="Accueil">Annuler</a>
 			</div>
 		</form>
