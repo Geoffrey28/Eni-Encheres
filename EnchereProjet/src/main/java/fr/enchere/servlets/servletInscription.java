@@ -29,6 +29,7 @@ public class servletInscription extends HttpServlet {
 		// CLIENT
 		
 		Utilisateur u = null;
+		String noUtilisateur = request.getParameter("noUtilisateur");
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		int telephone = Integer.parseInt(request.getParameter("telephone"));
@@ -39,6 +40,9 @@ public class servletInscription extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String MotDePasse = request.getParameter("password");
 				
+		if (noUtilisateur == null) {
+			System.out.println("testsecond");
+			System.out.println(noUtilisateur);
 		Utilisateur user = new Utilisateur(pseudo, nom, prenom, MotDePasse, email, telephone, rue, ville, codePostal);
 		UtilisateurManager.getInstance().ajouter(user);
 		System.out.println(user);
@@ -46,6 +50,7 @@ public class servletInscription extends HttpServlet {
 		session = request.getSession();
 		
 		u = UtilisateurManager.getInstance().login(pseudo, MotDePasse);
+
 
 		
 		if(u != null) {
@@ -59,6 +64,14 @@ public class servletInscription extends HttpServlet {
 		} else {
 			doGet(request, response);
 	}
-
-	}
+		}
+		else {
+			System.out.println("test");
+			Utilisateur user = new Utilisateur(Integer.parseInt(noUtilisateur), pseudo, nom, prenom, MotDePasse, email, telephone, rue, ville, codePostal);
+			UtilisateurManager.getInstance().modifier(user);
+		}
+		
+	}	
+		
 }
+	

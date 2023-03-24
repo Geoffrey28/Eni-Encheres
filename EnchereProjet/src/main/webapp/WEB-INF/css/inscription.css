@@ -37,3 +37,13 @@ h3{
 		margin: 0px;
 		align-content: center;
 			}    
+			
+a {
+	text-decoration: none;
+	width: 80px;
+	border: 2px inset deepskyblue;
+    border-radius: 3px;
+    margin: 10px auto;
+    font-size: 17px;
+    color: white;
+}

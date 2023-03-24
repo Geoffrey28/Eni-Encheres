@@ -45,6 +45,15 @@ public class UtilisateurManager {
 	public Utilisateur showById(int id) {
 		return utilisateurDAO.showById(id);
 	}
-
+	
+	public void modifier(Utilisateur utilisateur) {
+		utilisateur.setNom(utilisateur.getNom().toUpperCase());
+		try {
+			utilisateurDAO.update(utilisateur);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
 

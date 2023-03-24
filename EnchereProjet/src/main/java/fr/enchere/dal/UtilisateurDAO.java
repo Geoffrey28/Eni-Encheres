@@ -17,6 +17,7 @@ public class UtilisateurDAO {
 	private final String SQLDELETE="delete from users where noUtilisateur=?";
 	private final static String SQLSHOW="select * from users where pseudo=?";
 	private final static String SQLSHOWID="select * from users where noUtilisateur=?";
+	private final static String SQLUPDATE="update users set pseudo=?, nom=?, prenom=?, MotDePasse=?, email=?, telephone=?, rue=?, ville=?, codePostal=? where noUtilisateur=?";
 	
 	public UtilisateurDAO() {
 	}
@@ -55,6 +56,40 @@ public class UtilisateurDAO {
 		}
 	}
 	
+	public void update(Utilisateur u) {
+		Connection cnx = null;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		
+		try {
+			stmt = cnx.prepareStatement(SQLUPDATE, PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, u.getPseudo());
+			stmt.setString(2, u.getNom());
+			stmt.setString(3, u.getPrenom());
+			stmt.setString(4, u.getMotDePasse());
+			stmt.setString(5, u.getEmail());
+			stmt.setInt(6, u.getTelephone());
+			stmt.setString(7, u.getRue());
+			stmt.setString(8, u.getVille());
+			stmt.setInt(9, u.getCodePostal());
+			stmt.setInt(10, u.getNoUtilisateur());
+			stmt.executeUpdate();
+			ResultSet rs = stmt.getGeneratedKeys();
+			rs.next();
+			u.setNoUtilisateur(rs.getInt(1));
+			cnx.close();
+			System.out.println("Inscription réussi.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+			try {
+				cnx.rollback();
+				cnx.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	}
 	public void delete(int id)
 	{
 		Connection cnx;
