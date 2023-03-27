@@ -31,7 +31,11 @@ public class UtilisateurManager {
 	}
 	
 	public Utilisateur login(String pseudo,String motdepasse) {
-		return utilisateurDAO.login(pseudo, motdepasse);
+		if (pseudo.contains("@")) {
+			return utilisateurDAO.loginEmail(pseudo, motdepasse);
+		} else {
+			return utilisateurDAO.loginPseudo(pseudo, motdepasse);
+		}
 	}
 
 	public void deleteById(int id) {
