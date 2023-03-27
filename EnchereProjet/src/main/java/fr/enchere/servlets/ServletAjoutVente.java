@@ -75,7 +75,7 @@ public class ServletAjoutVente extends HttpServlet {
 		String ville = request.getParameter("ville");
 		
 		Retrait retrait = new Retrait(rue, codePostal, ville, articleVendu.getNoArticle());
-		RetraitManager.ajouterRetrait(retrait);
+		RetraitManager.getInstance().ajouterRetrait(retrait);
 		
 		response.sendRedirect("Accueil");
 	}
