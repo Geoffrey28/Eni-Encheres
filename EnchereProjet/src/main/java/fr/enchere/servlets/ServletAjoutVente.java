@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.enchere.bll.ArticleVenduManager;
+import fr.enchere.bll.RetraitManager;
 import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Retrait;
 import fr.enchere.bo.Utilisateur;
@@ -41,6 +42,7 @@ public class ServletAjoutVente extends HttpServlet {
 		String description = request.getParameter("description");
 		String img = request.getParameter("image");
 		int prix = Integer.parseInt(request.getParameter("prix"));
+		String etatVente = "etat vente";
         		
 		String dateDebut = request.getParameter("dateDebut");
 		String dateFin = request.getParameter("dateFin");
@@ -59,7 +61,7 @@ public class ServletAjoutVente extends HttpServlet {
 	    int noUtilisateur = u.getNoUtilisateur();
 		int categorie = Integer.parseInt(request.getParameter("categorie"));
 		
-		ArticleVendu articleVendu = new ArticleVendu (nom, description, img, dateDebut, dateFin, prix, prix, "etat vente", noUtilisateur, categorie);
+		ArticleVendu articleVendu = new ArticleVendu (nom, description, img, dateDebut, dateFin, prix, prix, etatVente, noUtilisateur, categorie);
 		ArticleVenduManager.ajouter(articleVendu);
 		
 		System.out.println(articleVendu.toString());
@@ -69,6 +71,8 @@ public class ServletAjoutVente extends HttpServlet {
 		String ville = request.getParameter("ville");
 		
 		Retrait retrait = new Retrait(rue, codePostal, ville, articleVendu.getNoArticle());
-		ArticleVenduManager.ajouterRetrait(retrait);
+		RetraitManager.ajouterRetrait(retrait);
+		
+		response.sendRedirect("Accueil");
 	}
 }

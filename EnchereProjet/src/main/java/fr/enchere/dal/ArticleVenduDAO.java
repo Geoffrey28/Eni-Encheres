@@ -10,7 +10,6 @@ import java.util.List;
 
 import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Enchere;
-import fr.enchere.bo.Utilisateur;
 
 public class ArticleVenduDAO {
 
@@ -25,8 +24,8 @@ public class ArticleVenduDAO {
 	private final static String SQLSELECTALL = "select * from ArticleVendu where true";
 	private final String SQLDELETEBYID = "DELETE FROM ArticleVendu WHERE noArticle=?";
 	private final static String SQLSHOW = "select * from ArticleVendu where noArticle=?";
-	private final static String SQLUPDATE = "update ArticleVendu set nomArticle=?,description=?,dateDebutEncheres=?,"
-			+ "dateFinEncheres=?,miseAPrix=?,prixVente=? where id=?";
+	private final static String SQLUPDATE = "update ArticleVendu set nomArticle=?,description=?,img=?,dateDebutEncheres=?,"
+			+ "dateFinEncheres=?,miseAPrix=?,prixVente=?,noCategorie=? where noArticle=?";
 	private final static String SQLUPDATEPRIXVENTE = "update ArticleVendu set prixVente=? where noArticle=?";
 	
 	public ArticleVenduDAO() {
@@ -183,21 +182,22 @@ public class ArticleVenduDAO {
 		}
 	}
 	
-	public void updateById(int id) {
+	public void update(ArticleVendu article) {
 		Connection cnx;
 		PreparedStatement stmt;
 		cnx = UtilBDD.getConnection();
-		ArticleVendu article = show(id);
 		try {
 			stmt = cnx.prepareStatement(SQLUPDATE);
-			stmt.setInt(7, id);
+			stmt.setInt(9, article.getNoArticle());
 		
 			stmt.setString(1, article.getNomArticle());
 			stmt.setString(2, article.getDescription());
-			stmt.setString(3, article.getDateDebutEncheres());
-			stmt.setString(4, article.getDateFinEncheres());
-			stmt.setInt(5, article.getMiseAPrix());
-			stmt.setInt(6, article.getPrixVente());
+			stmt.setString(3, article.getImg());
+			stmt.setString(4, article.getDateDebutEncheres());
+			stmt.setString(5, article.getDateFinEncheres());
+			stmt.setInt(6, article.getMiseAPrix());
+			stmt.setInt(7, article.getPrixVente());
+			stmt.setInt(8,  article.getNoCategorie());
 			stmt.executeUpdate();
 			cnx.close();
 		} catch (SQLException e) {

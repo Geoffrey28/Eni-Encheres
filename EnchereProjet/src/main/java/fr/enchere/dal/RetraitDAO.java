@@ -5,11 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Enchere;
 import fr.enchere.bo.Retrait;
 
 public class RetraitDAO {
 
 	private final String SQLINSERT="insert into Retrait (rue,code_postal,ville,noArticle) values(?,?,?,?)";
+	private final String SQLUPDATE="update Retrait set rue=?,code_postal=?,ville=? where noArticle=?";
 	private final String SQLSELECTBYID="select * from Retrait where noArticle=?";
 
 	public void insert(Retrait r) {
@@ -56,7 +59,25 @@ public class RetraitDAO {
 			e.printStackTrace();
 		}	
 		return r;
+	}
+	
+	public void update(Retrait retrait) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
 		
+		try {
+			stmt = cnx.prepareStatement(SQLUPDATE);
+			stmt.setInt(4, retrait.getNoArticle());
+
+			stmt.setString(1, retrait.getRue());
+			stmt.setInt(2, retrait.getCodePostal());
+			stmt.setString(3, retrait.getVille());
+			stmt.executeUpdate();
+			cnx.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

@@ -1,5 +1,9 @@
 package fr.enchere.bo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ArticleVendu {
 	
 	private int noArticle;
@@ -83,13 +87,13 @@ public class ArticleVendu {
 		return dateDebutEncheres;
 	}
 	public void setDateDebutEncheres(String dateDebutEncheres) {
-		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateDebutEncheres = formatDate(dateDebutEncheres);
 	}
 	public String getDateFinEncheres() {
 		return dateFinEncheres;
 	}
 	public void setDateFinEncheres(String dateFinEncheres) {
-		this.dateFinEncheres = dateFinEncheres;
+		this.dateFinEncheres = formatDate(dateFinEncheres);
 	}
 	public int getMiseAPrix() {
 		return miseAPrix;
@@ -111,6 +115,20 @@ public class ArticleVendu {
 	}
 	public String getEtatVente() {
 		return etatVente;
+	}
+	
+	private String formatDate(String date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+		
+		try {
+			Date tempDate = sdf.parse(date);
+			date = sdf2.format(tempDate);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		
+		return date;
 	}
 	
 	@Override
