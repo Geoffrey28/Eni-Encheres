@@ -29,7 +29,7 @@ public class ServletAjoutVente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String dateDuJour = sdf.format(new Date());
-		System.out.println(dateDuJour);
+		request.setAttribute("dateDuJour", dateDuJour);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ajoutVente.jsp");
 		rd.forward(request, response);

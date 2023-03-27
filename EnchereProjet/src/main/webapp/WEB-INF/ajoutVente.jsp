@@ -47,11 +47,11 @@
 			</div>
 			<div>
 				<label for="dateDebut">Début de l'enchère : </label>
-				<input type="date" name="dateDebut" min="${ dateDuJour }" required>
+				<input type="date" id="dateDebut" name="dateDebut" min="${ dateDuJour }" required>
 			</div>
 			<div>
 				<label for="dateFin">Fin de l'enchère : </label>
-				<input type="date" name="dateFin" required>
+				<input type="date" id="dateFin" name="dateFin" min="${ dateDuJour }" required>
 			</div>
 			<fieldset>
 				<legend>Retrait</legend>
@@ -76,3 +76,10 @@
 	</div>
 </body>
 </html>
+<script type="text/javascript">
+	var dateDebut = document.getElementById("dateDebut");
+	dateDebut.addEventListener("change", function() {
+		let date = dateDebut.value;
+		document.getElementById("dateFin").setAttribute("min", date);
+	});
+</script>
