@@ -14,30 +14,33 @@
 		<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png">
 	</div>
 	<div id="newAuction-div">
-		<h2>Nouvelle vente</h2>	
-		<form id="newAuction-form" action="AjoutVente" method="post">
+		<h2>Modifier la vente</h2>	
+		<form id="newAuction-form" action="ModifierVente" method="post">
 			<div>
 				<label for="nomArticle">Article : </label>
-				<input type="text" name="nomArticle" required>
+				<input type="text" name="nomArticle" value="${ article.nomArticle }">
 			</div>
 			<div>
 				<label for="description">Description : </label>
-				<textArea name="description" rows="4" cols="30" maxlength="128"></textArea>
+				<textArea name="description" rows="4" cols="30" maxlength="128" >${ article.description }</textArea>
 			</div>
 			<div>
 				<label for="categorie">Catégorie : </label>
-				<select name="categorie" required>
-					<option hidden="true">- Sélectionnez une catégorie -</option>
-					<option value="1">Vêtements</option>
-					<option value="2">Ameublement</option>
-					<option value="3">Informatique</option>
-					<option value="4">Sports&Loisirs</option>
+				<select name="categorie">
+					<c:forEach items="${ categories }" var="c">
+						<option value="${ c.noCategorie }"
+							<c:if test="${ c.noCategorie == article.noCategorie }">
+								selected="selected"
+							</c:if>
+							>${ c.libelle }
+						</option>
+					</c:forEach>
 				</select>
 			</div>
 			<div id="newAuction-picture">
 				<p>Photo : </p>
 				<div>
-					<input type="file" id="picture" name="image">
+					<input type="file" id="picture" name="image" value="${ article.img }">
 					<label for="image">
 						<span>Uploader</span>
 					</label>
@@ -45,34 +48,35 @@
 			</div>
 			<div id="newAuction-price">
 				<label for="prix">Mise à prix : </label>
-				<input type="number" name="prix" required>
+				<input type="number" name="prix" value="${ article.miseAPrix }">
 			</div>
 			<div>
 				<label for="dateDebut">Début de l'enchère : </label>
-				<input type="date" name="dateDebut" required>
+				<input type="date" name="dateDebut" value="${ dateDebut }" required>
 			</div>
 			<div>
 				<label for="dateFin">Fin de l'enchère : </label>
-				<input type="date" name="dateFin" required>
+				<input type="date" name="dateFin" value="${ dateFin }" required>
 			</div>
 			<fieldset>
 				<legend>Retrait</legend>
 				<div>
 					<label for="rue">Rue : </label>
-					<input type="text" name="rue" value="${ userConnected.rue }" required>
+					<input type="text" name="rue" value="${ retrait.rue }">
 				</div>
 				<div>
 					<label for="codePostal">Code postal : </label>
-					<input type="text" name="codePostal" maxlength="5" value="${ userConnected.codePostal }" required>
+					<input type="text" name="codePostal" maxlength="5" value="${ retrait.codePostal }">
 				</div>
 				<div>
 					<label for="ville">Ville : </label>
-					<input type="text" name="ville" value="${ userConnected.ville }" required>
+					<input type="text" name="ville" value="${ retrait.ville }">
 				</div>
 			</fieldset>
 			<div id="newAuction-submit">
+				<input type="hidden" value="${ article.noArticle }" name="noArticle">
 				<input type="submit" value="Enregistrer" >
-				<a href="Accueil">Annuler</a>
+				<a href="EnchereDetail?id=${ article.noArticle }">Annuler</a>
 			</div>
 		</form>
 	</div>

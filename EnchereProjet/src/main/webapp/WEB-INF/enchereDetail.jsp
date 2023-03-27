@@ -14,7 +14,7 @@
 		<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png">
 	</div>
 	<div id="newAuction-div">
-		<h2>Détail vente</h2>	
+		<h2>Détails de la vente</h2>	
 		<form id="newAuction-form" action="EnchereDetail" method="post">
 			<div style="place-content: center; font-size: larger;">
 				${ article.nomArticle }
@@ -62,16 +62,23 @@
 			<div>
 				<span><p>Vendeur :</p><p>${ user.pseudo }</p></span>
 			</div>
-			<div>
-				<span>
-					<p>Ma Proposition :</p>
-					<p>
-						<input type="hidden" name="id" value="${ article.noArticle }">
-						<input type="number" name="montant" style="width: 75px;" min="${ article.prixVente + 1 }">
-						<input type="submit" value="Enchérir" style="cursor: pointer;">
-					</p>
-				</span>
-			</div>
+			<c:choose>
+				<c:when test="${ user.noUtilisateur != userConnected.noUtilisateur }">
+					<div>
+						<span>
+							<p>Ma Proposition :</p>
+							<p>
+								<input type="hidden" name="id" value="${ article.noArticle }">
+								<input type="number" name="montant" style="width: 75px;" min="${ article.prixVente + 1 }">
+								<input type="submit" value="Enchérir" style="cursor: pointer;">
+							</p>
+						</span>
+					</div>
+				</c:when>
+				<c:when test="${ user.noUtilisateur == userConnected.noUtilisateur }">
+					<a href="ModifierVente?id=${ article.noArticle }">Modifier</a>
+				</c:when>			
+			</c:choose>
 		</form>
 	</div>
 </body>

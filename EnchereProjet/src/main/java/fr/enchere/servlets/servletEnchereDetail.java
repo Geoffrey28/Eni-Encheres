@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.enchere.bll.ArticleVenduManager;
 import fr.enchere.bll.CategorieManager;
 import fr.enchere.bll.EnchereManager;
+import fr.enchere.bll.RetraitManager;
 import fr.enchere.bll.UtilisateurManager;
 import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Categorie;
@@ -34,7 +35,7 @@ public class servletEnchereDetail extends HttpServlet {
 			int id = Integer.parseInt(request.getParameter("id"));
 			
 			ArticleVendu a = ArticleVenduManager.getInstance().show(id);
-			Retrait r = ArticleVenduManager.getInstance().getRetraitById(id);
+			Retrait r = RetraitManager.getInstance().getRetraitById(id);
 			Utilisateur u = UtilisateurManager.getInstance().showById(a.getNoUtilisateur());
 			Categorie c = CategorieManager.getInstance().selectById(a.getNoCategorie());
 			Enchere e = EnchereManager.getInstance().getBestEnchere(a.getNoArticle());
