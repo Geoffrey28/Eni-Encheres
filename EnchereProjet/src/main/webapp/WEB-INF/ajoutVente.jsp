@@ -37,10 +37,8 @@
 			<div id="newAuction-picture">
 				<p>Photo : </p>
 				<div>
-					<input type="file" id="picture" name="image">
-					<label for="image">
-						<span>Uploader</span>
-					</label>
+					<input type="file" id="image" name="image">
+					<label for="image">Uploader</label>
 				</div>
 			</div>
 			<div id="newAuction-price">
