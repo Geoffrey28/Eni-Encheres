@@ -12,8 +12,10 @@ public class UtilisateurDAO {
 
 	private final String SQLINSERT="insert into users (pseudo,nom,prenom,MotDePasse,email,telephone,"
 			+ "rue,codePostal,ville) values(?,?,?,?,?,?,?,?,?)";
-	private final String SQLLOGIN="select * "
+	private final String SQLLOGINWITHPSEUDO="select * "
 			+ "from users where pseudo=? and MotDePasse=?";
+	private final String SQLLOGINWITHEMAIL="select * "
+			+ "from users where email=? and MotDePasse=?";
 	private final String SQLDELETE="delete from users where noUtilisateur=?";
 	private final static String SQLSHOW="select * from users where pseudo=?";
 	private final static String SQLSHOWID="select * from users where noUtilisateur=?";
@@ -105,12 +107,30 @@ public class UtilisateurDAO {
 		}
 	}
 	
-	public Utilisateur login(String pseudo, String motDePasse) {
+	public Utilisateur loginPseudo(String pseudo, String motDePasse) {
 		Utilisateur Utilisateur = null;
 		try {
 			Connection cnx = UtilBDD.getConnection();
-			PreparedStatement stmt = cnx.prepareStatement(SQLLOGIN);
+			PreparedStatement stmt = cnx.prepareStatement(SQLLOGINWITHPSEUDO);
 			stmt.setString(1, pseudo);
+			stmt.setString(2, motDePasse);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				Utilisateur = rsToUser(rs);
+			}
+			cnx.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Utilisateur;
+	}
+	
+	public Utilisateur loginEmail(String email, String motDePasse) {
+		Utilisateur Utilisateur = null;
+		try {
+			Connection cnx = UtilBDD.getConnection();
+			PreparedStatement stmt = cnx.prepareStatement(SQLLOGINWITHEMAIL);
+			stmt.setString(1, email);
 			stmt.setString(2, motDePasse);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
