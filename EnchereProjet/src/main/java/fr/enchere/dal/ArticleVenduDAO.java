@@ -121,6 +121,7 @@ public class ArticleVenduDAO {
 			while (rs.next()) {
 				listeArticleVendu.add(rsToArticleVendu(rs));
 			}
+			cnx.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

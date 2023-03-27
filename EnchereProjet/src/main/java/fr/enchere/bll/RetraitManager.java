@@ -23,7 +23,7 @@ public class RetraitManager {
 		return retraitDAO.selectByNoArticle(noArticle);
 	}
 	
-	public static void ajouterRetrait(Retrait retrait) {
+	public void ajouterRetrait(Retrait retrait) {
 		try {
 			retraitDAO.insert(retrait);
 		} catch (Exception e) {
@@ -33,5 +33,9 @@ public class RetraitManager {
 	
 	public void miseAjourRetrait(Retrait retrait) {
 		retraitDAO.update(retrait);
+	}
+	
+	public void supprimer(int id) {
+		retraitDAO.deleteById(id);
 	}
 }

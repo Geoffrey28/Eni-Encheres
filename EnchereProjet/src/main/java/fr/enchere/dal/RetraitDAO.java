@@ -14,6 +14,7 @@ public class RetraitDAO {
 	private final String SQLINSERT="insert into Retrait (rue,code_postal,ville,noArticle) values(?,?,?,?)";
 	private final String SQLUPDATE="update Retrait set rue=?,code_postal=?,ville=? where noArticle=?";
 	private final String SQLSELECTBYID="select * from Retrait where noArticle=?";
+	private final String SQLDELETEBYID = "DELETE FROM Retrait WHERE noArticle=?";
 
 	public void insert(Retrait r) {
 		Connection cnx = null;
@@ -73,6 +74,21 @@ public class RetraitDAO {
 			stmt.setString(1, retrait.getRue());
 			stmt.setInt(2, retrait.getCodePostal());
 			stmt.setString(3, retrait.getVille());
+			stmt.executeUpdate();
+			cnx.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void deleteById(int id) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		
+		try {
+			stmt = cnx.prepareStatement(SQLDELETEBYID);
+			stmt.setInt(1, id);
 			stmt.executeUpdate();
 			cnx.close();
 		} catch (Exception e) {

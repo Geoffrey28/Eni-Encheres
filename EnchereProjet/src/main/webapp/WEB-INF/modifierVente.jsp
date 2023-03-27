@@ -76,6 +76,7 @@
 				<input type="submit" value="Enregistrer" >
 				<a href="EnchereDetail?id=${ article.noArticle }">Annuler</a>
 			</div>
+				<a href="AnnulerVente?id=${ article.noArticle }">Supprimer la vente</a>
 		</form>
 	</div>
 </body>
