@@ -45,8 +45,9 @@ public class servletEnchereDetail extends HttpServlet {
 				request.setAttribute("encherisseur", encherisseur);	
 			}
 			
-			request.setAttribute("user", u);
+			ArticleVenduManager.getInstance().miseAJourEtat(a);
 			
+			request.setAttribute("user", u);
 			request.setAttribute("categorie", c);
 			request.setAttribute("article", a);
 			request.setAttribute("user", u);

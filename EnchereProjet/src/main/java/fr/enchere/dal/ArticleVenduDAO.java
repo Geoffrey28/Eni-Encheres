@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import fr.enchere.bo.ArticleVendu;
@@ -27,6 +29,7 @@ public class ArticleVenduDAO {
 	private final static String SQLUPDATE = "update ArticleVendu set nomArticle=?,description=?,img=?,dateDebutEncheres=?,"
 			+ "dateFinEncheres=?,miseAPrix=?,prixVente=?,noCategorie=? where noArticle=?";
 	private final static String SQLUPDATEPRIXVENTE = "update ArticleVendu set prixVente=? where noArticle=?";
+	private final static String SQLUPDATEETATVENTE = "update ArticleVendu set etatVente=? where noArticle=?";
 	
 	public ArticleVenduDAO() {
 	}
@@ -80,6 +83,7 @@ public class ArticleVenduDAO {
 			while (rs.next()) {
 				listeArticleVendu.add(rsToArticleVendu(rs));
 			}
+			cnx.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -121,6 +125,7 @@ public class ArticleVenduDAO {
 			while (rs.next()) {
 				listeArticleVendu.add(rsToArticleVendu(rs));
 			}
+			cnx.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -208,7 +213,6 @@ public class ArticleVenduDAO {
 	public void updatePrixVenteById(int id) {
 		Connection cnx;
 		PreparedStatement stmt;
-		ArticleVendu article = show(id);
 		cnx = UtilBDD.getConnection();
 		
 		try {
@@ -219,6 +223,41 @@ public class ArticleVenduDAO {
 			stmt.setInt(1, enchere.getMontant());
 			stmt.executeUpdate();
 			cnx.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateEtatVente(ArticleVendu a) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		
+		String etat = a.getEtatVente();
+		System.out.println(etat);
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dateDuJour = new Date();
+		System.out.println(dateDuJour);
+		try {
+			if (sdf.parse(a.getDateDebutEncheres()).after(dateDuJour)) {
+				a.setEtatVente("Cr");
+			} else if (sdf.parse(a.getDateFinEncheres()).before(dateDuJour)) {
+				a.setEtatVente("Et");
+			} else {
+				a.setEtatVente("Ec");
+			}
+
+			System.out.println(a.getEtatVente());
+			if (etat.equals(a.getEtatVente())) {
+				cnx.close();
+			} else {
+				stmt = cnx.prepareStatement(SQLUPDATEETATVENTE);
+				stmt.setString(1, a.getEtatVente());
+				stmt.setInt(2, a.getNoArticle());
+				stmt.executeUpdate();
+				cnx.close();
+				System.out.println("update");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

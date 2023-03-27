@@ -53,5 +53,9 @@ public class ArticleVenduManager {
 	public void miseAJourPrix(int id) {
 		articleVenduDAO.updatePrixVenteById(id);
 	}
+	
+	public void miseAJourEtat(ArticleVendu a) {
+		articleVenduDAO.updateEtatVente(a);
+	}
 
 }

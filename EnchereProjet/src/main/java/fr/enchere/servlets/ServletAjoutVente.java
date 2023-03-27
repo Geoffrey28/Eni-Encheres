@@ -42,7 +42,7 @@ public class ServletAjoutVente extends HttpServlet {
 		String description = request.getParameter("description");
 		String img = request.getParameter("image");
 		int prix = Integer.parseInt(request.getParameter("prix"));
-		String etatVente = "etat vente";
+		String etatVente = "Cr";
         		
 		String dateDebut = request.getParameter("dateDebut");
 		String dateFin = request.getParameter("dateFin");
