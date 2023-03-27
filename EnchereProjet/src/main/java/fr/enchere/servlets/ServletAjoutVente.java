@@ -27,6 +27,10 @@ public class ServletAjoutVente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String dateDuJour = sdf.format(new Date());
+		System.out.println(dateDuJour);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ajoutVente.jsp");
 		rd.forward(request, response);
 	}

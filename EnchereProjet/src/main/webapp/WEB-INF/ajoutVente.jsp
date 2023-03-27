@@ -47,7 +47,7 @@
 			</div>
 			<div>
 				<label for="dateDebut">Début de l'enchère : </label>
-				<input type="date" name="dateDebut" required>
+				<input type="date" name="dateDebut" min="${ dateDuJour }" required>
 			</div>
 			<div>
 				<label for="dateFin">Fin de l'enchère : </label>
