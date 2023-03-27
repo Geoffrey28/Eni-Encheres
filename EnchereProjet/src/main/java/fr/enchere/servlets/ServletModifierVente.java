@@ -33,6 +33,10 @@ public class ServletModifierVente extends HttpServlet {
 		if (request.getParameter("id") != null) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+			String dateDuJour = sdf2.format(new Date());
+			request.setAttribute("dateDuJour", dateDuJour);
+			
 			ArticleVendu a = ArticleVenduManager.getInstance().show(id);
 			Retrait r = RetraitManager.getInstance().getRetraitById(id);
 			List<Categorie> categories = CategorieManager.getInstance().afficherListe();
@@ -40,7 +44,6 @@ public class ServletModifierVente extends HttpServlet {
 			String dateDebut = a.getDateDebutEncheres();
 			String dateFin = a.getDateFinEncheres();
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 			try {
 				Date date = sdf.parse(dateDebut);
 				dateDebut = sdf2.format(date);
