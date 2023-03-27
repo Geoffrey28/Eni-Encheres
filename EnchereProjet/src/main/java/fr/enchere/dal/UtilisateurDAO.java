@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Utilisateur;
 
 public class UtilisateurDAO {
@@ -16,6 +19,7 @@ public class UtilisateurDAO {
 			+ "from users where pseudo=? and MotDePasse=?";
 	private final String SQLDELETE="delete from users where noUtilisateur=?";
 	private final static String SQLSHOW="select * from users where pseudo=?";
+	private final static String SQLSELECTALL="select * from users where true";
 	private final static String SQLSHOWID="select * from users where noUtilisateur=?";
 	
 	public UtilisateurDAO() {
@@ -87,6 +91,27 @@ public class UtilisateurDAO {
 			e.printStackTrace();
 		}
 		return Utilisateur;
+	}
+	
+	public List<Utilisateur> selectAll() {
+		Connection cnx;
+		Statement stmt;
+		ResultSet rs;
+		ArrayList<Utilisateur> listeUtilisateur = null;
+		cnx = UtilBDD.getConnection();
+		
+		try {
+			stmt = cnx.createStatement();
+			rs = stmt.executeQuery(SQLSELECTALL);
+			listeUtilisateur = new ArrayList<>();
+			
+			while (rs.next()) {
+				listeUtilisateur.add(rsToUser(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listeUtilisateur;
 	}
 	
 	public static Utilisateur showByPseudo(String pseudo) {

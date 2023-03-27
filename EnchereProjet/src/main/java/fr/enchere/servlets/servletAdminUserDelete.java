@@ -17,8 +17,8 @@ import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Categorie;
 
 
-@WebServlet("/AdminDelete")
-public class servletAdminDelete extends HttpServlet {
+@WebServlet("/AdminUserDelete")
+public class servletAdminUserDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

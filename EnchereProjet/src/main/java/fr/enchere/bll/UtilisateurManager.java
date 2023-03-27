@@ -1,5 +1,8 @@
 package fr.enchere.bll;
 
+import java.util.List;
+
+import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Utilisateur;
 import fr.enchere.dal.DAOFactory;
 import fr.enchere.dal.UtilisateurDAO;
@@ -36,6 +39,10 @@ public class UtilisateurManager {
 
 	public void deleteById(int id) {
 		utilisateurDAO.delete(id);
+	}
+	
+	public List<Utilisateur> afficherListe() {
+		return utilisateurDAO.selectAll();
 	}
 	
 	public Utilisateur showByPseudo(String pseudo) {
