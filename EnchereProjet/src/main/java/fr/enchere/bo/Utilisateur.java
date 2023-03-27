@@ -19,6 +19,7 @@ public class Utilisateur {
 	private int codePostal;
 	private int credit;
 	private boolean administrateur;
+	private boolean disabled;
 	
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String motDePasse, String email, int telephone,
@@ -68,8 +69,40 @@ public class Utilisateur {
 		this.credit = credit;
 		this.administrateur = administrateur;
 	}
-
 	
+	
+	
+	
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String motDePasse, String email,
+			int telephone, String rue, String ville, int codePostal, int credit, boolean administrateur,
+			boolean disabled) {
+		super();
+		NoUtilisateur = noUtilisateur;
+		this.pseudo = pseudo;
+		this.nom = nom;
+		this.prenom = prenom;
+		this.motDePasse = motDePasse;
+		this.email = email;
+		this.telephone = telephone;
+		this.rue = rue;
+		this.ville = ville;
+		this.codePostal = codePostal;
+		this.credit = credit;
+		this.administrateur = administrateur;
+		this.disabled = disabled;
+	}
+
+
+
+	public boolean isDisabled() {
+		return disabled;
+	}
+
+
+
+	public void setDisabled(boolean disabled) {
+		this.disabled = disabled;
+	}
 	
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, int telephone,
 			String rue, String ville, int codePostal) {
@@ -84,8 +117,6 @@ public class Utilisateur {
 		this.ville = ville;
 		this.codePostal = codePostal;
 	}
-
-
 
 	public String getVille() {
 		return ville;

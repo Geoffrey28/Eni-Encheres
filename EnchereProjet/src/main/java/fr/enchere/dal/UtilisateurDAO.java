@@ -5,7 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Utilisateur;
 
 public class UtilisateurDAO {
@@ -17,7 +20,10 @@ public class UtilisateurDAO {
 	private final String SQLLOGINWITHEMAIL="select * "
 			+ "from users where email=? and MotDePasse=?";
 	private final String SQLDELETE="delete from users where noUtilisateur=?";
+	private final String SQLDISABLE="update users set disabled=1 where noUtilisateur=?";
+	private final String SQLENABLE="update users set disabled=0 where noUtilisateur=?";
 	private final static String SQLSHOW="select * from users where pseudo=?";
+	private final static String SQLSELECTALL="select * from users where true";
 	private final static String SQLSHOWID="select * from users where noUtilisateur=?";
 	private final static String SQLUPDATE="update users set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, ville=?, codePostal=? where noUtilisateur=?";
 	
@@ -143,6 +149,27 @@ public class UtilisateurDAO {
 		return Utilisateur;
 	}
 	
+	public List<Utilisateur> selectAll() {
+		Connection cnx;
+		Statement stmt;
+		ResultSet rs;
+		ArrayList<Utilisateur> listeUtilisateur = null;
+		cnx = UtilBDD.getConnection();
+		
+		try {
+			stmt = cnx.createStatement();
+			rs = stmt.executeQuery(SQLSELECTALL);
+			listeUtilisateur = new ArrayList<>();
+			
+			while (rs.next()) {
+				listeUtilisateur.add(rsToUser(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listeUtilisateur;
+	}
+	
 	public static Utilisateur showByPseudo(String pseudo) {
 		Utilisateur Utilisateur = null;
 		try {
@@ -177,6 +204,36 @@ public class UtilisateurDAO {
 		return Utilisateur;
 	}
 	
+	public void disable(int id) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		try {
+			stmt = cnx.prepareStatement(SQLDISABLE);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			cnx.close();
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void enable(int id) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		try {
+			stmt = cnx.prepareStatement(SQLENABLE);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			cnx.close();
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private static Utilisateur rsToUser(ResultSet rs)
 	{
 		Utilisateur u = null;
@@ -192,7 +249,8 @@ public class UtilisateurDAO {
 							rs.getString("ville"),
 							rs.getInt("codePostal"),
 							rs.getInt("credit"),
-							rs.getBoolean("administrateur"));
+							rs.getBoolean("administrateur"),
+							rs.getBoolean("disabled"));
 			}
 		catch (SQLException e) 
 		{
