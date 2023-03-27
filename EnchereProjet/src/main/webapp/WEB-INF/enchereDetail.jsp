@@ -63,7 +63,7 @@
 				<span><p>Vendeur :</p><p>${ user.pseudo }</p></span>
 			</div>
 			<c:choose>
-				<c:when test="${ user.noUtilisateur != userConnected.noUtilisateur }">
+				<c:when test="${ user.noUtilisateur != userConnected.noUtilisateur && article.etatVente == 'Ec' }">
 					<div>
 						<span>
 							<p>Ma Proposition :</p>
@@ -75,7 +75,7 @@
 						</span>
 					</div>
 				</c:when>
-				<c:when test="${ user.noUtilisateur == userConnected.noUtilisateur }">
+				<c:when test="${ user.noUtilisateur == userConnected.noUtilisateur && article.etatVente != 'Ec' }">
 					<a href="ModifierVente?id=${ article.noArticle }">Modifier</a>
 				</c:when>			
 			</c:choose>
