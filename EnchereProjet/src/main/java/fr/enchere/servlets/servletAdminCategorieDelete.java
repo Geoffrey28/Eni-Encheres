@@ -17,20 +17,15 @@ import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Categorie;
 
 
-@WebServlet("/AdminUserDelete")
-public class servletAdminUserDelete extends HttpServlet {
+@WebServlet("/AdminCategorieDelete")
+public class servletAdminCategorieDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin.jsp");
-		rd.forward(request, response);
-	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int noUtilisateur = Integer.parseInt(request.getParameter("noUtilisateur"));
+		int noCategorie = Integer.parseInt(request.getParameter("noCategorie"));
 		
-		UtilisateurManager.getInstance().deleteById(noUtilisateur);
+		CategorieManager.getInstance().supprimer(noCategorie);
 		
 		response.sendRedirect("Admin");
 	}

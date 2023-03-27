@@ -18,6 +18,8 @@ public class UtilisateurDAO {
 	private final String SQLLOGIN="select * "
 			+ "from users where pseudo=? and MotDePasse=?";
 	private final String SQLDELETE="delete from users where noUtilisateur=?";
+	private final String SQLDISABLE="update users set disabled=1 where noUtilisateur=?";
+	private final String SQLENABLE="update users set disabled=0 where noUtilisateur=?";
 	private final static String SQLSHOW="select * from users where pseudo=?";
 	private final static String SQLSELECTALL="select * from users where true";
 	private final static String SQLSHOWID="select * from users where noUtilisateur=?";
@@ -148,6 +150,36 @@ public class UtilisateurDAO {
 		return Utilisateur;
 	}
 	
+	public void disable(int id) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		try {
+			stmt = cnx.prepareStatement(SQLDISABLE);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			cnx.close();
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void enable(int id) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		try {
+			stmt = cnx.prepareStatement(SQLENABLE);
+			stmt.setInt(1, id);
+			stmt.executeUpdate();
+			cnx.close();
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private static Utilisateur rsToUser(ResultSet rs)
 	{
 		Utilisateur u = null;
@@ -163,7 +195,8 @@ public class UtilisateurDAO {
 							rs.getString("ville"),
 							rs.getInt("codePostal"),
 							rs.getInt("credit"),
-							rs.getBoolean("administrateur"));
+							rs.getBoolean("administrateur"),
+							rs.getBoolean("disabled"));
 			}
 		catch (SQLException e) 
 		{

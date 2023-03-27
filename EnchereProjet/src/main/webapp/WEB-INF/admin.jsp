@@ -26,9 +26,10 @@
 							<td>Pseudo</td>
 							<td>Email</td>
 							<td>Credit</td>
+							<td>Désactiver</td>
 							<td></td>
 						</tr>
-						<tr><td colspan="4"><hr><td></tr>
+						<tr><td colspan="5"><hr><td></tr>
 					</thead>
 					
 					<tbody>
@@ -39,9 +40,11 @@
 								<td>${ u.pseudo }</td>
 								<td>${ u.email }</td>
 								<td>${ u.credit }</td>
+								<td><c:if test="${ u.disabled == true }"><img src="https://cdn-icons-png.flaticon.com/512/753/753345.png"></c:if> <c:if test="${ u.disabled == false }"><img src="https://cdn-icons-png.flaticon.com/512/2251/2251677.png"></c:if> </td>
 								<td class="admin-action">
-									<form action="adminUserDelete" method="post"><input type="hidden" name="noUtilisateur" value="${ u.noUtilisateur }"><input type="submit" value="Supprimer"></form>
-									<form action="adminUserDisable" method="post"><input type="hidden" name="noUtilisateur" value="${ u.noUtilisateur }"><input type="submit" value="Désactiver"></form>
+									<form action="AdminUserDelete" method="post"><input type="hidden" name="noUtilisateur" value="${ u.noUtilisateur }"><input type="submit" value="Supprimer"></form>
+									<c:if test="${ u.disabled == false }"><form action="AdminUserDisable" method="post"><input type="hidden" name="noUtilisateur" value="${ u.noUtilisateur }"><input type="submit" value="Désactiver"></form></c:if>
+									<c:if test="${ u.disabled == true }"><form action="AdminUserEnable" method="post"><input type="hidden" name="noUtilisateur" value="${ u.noUtilisateur }"><input type="submit" value="Activer"></form></c:if>
 								</td>
 							</tr>
 						</c:forEach>
@@ -73,16 +76,23 @@
 								<td>${ c.noCategorie }</td>
 								<td>${ c.libelle }</td>
 								<td class="admin-action">
-								<form action="adminCategorieDelete" method="post"><input type="hidden" name="noCategorie" value="${ c.noCategorie }"><input type="submit" value="Supprimer"></form>
-								<form action="adminCategorieEdit" method="post"><input type="hidden" name="noCategorie" value="${ c.noCategorie }"><input type="submit" value="Modifier"></form>
+								<form action="AdminCategorieDelete" method="post"><input type="hidden" name="noCategorie" value="${ c.noCategorie }"><input type="submit" value="Supprimer"></form>
+								<input type="submit" value="Modifier" onclick="editCategorie(${ c.noCategorie })">
+								
+								<form method="post" action="AdminCategorieEdit" style="display:none" id="Categorie_${ c.noCategorie }" class="form-categorie-edit">
+									<input type="hidden" name="noCategorie" value="${ c.noCategorie }">
+									<input type="text" name="libelle">
+									<input type="submit" value="Valider">
+								</form>
+								
 								</td>
 							</tr>
 						</c:forEach>
 						
+						<tr><td colspan="3"><hr></td></tr>
 						<tr>
 							<td colspan="3">
-								<form action="adminCategorieAdd" method="post" style="display: flex;
-    justify-content: space-evenly;">
+								<form action="AdminCategorieAdd" method="post" style="display: flex; justify-content: space-evenly;">
 								
 								<input type="text" name="libelle" placeholder="libelle">
 								
@@ -92,12 +102,31 @@
 							</td>
 						</tr>
 						
+						
 					</tbody>
 				</table>
 			
 			</div>
 		
 		</div>
+		
+		<script>
+		
+		function editCategorie(noCategorie){
+			
+			const categorie = Array.from(
+				document.getElementsByClassName('form-categorie-edit')
+			);
+
+			categorie.forEach(box => {
+				box.style.display = 'none';
+			});
+			
+			document.getElementById("Categorie_" + noCategorie).style.display = "block";
+			
+		}
+		
+		</script>
 	
 	</body>
 	

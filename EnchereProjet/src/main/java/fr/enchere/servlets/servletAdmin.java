@@ -37,6 +37,15 @@ public class servletAdmin extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		List<Utilisateur> lstUtilisateur;
+		lstUtilisateur = UtilisateurManager.getInstance().afficherListe();
+		request.setAttribute("listeUtilisateur", lstUtilisateur);
+		
+		List<Categorie> lstCategorie;
+		lstCategorie = CategorieManager.getInstance().afficherListe();
+		request.setAttribute("listeCategorie", lstCategorie);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/admin.jsp");
 		rd.forward(request, response);
 	}

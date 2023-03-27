@@ -41,6 +41,14 @@ public class UtilisateurManager {
 		utilisateurDAO.delete(id);
 	}
 	
+	public void disable(int id) {
+		utilisateurDAO.disable(id);
+	}
+	
+	public void enable(int id) {
+		utilisateurDAO.enable(id);
+	}
+	
 	public List<Utilisateur> afficherListe() {
 		return utilisateurDAO.selectAll();
 	}

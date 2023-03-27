@@ -34,6 +34,15 @@ public class CategorieManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public static void update(Categorie categorie) {
+		try {
+			categorieDAO.update(categorie);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public List<Categorie> afficherListe() {
 		return categorieDAO.selectAll();
