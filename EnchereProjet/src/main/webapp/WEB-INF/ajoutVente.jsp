@@ -47,11 +47,11 @@
 			</div>
 			<div>
 				<label for="dateDebut">Début de l'enchère : </label>
-				<input type="date" id="dateDebut" name="dateDebut" min="${ dateDuJour }" required>
+				<input type="datetime-local" id="dateDebut" name="dateDebut" min="${ dateDuJour }" required>
 			</div>
 			<div>
 				<label for="dateFin">Fin de l'enchère : </label>
-				<input type="date" id="dateFin" name="dateFin" min="${ dateDuJour }" required>
+				<input type="datetime-local" id="dateFin" name="dateFin" min="${ dateDuJour }" required>
 			</div>
 			<fieldset>
 				<legend>Retrait</legend>

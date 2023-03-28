@@ -173,6 +173,7 @@ public class UtilisateurDAO {
 			while (rs.next()) {
 				listeUtilisateur.add(rsToUser(rs));
 			}
+			cnx.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -3,6 +3,7 @@ package fr.enchere.servlets;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -66,7 +67,7 @@ public class servletEnchereDetail extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
 	    String date = sdf.format(new Date()).toString();
 		int montant = Integer.parseInt(request.getParameter("montant"));
 		Utilisateur userConnected = (Utilisateur) request.getSession().getAttribute("userConnected");
