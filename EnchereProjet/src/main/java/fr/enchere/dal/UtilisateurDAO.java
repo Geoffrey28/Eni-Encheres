@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import fr.enchere.bo.Utilisateur;
+import fr.enchere.bo.exceptions.CodePostalException;
 
 public class UtilisateurDAO {
 
@@ -17,7 +18,8 @@ public class UtilisateurDAO {
 	private final String SQLLOGINWITHEMAIL="select * "
 			+ "from users where email=? and MotDePasse=?";
 	private final String SQLDELETE="delete from users where noUtilisateur=?";
-	private final static String SQLSHOW="select * from users where pseudo=?";
+	private final static String SQLSHOWWITHPSEUDO="select * from users where pseudo=?";
+	private final static String SQLSHOWWITHEMAIL="select * from users where email=?";
 	private final static String SQLSHOWID="select * from users where noUtilisateur=?";
 	private final static String SQLUPDATE="update users set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, ville=?, codePostal=? where noUtilisateur=?";
 	
@@ -147,7 +149,7 @@ public class UtilisateurDAO {
 		Utilisateur Utilisateur = null;
 		try {
 			Connection cnx = UtilBDD.getConnection();
-			PreparedStatement stmt = cnx.prepareStatement(SQLSHOW);
+			PreparedStatement stmt = cnx.prepareStatement(SQLSHOWWITHPSEUDO);
 			stmt.setString(1, pseudo);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
@@ -177,8 +179,7 @@ public class UtilisateurDAO {
 		return Utilisateur;
 	}
 	
-	private static Utilisateur rsToUser(ResultSet rs)
-	{
+	private static Utilisateur rsToUser(ResultSet rs) {
 		Utilisateur u = null;
 		try {
 			u = new Utilisateur( rs.getInt("NoUtilisateur"),
@@ -193,11 +194,47 @@ public class UtilisateurDAO {
 							rs.getInt("codePostal"),
 							rs.getInt("credit"),
 							rs.getBoolean("administrateur"));
-			}
-		catch (SQLException e) 
-		{
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (CodePostalException e) {
 			e.printStackTrace();
 		}
 		return u;
 	}
+	
+	public static Boolean checkDoublonPseudo(String pseudo) {
+		Boolean check = false;
+		try {
+			Connection cnx = UtilBDD.getConnection();
+			PreparedStatement stmt = cnx.prepareStatement(SQLSHOWWITHPSEUDO);
+			stmt.setString(1, pseudo);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				check = true;
+			}
+			cnx.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
+	
+	public static Boolean checkDoublonEmail(String email) {
+		Boolean check = false;
+		try {
+			Connection cnx = UtilBDD.getConnection();
+			PreparedStatement stmt = cnx.prepareStatement(SQLSHOWWITHEMAIL);
+			stmt.setString(1, email);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				check = true;
+			}
+			cnx.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return check;
+	}
 }
+

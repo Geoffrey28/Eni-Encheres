@@ -3,6 +3,7 @@ package fr.enchere.bo;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import fr.enchere.bo.exceptions.CodePostalException;
 import fr.enchere.dal.UtilisateurDAO;
 
 public class Utilisateur {
@@ -22,7 +23,7 @@ public class Utilisateur {
 	
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String motDePasse, String email, int telephone,
-			String rue, String ville, int codePostal) {
+			String rue, String ville, int codePostal) throws CodePostalException {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -38,7 +39,7 @@ public class Utilisateur {
 
 
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String motDePasse, String email,
-			int telephone, String rue, String ville, int codePostal) {
+			int telephone, String rue, String ville, int codePostal) throws CodePostalException {
 		super();
 		NoUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -53,7 +54,7 @@ public class Utilisateur {
 	}
 	
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String motDePasse, String email,
-			int telephone, String rue, String ville, int codePostal, int credit, boolean administrateur) {
+			int telephone, String rue, String ville, int codePostal, int credit, boolean administrateur) throws CodePostalException {
 		super();
 		NoUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -72,7 +73,7 @@ public class Utilisateur {
 	
 	
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, int telephone,
-			String rue, String ville, int codePostal) {
+			String rue, String ville, int codePostal) throws CodePostalException {
 		super();
 		NoUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -201,8 +202,12 @@ public class Utilisateur {
 
 
 
-	public void setCodePostal(int codePostal) {
-		this.codePostal = codePostal;
+	public void setCodePostal(int codePostal) throws CodePostalException {
+		if(codePostal > 10000 && codePostal < 98999) {
+			this.codePostal = codePostal;
+		} else {
+			throw new CodePostalException("Le code postal doit être composé de 5 chiffres et être compris entre 10000 et 98999.");
+		}
 	}
 
 

@@ -21,6 +21,9 @@
 <c:if test="${ empty userConnected }">
 
 	<form action="Inscription" method="post">
+	<c:if test="${ !errorMessage }">
+	 	<p id="errorMessage">${ errorMessage }</p>
+	</c:if>
 	<div class="form">
 		
 			<label for="pseudo">Pseudo : </label>
@@ -30,10 +33,10 @@
 			<input type="text" name="prenom" placeholder="Prénom" required><br>
 			
 			<label for="telephone">Téléphone : </label>
-			<input type="tel" name="telephone" placeholder="Téléphone" required><br>
+			<input type="tel" name="telephone" pattern="[0-9]{10}" maxlength="10" placeholder="ex: 0344568238" required><br>
 			
 			<label for="codepostal">Code postal : </label>
-		 	<input type="number" name="codepostal" placeholder="Code Postal" required><br>
+		 	<input type="number" name="codepostal" pattern="[0-9]{5}" placeholder="Code Postal" required><br>
 		 	
 		 	<label for="motdepasse">Mot de passe : </label>
 		 	<input type="password" name="password" placeholder="Mot de passe" id="password" required><br>
@@ -42,7 +45,7 @@
 		 	<input type="text" name="nom" placeholder="Nom" required><br>
 		 					 
 			<label for="email">Email : </label>
-		 	<input type="email" name="email" placeholder="Email" required><br>
+		 	<input type="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email" required><br>
 			
 			<label for="rue">Nom de rue : </label>
 		 	<input type="text" name="rue" placeholder="Nom de rue" required><br>	
@@ -103,7 +106,7 @@
 		 	<input type="text" name="nom" placeholder="Nom" value="${userConnected.nom}" required><br>
 			
 			<label for="telephone">Téléphone : </label>
-			<input type="tel" name="telephone" placeholder="Téléphone" value="${userConnected.telephone}" required><br>
+			<input type="tel" name="telephone" placeholder="Téléphone" pattern="[0-9]{10}" maxlength="10" value="${userConnected.telephone}" required><br>
 			
 			<label for="codepostal">Code postal : </label>
 		 	<input type="number" name="codepostal" placeholder="Code Postal" value="${userConnected.codePostal}" required><br>
@@ -154,4 +157,5 @@
 	</div>
 	
 	</c:if>
+</body>
 </html>

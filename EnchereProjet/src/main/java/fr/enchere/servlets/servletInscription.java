@@ -26,10 +26,12 @@ public class servletInscription extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		// CLIENT
 		
 		Utilisateur u = null;
 		String noUtilisateur = null;
+		
+		String errorMessage = null;
+		
 		noUtilisateur = request.getParameter("noUtilisateur");
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -41,44 +43,66 @@ public class servletInscription extends HttpServlet {
 		String ville = request.getParameter("ville");
 		String MotDePasse = request.getParameter("password");
 		
-		System.out.println(noUtilisateur);
+		Boolean checkPseudo = UtilisateurManager.getInstance().checkDoublonPseudo(pseudo);
+		Boolean checkEmail = UtilisateurManager.getInstance().checkDoublonEmail(email);
+		if (!checkPseudo && !checkEmail) {
+			if (noUtilisateur == null) {
+				try {
+					Utilisateur user = new Utilisateur(pseudo, nom, prenom, MotDePasse, email, telephone, rue, ville, codePostal);
+					
+					
+					user.setCodePostal(codePostal);
+					UtilisateurManager.getInstance().ajouter(user);
+					HttpSession session;
+					
+					session = request.getSession();
+						
+					u = UtilisateurManager.getInstance().login(pseudo, MotDePasse);
+					
+					if(u != null) {
+						session.setAttribute("userConnected", u);
+						Cookie connectionMemo;
+						connectionMemo = new Cookie("lastLogin", u.getPseudo());
+						connectionMemo.setMaxAge(60*60*24*7);
+						response.addCookie(connectionMemo);
+						response.sendRedirect("Accueil");
+					} else {
+						doGet(request, response);
+					}
+				} catch (CodePostalException e) {
+					errorMessage = e.getMessage();
+					request.setAttribute("errorMessage", errorMessage);
+					doGet(request, response);
+				}
 				
-		if (noUtilisateur == null) {
-			System.out.println("testsecond");
-			System.out.println(noUtilisateur);
-		Utilisateur user = new Utilisateur(pseudo, nom, prenom, MotDePasse, email, telephone, rue, ville, codePostal);
-		UtilisateurManager.getInstance().ajouter(user);
-		System.out.println(user);
-		HttpSession session;
-		session = request.getSession();
-		
-		u = UtilisateurManager.getInstance().login(pseudo, MotDePasse);
-
-
-		
-		if(u != null) {
-			System.out.println(u);
-			session.setAttribute("userConnected", u);
-			Cookie connectionMemo;
-			connectionMemo = new Cookie("lastLogin", u.getPseudo());
-			connectionMemo.setMaxAge(60*60*24*7);
-			response.addCookie(connectionMemo);
-			response.sendRedirect("Accueil");
-		} else {
+			} else {
+				Utilisateur user;
+				try {
+					user = new Utilisateur(Integer.parseInt(noUtilisateur), pseudo, nom, prenom, email, telephone, rue, ville, codePostal);
+					UtilisateurManager.getInstance().modifier(user);
+					response.sendRedirect("Profil");
+					HttpSession session;
+					session = request.getSession();
+					session.setAttribute("userConnected", user);
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (CodePostalException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} else { 
+			if (checkPseudo && checkEmail) {
+				errorMessage = "Pseudo et Email déjà utilisé";
+			} else if (!checkPseudo && checkEmail) {
+				errorMessage = "Email déjà utilisé";
+			} else if (checkPseudo && !checkEmail) {
+				errorMessage = "Pseudo déjà utilisé";
+			}
+			request.setAttribute("errorMessage", errorMessage);
 			doGet(request, response);
-	}
 		}
-		else {
-			System.out.println("test");
-			Utilisateur user = new Utilisateur(Integer.parseInt(noUtilisateur), pseudo, nom, prenom, email, telephone, rue, ville, codePostal);
-			UtilisateurManager.getInstance().modifier(user);
-			response.sendRedirect("Profil");
-			HttpSession session;
-			session = request.getSession();
-			session.setAttribute("userConnected", user);
-		}
-		
 	}	
-		
 }
 	

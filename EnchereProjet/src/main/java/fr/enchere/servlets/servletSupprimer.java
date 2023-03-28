@@ -24,7 +24,7 @@ public class servletSupprimer extends HttpServlet {
 		System.out.println(id);
 		UtilisateurManager.getInstance().deleteById(id);
 		request.getSession().invalidate();
-		getServletContext().getRequestDispatcher("/WEB-INF/accueil.jsp").forward(request, response);
+		response.sendRedirect("Accueil");
 		
 	}
 
