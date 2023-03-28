@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,7 +34,7 @@ public class ServletModifierVente extends HttpServlet {
 		if (request.getParameter("id") != null) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			
-			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm", Locale.getDefault());
 			String dateDuJour = sdf2.format(new Date());
 			request.setAttribute("dateDuJour", dateDuJour);
 			
@@ -43,7 +44,7 @@ public class ServletModifierVente extends HttpServlet {
 			
 			String dateDebut = a.getDateDebutEncheres();
 			String dateFin = a.getDateFinEncheres();
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
 			try {
 				Date date = sdf.parse(dateDebut);
 				dateDebut = sdf2.format(date);

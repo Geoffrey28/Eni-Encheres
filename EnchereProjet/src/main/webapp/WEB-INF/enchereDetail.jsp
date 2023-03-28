@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="newAuction-img">
-		<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png">
+		<img alt="Image vente" src="${ article.img }">
 	</div>
 	<div id="newAuction-div">
 		<h2>Détails de la vente</h2>	

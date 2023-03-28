@@ -235,7 +235,7 @@ public class ArticleVenduDAO {
 		
 		String etat = a.getEtatVente();
 		System.out.println(etat);
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		Date dateDuJour = new Date();
 		System.out.println(dateDuJour);
 		try {
