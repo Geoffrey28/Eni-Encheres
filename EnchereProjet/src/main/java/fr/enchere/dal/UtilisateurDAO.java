@@ -10,6 +10,7 @@ import java.util.List;
 
 import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Utilisateur;
+import fr.enchere.bo.exceptions.CodePostalException;
 
 public class UtilisateurDAO {
 
@@ -24,6 +25,8 @@ public class UtilisateurDAO {
 	private final String SQLENABLE="update users set disabled=0 where noUtilisateur=?";
 	private final static String SQLSHOW="select * from users where pseudo=?";
 	private final static String SQLSELECTALL="select * from users where true";
+	private final static String SQLSHOWWITHPSEUDO="select * from users where pseudo=?";
+	private final static String SQLSHOWWITHEMAIL="select * from users where email=?";
 	private final static String SQLSHOWID="select * from users where noUtilisateur=?";
 	private final static String SQLUPDATE="update users set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, ville=?, codePostal=? where noUtilisateur=?";
 	
@@ -127,6 +130,9 @@ public class UtilisateurDAO {
 			cnx.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} catch (CodePostalException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		return Utilisateur;
 	}
@@ -144,6 +150,9 @@ public class UtilisateurDAO {
 			}
 			cnx.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (CodePostalException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Utilisateur;
@@ -174,7 +183,7 @@ public class UtilisateurDAO {
 		Utilisateur Utilisateur = null;
 		try {
 			Connection cnx = UtilBDD.getConnection();
-			PreparedStatement stmt = cnx.prepareStatement(SQLSHOW);
+			PreparedStatement stmt = cnx.prepareStatement(SQLSHOWWITHPSEUDO);
 			stmt.setString(1, pseudo);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
@@ -182,6 +191,9 @@ public class UtilisateurDAO {
 			}
 			cnx.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (CodePostalException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Utilisateur;
@@ -199,6 +211,9 @@ public class UtilisateurDAO {
 			}
 			cnx.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (CodePostalException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return Utilisateur;
@@ -234,8 +249,7 @@ public class UtilisateurDAO {
 		}
 	}
 	
-	private static Utilisateur rsToUser(ResultSet rs)
-	{
+	private static Utilisateur rsToUser(ResultSet rs) throws CodePostalException {
 		Utilisateur u = null;
 		try {
 			u = new Utilisateur( rs.getInt("NoUtilisateur"),
@@ -252,10 +266,45 @@ public class UtilisateurDAO {
 							rs.getBoolean("administrateur"),
 							rs.getBoolean("disabled"));
 			}
-		catch (SQLException e) 
-		{
+		catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return u;
 	}
+	
+	public static Boolean checkDoublonPseudo(String pseudo) {
+		Boolean check = false;
+		try {
+			Connection cnx = UtilBDD.getConnection();
+			PreparedStatement stmt = cnx.prepareStatement(SQLSHOWWITHPSEUDO);
+			stmt.setString(1, pseudo);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				check = true;
+			}
+			cnx.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return check;
+	}
+	
+	public static Boolean checkDoublonEmail(String email) {
+		Boolean check = false;
+		try {
+			Connection cnx = UtilBDD.getConnection();
+			PreparedStatement stmt = cnx.prepareStatement(SQLSHOWWITHEMAIL);
+			stmt.setString(1, email);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				check = true;
+			}
+			cnx.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return check;
+	}
 }
+

@@ -74,5 +74,13 @@ public class UtilisateurManager {
 			e.printStackTrace();
 		}
 	}
+	
+	public Boolean checkDoublonPseudo(String pseudo) {
+		return utilisateurDAO.checkDoublonPseudo(pseudo);
+	}
+	
+	public Boolean checkDoublonEmail(String email) {
+		return utilisateurDAO.checkDoublonEmail(email);
+	}
 }
 
