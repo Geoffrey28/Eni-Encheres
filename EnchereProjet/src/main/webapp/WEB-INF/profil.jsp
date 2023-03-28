@@ -49,8 +49,7 @@
 					<p>Ville :</p>
 					<p>${ userConnected.ville }</p>
 				</div>
-					<a href="Inscription">Modifier</a>
-					<a href="Supprimer">Supprimer mon compte</a>
+				<a href="Inscription">Modifier</a>
 			</c:if>
 			
 			<c:if test="${ !empty user }">
