@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Enchère Projet</title>
+<title>Les objets sont nos amis - Détails enchères</title>
 <style><%@include file="/WEB-INF/css/ajoutVente.css"%></style>
 <%@include file="/WEB-INF/header.jspf"%>
 </head>

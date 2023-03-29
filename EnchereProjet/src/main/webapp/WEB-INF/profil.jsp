@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ENI-Enchères - Profil</title>
+<title>Les objets sont nos amis - Profil</title>
 <style><%@include file="/WEB-INF/css/profil.css"%></style>
 <%@include file="/WEB-INF/header.jspf"%>
 </head>
