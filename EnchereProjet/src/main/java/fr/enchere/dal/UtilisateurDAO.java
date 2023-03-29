@@ -253,21 +253,23 @@ public class UtilisateurDAO {
 	}
 	
 	public void addCredit(int noArticle) {
-		Connection cnx;
-		PreparedStatement stmt;
-		cnx = UtilBDD.getConnection();
 		Enchere e = EnchereDAO.getBestEnchere(noArticle);
-		Utilisateur u = UtilisateurDAO.showById(e.getNoUtilisateur());
-		u.setCredit(u.getCredit() + e.getMontant());
-		try {
-			stmt = cnx.prepareStatement(SQLUPDATEPOINTS);
-			stmt.setInt(1, u.getCredit());
-			stmt.setInt(2, u.getNoUtilisateur());
-			stmt.executeUpdate();
-			cnx.close();
-			System.out.println("(add)Nouveau credit de " + u.getPseudo() + " = " + u.getCredit());
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+		if (e != null) {
+			Connection cnx;
+			PreparedStatement stmt;
+			cnx = UtilBDD.getConnection();
+			Utilisateur u = UtilisateurDAO.showById(e.getNoUtilisateur());
+			u.setCredit(u.getCredit() + e.getMontant());
+			try {
+				stmt = cnx.prepareStatement(SQLUPDATEPOINTS);
+				stmt.setInt(1, u.getCredit());
+				stmt.setInt(2, u.getNoUtilisateur());
+				stmt.executeUpdate();
+				cnx.close();
+				System.out.println("(add)Nouveau credit de " + u.getPseudo() + " = " + u.getCredit());
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 	
