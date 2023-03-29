@@ -9,7 +9,7 @@ import fr.enchere.dal.EnchereDAO;
 public class EnchereManager {
 	
 	private static EnchereManager instance = null;
-	private static EnchereDAO enchereDAO;
+	private EnchereDAO enchereDAO;
 	
 	private EnchereManager() {
 		this.enchereDAO = DAOFactory.getEnchereDAO();
@@ -36,5 +36,9 @@ public class EnchereManager {
 	
 	public Enchere getBestEnchere(int id) {
 		return enchereDAO.getBestEnchere(id);
+	}
+	
+	public void supprimer(int noArticle) {
+		enchereDAO.deleteByNoArticle(noArticle);
 	}
 }

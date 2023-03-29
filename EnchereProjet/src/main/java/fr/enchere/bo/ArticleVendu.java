@@ -17,6 +17,7 @@ public class ArticleVendu {
 	private String etatVente;
 	private int noUtilisateur;
 	private int noCategorie;
+	private int noAcquereur;
 	
 	public ArticleVendu(int noArticle, String nomArticle, String description, String img, String dateDebutEncheres,
 			String dateFinEncheres, int miseAPrix, int prixVente, String etatVente, int noUtilisateur, int noCategorie) {
@@ -31,6 +32,21 @@ public class ArticleVendu {
 		this.etatVente = etatVente;
 		this.noUtilisateur = noUtilisateur;
 		this.noCategorie = noCategorie;
+	}
+	public ArticleVendu(int noArticle, String nomArticle, String description, String img, String dateDebutEncheres, String dateFinEncheres, 
+			int miseAPrix, int prixVente, String etatVente, int noUtilisateur, int noCategorie, int noAcquereur) {
+		this.noArticle = noArticle;
+		this.nomArticle = nomArticle;
+		this.description = description;
+		this.img = img;
+		this.dateDebutEncheres = dateDebutEncheres;
+		this.dateFinEncheres = dateFinEncheres;
+		this.miseAPrix = miseAPrix;
+		this.prixVente = prixVente;
+		this.etatVente = etatVente;
+		this.noUtilisateur = noUtilisateur;
+		this.noCategorie = noCategorie;
+		this.noAcquereur = noAcquereur;
 	}
 	public ArticleVendu(String nomArticle, String description,String img, String dateDebutEncheres, String dateFinEncheres,
 			int miseAPrix, int prixVente, String etatVente, int noUtilisateur, int noCategorie) {
@@ -116,7 +132,12 @@ public class ArticleVendu {
 	public String getEtatVente() {
 		return etatVente;
 	}
-	
+	public int getNoAcquereur() {
+		return noAcquereur;
+	}
+	public void setNoAcquereur(int noAcquereur) {
+		this.noAcquereur = noAcquereur;
+	}
 	private String formatDate(String date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
