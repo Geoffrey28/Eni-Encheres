@@ -89,6 +89,7 @@ public class CategorieDAO {
 			while (rs.next()) {
 				listeCategorie.add(rsToCategorie(rs));
 			}
+			cnx.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
