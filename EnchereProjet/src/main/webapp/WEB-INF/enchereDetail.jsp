@@ -74,6 +74,9 @@
 							</p>
 						</span>
 					</div>
+					<c:if test="${ checkCreditUser }">
+						<span>Vous n'avez pas assez de points.</span>
+					</c:if>					
 				</c:when>
 				<c:when test="${ user.noUtilisateur == userConnected.noUtilisateur && article.etatVente != 'Ec' }">
 					<a href="ModifierVente?id=${ article.noArticle }">Modifier</a>
