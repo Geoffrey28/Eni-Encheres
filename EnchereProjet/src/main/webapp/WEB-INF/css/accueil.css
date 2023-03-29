@@ -83,7 +83,6 @@ select option {
 #accueil-liste {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
 	margin: 0 auto;
 	overflow-y: scroll;
 	height: 57vh;
@@ -94,7 +93,7 @@ select option {
 	display: flex;
 	width: 400px;
 	height: 175px;
-	margin: 10px;
+	margin: 10px 32px;
 	text-align: left;
 	padding: 10px 0;
 }
