@@ -27,7 +27,7 @@
 			<div class="form">
 				
 					<label for="pseudo">Pseudo : </label>
-					<input type="text" name="pseudo" placeholder="Pseudo" required><br>
+					<input type="text" name="pseudo" pattern="[a-zA-ZÀ-ž0-9]+" placeholder="Pseudo" required><br>
 					
 					<label for="prenom">Prénom : </label>
 					<input type="text" name="prenom" placeholder="Prénom" required><br>
@@ -94,7 +94,7 @@
 					<input type="hidden" value="${userConnected.noUtilisateur}" name="noUtilisateur">
 
 					<label for="pseudo">Pseudo : </label>
-					<input type="text" name="pseudo" placeholder="Pseudo" value="${userConnected.pseudo}" required><br>
+					<input type="text" name="pseudo" pattern="[a-zA-ZÀ-ž0-9]+" placeholder="Pseudo" value="${userConnected.pseudo}" required><br>
 
 					<label for="prenom">Prénom : </label>
 					<input type="text" name="prenom" placeholder="Prénom" value="${userConnected.prenom}" required><br>
