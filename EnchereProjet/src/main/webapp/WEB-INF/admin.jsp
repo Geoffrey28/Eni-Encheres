@@ -7,6 +7,7 @@
 		<meta charset="UTF-8">
 		<title>Les objets sont nos amis - Accueil</title>
 		<style><%@include file="/WEB-INF/css/admin.css"%></style>
+		<link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/3297/3297954.png">
 		<%@include file="/WEB-INF/header.jspf"%>
 	</head>
 	<body>

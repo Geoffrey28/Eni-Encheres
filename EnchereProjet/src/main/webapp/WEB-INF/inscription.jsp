@@ -8,6 +8,7 @@
 <style><%@include file="/WEB-INF/css/inscription.css"%></style>
 <%@include file="/WEB-INF/header.jspf"%>
 <title>Les objets sont nos amis - Inscription</title>
+<link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/3297/3297954.png">
 
 
 </head>

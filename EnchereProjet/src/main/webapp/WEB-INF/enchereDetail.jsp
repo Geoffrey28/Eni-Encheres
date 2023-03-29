@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Les objets sont nos amis - Détails enchères</title>
+<link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/3297/3297954.png">
 <style><%@include file="/WEB-INF/css/ajoutVente.css"%></style>
 <%@include file="/WEB-INF/header.jspf"%>
 </head>
