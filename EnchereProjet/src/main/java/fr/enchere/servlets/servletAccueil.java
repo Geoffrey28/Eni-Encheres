@@ -30,9 +30,15 @@ public class servletAccueil extends HttpServlet {
 		lstArticleVendu = ArticleVenduManager.getInstance().afficherListe();
 		request.setAttribute("listeArticleVendu", lstArticleVendu);
 		
+		int countArticle = ArticleVenduManager.getInstance().countArticles();
+		
 		List<Categorie> lstCategorie;
 		lstCategorie = CategorieManager.getInstance().afficherListe();
 		request.setAttribute("listeCategorie", lstCategorie);
+		
+		request.setAttribute("nbPages", (int) Math.ceil(countArticle / 8.0));
+		
+		request.setAttribute("page", 1);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/accueil.jsp");
 		rd.forward(request, response);
@@ -46,6 +52,11 @@ public class servletAccueil extends HttpServlet {
 		int filterType = Integer.parseInt(request.getParameter("achat-vente"));
 		int[] filterValue;
 		filterValue = new int[3];
+		
+		int page = 1;
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
 		
 		HttpSession session=request.getSession();
         Utilisateur u = (Utilisateur) session.getAttribute("userConnected");
@@ -96,8 +107,17 @@ public class servletAccueil extends HttpServlet {
 		request.setAttribute("filterValue", filterValue);
 		
 		List<ArticleVendu> lstArticleVendu;
-		lstArticleVendu = ArticleVenduManager.getInstance().afficherListeWithFilter(name, categorie, type, filterType, filterValue, u);
+		int nbArticles = ArticleVenduManager.getInstance().afficherListeWithFilter(name, categorie, type, filterType, filterValue, u, 0).size();
+		
+		if (nbArticles <= 8) {
+			page = 1;
+		}
+		
+		lstArticleVendu = ArticleVenduManager.getInstance().afficherListeWithFilter(name, categorie, type, filterType, filterValue, u, page);
 		request.setAttribute("listeArticleVendu", lstArticleVendu);
+		
+		request.setAttribute("nbPages", (int) Math.ceil(nbArticles / 8.0));
+		request.setAttribute("page", page);
 		
 		List<Categorie> lstCategorie;
 		lstCategorie = CategorieManager.getInstance().afficherListe();
