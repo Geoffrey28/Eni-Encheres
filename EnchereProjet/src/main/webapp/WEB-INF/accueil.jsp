@@ -32,8 +32,8 @@
 						
 						</div>
 				   		
-				   		<c:if test="${ !empty userConnected }">
-				   		<div id="filter-achats-ventes">
+				   		
+				   		<div id="filter-achats-ventes" <c:if test="${ empty userConnected }">style="display:none;"</c:if>>
 				   		
 					   		<select name="achat-vente" id="achat-vente" size="1" onchange="switchAchatVentes()"> 
 					   			<option value="0" <c:if test="${ filterType == 0 || filterType == null }">selected</c:if>>Achats</option>
@@ -53,10 +53,12 @@
 				   		
 				   		</div>
 				   		
+				   		
+				   		
 				   		<div style="align-self: center;">
 							<input type="submit" value="Appliquer" style="width: 300px;">
 						</div>
-						</c:if>
+						
 				   		
 				</div>
 		 	</form>
