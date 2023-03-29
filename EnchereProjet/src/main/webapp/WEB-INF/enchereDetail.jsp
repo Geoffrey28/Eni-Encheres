@@ -79,9 +79,12 @@
 						<span>Vous n'avez pas assez de points.</span>
 					</c:if>					
 				</c:when>
-				<c:when test="${ user.noUtilisateur == userConnected.noUtilisateur && article.etatVente != 'Ec' }">
+				<c:when test="${ user.noUtilisateur == userConnected.noUtilisateur && article.etatVente == 'Cr' }">
 					<a href="ModifierVente?id=${ article.noArticle }">Modifier</a>
-				</c:when>			
+				</c:when>	
+				<c:when test="${ user.noUtilisateur == userConnected.noUtilisateur && article.etatVente != 'Et' }">
+					<a href="AnnulerVente?id=${ article.noArticle }">Supprimer la vente</a>
+				</c:when>		
 			</c:choose>
 		</form>
 	</div>
