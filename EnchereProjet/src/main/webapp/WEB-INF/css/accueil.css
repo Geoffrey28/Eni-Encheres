@@ -57,6 +57,7 @@ select option {
 #accueil-form-filtre {
 	display: flex;
 	justify-content: space-around;
+	min-height: 22vh;
 }
 
 #accueil-form-filtre div{

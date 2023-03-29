@@ -65,7 +65,7 @@
 				<hr style="width: 100%;">
 				<div id="pagination">
 		 			<c:forEach var="i" begin="1" end="${ nbPages }" step="1">
-					    <button class="pagination" onclick="pagination(${ i })")>${ i }</button>
+					    <button <c:if test="${ i == page }">style="background-color: white;color: black;transform: scale(1.2);"</c:if> class="pagination" onclick="pagination(${ i })")>${ i }</button>
 					</c:forEach>
 	 			</div>
 		 	</form>
