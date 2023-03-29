@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <style><%@include file="/WEB-INF/css/inscription.css"%></style>
 <%@include file="/WEB-INF/header.jspf"%>
-<title>ENCHERES - Inscription</title>
+<title>Les objets sont nos amis - Inscription</title>
 
 
 </head>

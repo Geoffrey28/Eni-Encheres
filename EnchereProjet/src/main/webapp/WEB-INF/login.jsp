@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Enchère Projet</title>
+<title>Les objets sont nos amis - Connexion</title>
 <style><%@include file="/WEB-INF/css/login.css"%></style>
 <%@include file="/WEB-INF/header.jspf"%>
 </head>
@@ -20,6 +20,7 @@
 		<form action="Connection" method="post">
 			<input type="text" name="pseudo" placeholder="Pseudo ou Email"><br>
 			<input type="password" name="motdepasse" placeholder="Mot de Passe"><br>
+			<a href="/Enchere-Eni/PasswordOublier">Mot de passe oublié</a>
 			<input type="submit" value="Se connecter">
 		</form>
 	</div>
