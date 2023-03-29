@@ -35,8 +35,12 @@ public class ArticleVenduManager {
 		return articleVenduDAO.selectAll();
 	}
 	
-	public List<ArticleVendu> afficherListeWithFilter(String name, int categorie, int type, int filterType, int filterValue[], Utilisateur u) {
-		return articleVenduDAO.selectAllWithFilter(name,categorie,type,filterType,filterValue, u);
+	public int countArticles() {
+		return articleVenduDAO.countArticles();
+	}
+	
+	public List<ArticleVendu> afficherListeWithFilter(String name, int categorie, int type, int filterType, int filterValue[], Utilisateur u, int page) {
+		return articleVenduDAO.selectAllWithFilter(name,categorie,type,filterType,filterValue, u, page);
 	}
 	
 	public ArticleVendu show(int id) {

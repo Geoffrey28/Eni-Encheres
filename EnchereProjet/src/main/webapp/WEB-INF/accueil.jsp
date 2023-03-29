@@ -16,6 +16,7 @@
 			<h2>Liste des enchères</h2>
 			<hr>
 			<form id="accueil-form" action="Accueil" method="post">
+				<input type="hidden" name="page" id="page" value="${ page }">
 				<div id="accueil-form-filtre">
 						<div id="filter-name" style="display: grid;">
 						
@@ -61,6 +62,12 @@
 						
 				   		
 				</div>
+				<hr style="width: 100%;">
+				<div id="pagination">
+		 			<c:forEach var="i" begin="1" end="${ nbPages }" step="1">
+					    <button class="pagination" onclick="pagination(${ i })")>${ i }</button>
+					</c:forEach>
+	 			</div>
 		 	</form>
 			<hr>
 			<div id="accueil-liste">
@@ -101,6 +108,9 @@
 			}
 		}
 		
+		function pagination(page){
+			document.getElementById("page").value = page;
+		}
 		
 	
 	</script>

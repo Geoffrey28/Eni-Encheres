@@ -88,6 +88,15 @@ select option {
 	height: 57vh;
 }
 
+#pagination {
+	display: flex;
+    justify-content: center;
+}
+
+#pagination button{
+	cursor:	pointer;
+}
+
 .accueil-article {
 	border: 2px inset deepskyblue;
 	display: flex;

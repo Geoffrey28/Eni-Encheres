@@ -18,13 +18,8 @@ public class ArticleVenduDAO {
 
 	private final static String SQLINSERT = "insert into ArticleVendu (nomArticle,description,img,dateDebutEncheres,"
 			+ "dateFinEncheres, miseAPrix, prixVente, etatVente, noUtilisateur, noCategorie) values(?,?,?,?,?,?,?,?,?,?)";
-	private final static String SQLSELECTALLWITHFILTER="select * "
-			+ "from ArticleVendu where nomArticle like CONCAT( '%',?,'%') and noCategorie = ? ";
-	private final static String SQLSELECTALLWITHFILTER_without_categorie="select * "
-			+ "from ArticleVendu where nomArticle like CONCAT( '%',?,'%') ";
-	private final static String SQLSELECTALLWITHFILTER_without_name="select * "
-			+ "from ArticleVendu where noCategorie = ? ";
-	private final static String SQLSELECTALL = "select * from ArticleVendu where true";
+	private final static String SQLSELECTALL = "select * from ArticleVendu";
+	private final static String SQLSELECTALLPAGE1 = "select * from ArticleVendu LIMIT 8";
 	private final String SQLDELETEBYID = "DELETE FROM ArticleVendu WHERE noArticle=?";
 	private final static String SQLSHOW = "select * from ArticleVendu where noArticle=?";
 	private final static String SQLUPDATE = "update ArticleVendu set nomArticle=?,description=?,img=?,dateDebutEncheres=?,"
@@ -70,7 +65,7 @@ public class ArticleVenduDAO {
 		}
 	}
 	
-	public List<ArticleVendu> selectAll() {
+	public int countArticles() {
 		Connection cnx;
 		Statement stmt;
 		ResultSet rs;
@@ -89,10 +84,32 @@ public class ArticleVenduDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return listeArticleVendu.size();
+	}
+	
+	public List<ArticleVendu> selectAll() {
+		Connection cnx;
+		Statement stmt;
+		ResultSet rs;
+		ArrayList<ArticleVendu> listeArticleVendu = null;
+		cnx = UtilBDD.getConnection();
+		
+		try {
+			stmt = cnx.createStatement();
+			rs = stmt.executeQuery(SQLSELECTALLPAGE1);
+			listeArticleVendu = new ArrayList<>();
+			
+			while (rs.next()) {
+				listeArticleVendu.add(rsToArticleVendu(rs));
+			}
+			cnx.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return listeArticleVendu;
 	}
 	
-	public List<ArticleVendu> selectAllWithFilter(String name, int categorie, int type, int filterType, int filterValue[], Utilisateur u) {
+	public List<ArticleVendu> selectAllWithFilter(String name, int categorie, int type, int filterType, int filterValue[], Utilisateur u, int page) {
 		Connection cnx;
 		PreparedStatement stmt;
 		ResultSet rs;
@@ -143,6 +160,10 @@ public class ArticleVenduDAO {
 				CustomSql = CustomSql.substring(0, CustomSql.length() - 4);
 			} else {
 				CustomSql = CustomSql.substring(0, CustomSql.length() - 7);
+			}
+			
+			if (page != 0) {
+				CustomSql = CustomSql + " LIMIT "+ (page*8) +" OFFSET "+ ((page - 1) * 8);
 			}
 			
 			stmt = cnx.prepareStatement(CustomSql);
