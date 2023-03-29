@@ -12,6 +12,7 @@ import java.util.List;
 
 import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Enchere;
+import fr.enchere.bo.Utilisateur;
 
 public class ArticleVenduDAO {
 
@@ -90,35 +91,61 @@ public class ArticleVenduDAO {
 		return listeArticleVendu;
 	}
 	
-	public List<ArticleVendu> selectAllWithFilter(String name, int categorie, int type, int checked) {
+	public List<ArticleVendu> selectAllWithFilter(String name, int categorie, int type, int filterType, int filterValue[], Utilisateur u) {
 		Connection cnx;
 		PreparedStatement stmt;
 		ResultSet rs;
 		ArrayList<ArticleVendu> listeArticleVendu = null;
 		cnx = UtilBDD.getConnection();
 		
-		System.out.println(name);
-		System.out.println(categorie);
-		
 		try {
 			
-			if (name == "" && categorie == -1) {
-				stmt = cnx.prepareStatement(SQLSELECTALL, PreparedStatement.RETURN_GENERATED_KEYS);
-				rs = stmt.executeQuery();
-			} else if(name != "" && categorie == -1) {
-				stmt = cnx.prepareStatement(SQLSELECTALLWITHFILTER_without_categorie, PreparedStatement.RETURN_GENERATED_KEYS);
-				stmt.setString(1, name);
-				rs = stmt.executeQuery();
+			String CustomSql = "select * from ArticleVendu where ";
+			
+			if(name != "" && categorie == -1) {
+				CustomSql = CustomSql + "nomArticle like '%"+ name +"%' && ";
 			} else if(name == "" && categorie != -1) {
-				stmt = cnx.prepareStatement(SQLSELECTALLWITHFILTER_without_name, PreparedStatement.RETURN_GENERATED_KEYS);
-				stmt.setInt(1, categorie);
-				rs = stmt.executeQuery();
-			} else {
-				stmt = cnx.prepareStatement(SQLSELECTALLWITHFILTER, PreparedStatement.RETURN_GENERATED_KEYS);
-				stmt.setString(1, name);
-				stmt.setInt(2, categorie);
-				rs = stmt.executeQuery();
+				CustomSql = CustomSql + "noCategorie = "+ categorie +" && ";
+			} else if(name != "" && categorie != -1) {
+				CustomSql = CustomSql + "nomArticle like '%"+ name +"%' && noCategorie = "+ categorie +" && ";
 			}
+			
+			if (filterType == 0) {
+				
+				if (filterValue[0] == 1) {
+					CustomSql = CustomSql + "etatVente = 'Ec' || ";
+				}
+				if (filterValue[1] == 1) {
+					CustomSql = CustomSql + "noArticle = (select noArticle from enchere where noUtilisateur = "+ u.getNoUtilisateur() +" && enchere.noArticle = ArticleVendu.noArticle) || ";
+				}
+				if (filterValue[2] == 1) {
+					CustomSql = CustomSql + "noAcquereur = "+ u.getNoUtilisateur() +" && ";
+				}
+				
+			} else {
+				
+				if (filterValue[0] == 1) {
+					CustomSql = CustomSql + "noUtilisateur = "+ u.getNoUtilisateur() +" || ";
+				}
+				if (filterValue[1] == 1) {
+					CustomSql = CustomSql + "etatVente = 'Cr' || ";
+				}
+				if (filterValue[2] == 1) {
+					CustomSql = CustomSql + "etatVente = 'Et' || ";
+				}
+				
+			}
+			
+			String cut = CustomSql.substring(CustomSql.length() - 3, CustomSql.length() - 1).trim();
+			
+			if (!cut.equals("re") ) {
+				CustomSql = CustomSql.substring(0, CustomSql.length() - 4);
+			} else {
+				CustomSql = CustomSql.substring(0, CustomSql.length() - 7);
+			}
+			
+			stmt = cnx.prepareStatement(CustomSql);
+			rs = stmt.executeQuery();
 			
 			listeArticleVendu = new ArrayList<>();
 			

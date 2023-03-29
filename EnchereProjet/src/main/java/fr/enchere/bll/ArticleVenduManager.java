@@ -3,6 +3,7 @@ package fr.enchere.bll;
 import java.util.List;
 
 import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Utilisateur;
 import fr.enchere.dal.ArticleVenduDAO;
 import fr.enchere.dal.DAOFactory;
 
@@ -34,8 +35,8 @@ public class ArticleVenduManager {
 		return articleVenduDAO.selectAll();
 	}
 	
-	public List<ArticleVendu> afficherListeWithFilter(String name, int categorie, int type, int checked) {
-		return articleVenduDAO.selectAllWithFilter(name,categorie,type,checked);
+	public List<ArticleVendu> afficherListeWithFilter(String name, int categorie, int type, int filterType, int filterValue[], Utilisateur u) {
+		return articleVenduDAO.selectAllWithFilter(name,categorie,type,filterType,filterValue, u);
 	}
 	
 	public ArticleVendu show(int id) {

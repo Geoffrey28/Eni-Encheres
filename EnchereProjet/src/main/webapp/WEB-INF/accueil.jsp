@@ -31,31 +31,31 @@
 						
 						</div>
 				   		
+				   		<c:if test="${ !empty userConnected }">
 				   		<div id="filter-achats-ventes">
 				   		
 					   		<select name="achat-vente" id="achat-vente" size="1" onchange="switchAchatVentes()"> 
-					   			<option value="0" selected>Achats</option>
-					   			<option value="1">Mes ventes</option>
+					   			<option value="0" <c:if test="${ filterType == 0 || filterType == null }">selected</c:if>>Achats</option>
+					   			<option value="1" <c:if test="${ filterType == 1 }">selected</c:if>>Mes ventes</option>
 					   		</select> 
 					   		
-					   		<div id="achats">
-					   			<p>Enchères ouvertes<input type="checkbox" class="achats-check" checked></p>
-					   			<p>Mes enchères<input type="checkbox" class="achats-check"></p>
-					   			<p>Mes enchères remportés<input type="checkbox" class="achats-check"></p>
+					   		<div id="achats" <c:if test="${ filterType == 1 }">style="display: none"</c:if>>
+					   			<p>Enchères ouvertes<input type="checkbox" name="achat-1" class="achats-check" <c:if test="${ filterValue[0] == 1 && filterType == 0 }">checked</c:if>></p>
+					   			<p>Mes enchères<input type="checkbox" name="achat-2" class="achats-check" <c:if test="${ filterValue[1] == 1 && filterType == 0 }">checked</c:if>></p>
+					   			<p>Mes enchères remportés<input type="checkbox" name="achat-3" class="achats-check" <c:if test="${ filterValue[2] == 1 && filterType == 0 }">checked</c:if>></p>
 					   		</div>
-					   		<div id="ventes" style="display: none;">
-					   			<p>Mes ventes en cours<input type="checkbox" class="ventes-check" checked></p>
-					   			<p>Ventes non débutées<input type="checkbox" class="ventes-check"></p>
-					   			<p>Ventes terminées<input type="checkbox" class="ventes-check"></p>
+					   		<div id="ventes" <c:if test="${ filterType == 0 || filterType == null }">style="display: none"</c:if>>
+					   			<p>Mes ventes en cours<input type="checkbox" name="vente-1" class="ventes-check" <c:if test="${ filterValue[0] == 1 && filterType == 1 }">checked</c:if>></p>
+					   			<p>Ventes non débutées<input type="checkbox" name="vente-2" class="ventes-check" <c:if test="${ filterValue[1] == 1 && filterType == 1 }">checked</c:if>></p>
+					   			<p>Ventes terminées<input type="checkbox" name="vente-3" class="ventes-check" <c:if test="${ filterValue[2] == 1 && filterType == 1 }">checked</c:if>></p>
 					   		</div>
 				   		
 				   		</div>
 				   		
-				   		<input type="hidden" name="checked-info" value="0">
-				   		
 				   		<div style="align-self: center;">
 							<input type="submit" value="Appliquer" style="width: 300px;">
 						</div>
+						</c:if>
 				   		
 				</div>
 		 	</form>

@@ -26,13 +26,12 @@
 			</div>
 			<div>
 				<label for="categorie">Catégorie : </label>
-				<select name="categorie" required>
-					<option hidden="true">- Sélectionnez une catégorie -</option>
-					<option value="1">Vêtements</option>
-					<option value="2">Ameublement</option>
-					<option value="3">Informatique</option>
-					<option value="4">Sports&Loisirs</option>
-				</select>
+							<select name="categorie" size="1" required>
+							<option hidden="true">- Sélectionnez une catégorie -</option>
+					 			<c:forEach items="${ listeCategorie }" var="c">
+									<option value="${ c.noCategorie }" <c:if test="${ categorie == c.noCategorie }">selected</c:if>>${ c.libelle }</option>
+								</c:forEach>
+					   		</select>
 			</div>
 			<div id="newAuction-picture">
 				<p>Photo : </p>
