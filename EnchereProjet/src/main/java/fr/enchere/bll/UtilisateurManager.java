@@ -82,5 +82,13 @@ public class UtilisateurManager {
 	public Boolean checkDoublonEmail(String email) {
 		return utilisateurDAO.checkDoublonEmail(email);
 	}
+	
+	public void ajouterCredit(int noArticle) {
+		utilisateurDAO.addCredit(noArticle);
+	}
+	
+	public void enleverCredit(Utilisateur u, int montant) {
+		utilisateurDAO.removeCredit(u, montant);;
+	}
 }
 

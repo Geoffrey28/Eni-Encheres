@@ -73,12 +73,23 @@ public class servletEnchereDetail extends HttpServlet {
 		Utilisateur userConnected = (Utilisateur) request.getSession().getAttribute("userConnected");
 		int noUser = userConnected.getNoUtilisateur();
 		int noArticle = Integer.parseInt(request.getParameter("id"));
+		Enchere e = EnchereManager.getInstance().getBestEnchere(noArticle);
 
-		Enchere enchere = new Enchere(date, montant, noUser, noArticle);
-		EnchereManager.getInstance().ajouter(enchere);
-		System.out.println(ArticleVenduManager.getInstance().show(noArticle));
-		ArticleVenduManager.getInstance().miseAJourPrix(noArticle);
+		Boolean checkCreditUser = false;
+		Boolean checkMontantEnchere = false;
 		
+		if (userConnected.getCredit() >= montant) {
+			UtilisateurManager.getInstance().enleverCredit(userConnected, montant);
+			UtilisateurManager.getInstance().ajouterCredit(noArticle);
+			
+			Enchere enchere = new Enchere(date, montant, noUser, noArticle);
+			EnchereManager.getInstance().ajouter(enchere);
+			
+			ArticleVenduManager.getInstance().miseAJourPrix(noArticle);
+		} else {
+			checkCreditUser = true;
+			request.setAttribute("checkCreditUser", checkCreditUser);
+		}
 		doGet(request, response);
 	}
 

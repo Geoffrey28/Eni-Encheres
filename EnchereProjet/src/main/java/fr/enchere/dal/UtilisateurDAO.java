@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Enchere;
 import fr.enchere.bo.Utilisateur;
 import fr.enchere.bo.exceptions.CodePostalException;
 
@@ -29,6 +30,7 @@ public class UtilisateurDAO {
 	private final static String SQLSHOWWITHEMAIL="select * from users where email=?";
 	private final static String SQLSHOWID="select * from users where noUtilisateur=?";
 	private final static String SQLUPDATE="update users set pseudo=?, nom=?, prenom=?, email=?, telephone=?, rue=?, ville=?, codePostal=? where noUtilisateur=?";
+	private final static String SQLUPDATEPOINTS = "update users set credit=? where noUtilisateur=?";
 	
 	public UtilisateurDAO() {
 	}
@@ -246,6 +248,42 @@ public class UtilisateurDAO {
 			cnx.close();
 		} 
 		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void addCredit(int noArticle) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		Enchere e = EnchereDAO.getBestEnchere(noArticle);
+		Utilisateur u = UtilisateurDAO.showById(e.getNoUtilisateur());
+		u.setCredit(u.getCredit() + e.getMontant());
+		try {
+			stmt = cnx.prepareStatement(SQLUPDATEPOINTS);
+			stmt.setInt(1, u.getCredit());
+			stmt.setInt(2, u.getNoUtilisateur());
+			stmt.executeUpdate();
+			cnx.close();
+			System.out.println("(add)Nouveau credit de " + u.getPseudo() + " = " + u.getCredit());
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void removeCredit(Utilisateur user, int montant) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		user.setCredit(user.getCredit() - montant);
+		try {
+			stmt = cnx.prepareStatement(SQLUPDATEPOINTS);
+			stmt.setInt(1, user.getCredit());
+			stmt.setInt(2, user.getNoUtilisateur());
+			stmt.executeUpdate();
+			cnx.close();
+			System.out.println("(remove)Nouveau credit de " + user.getPseudo() + " = " + user.getCredit());
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
