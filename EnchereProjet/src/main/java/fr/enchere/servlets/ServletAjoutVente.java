@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
@@ -15,8 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.enchere.bll.ArticleVenduManager;
+import fr.enchere.bll.CategorieManager;
 import fr.enchere.bll.RetraitManager;
 import fr.enchere.bo.ArticleVendu;
+import fr.enchere.bo.Categorie;
 import fr.enchere.bo.Retrait;
 import fr.enchere.bo.Utilisateur;
 
@@ -31,6 +34,10 @@ public class ServletAjoutVente extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm");
 		String dateDuJour = sdf.format(new Date());
 		request.setAttribute("dateDuJour", dateDuJour);
+		
+		List<Categorie> lstCategorie;
+		lstCategorie = CategorieManager.getInstance().afficherListe();
+		request.setAttribute("listeCategorie", lstCategorie);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/ajoutVente.jsp");
 		rd.forward(request, response);

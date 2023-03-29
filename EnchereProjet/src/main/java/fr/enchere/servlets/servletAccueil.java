@@ -9,11 +9,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.enchere.bll.ArticleVenduManager;
 import fr.enchere.bll.CategorieManager;
 import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Categorie;
+import fr.enchere.bo.Utilisateur;
 
 /**
  * Servlet implementation class servletAccueil
@@ -41,10 +43,60 @@ public class servletAccueil extends HttpServlet {
 		String name = request.getParameter("article-name");
 		int categorie = Integer.parseInt(request.getParameter("categorie"));
 		int type = Integer.parseInt(request.getParameter("achat-vente"));
-		int checked = Integer.parseInt(request.getParameter("checked-info"));
+		int filterType = Integer.parseInt(request.getParameter("achat-vente"));
+		int[] filterValue;
+		filterValue = new int[3];
+		
+		HttpSession session=request.getSession();
+        Utilisateur u = (Utilisateur) session.getAttribute("userConnected");
+		
+		if (filterType == 0) {
+			
+			if(request.getParameter("achat-1") != null) {
+				filterValue[0] = 1;
+			} else {
+				filterValue[0] = 0;
+			}
+			
+			if(request.getParameter("achat-2") != null) {
+				filterValue[1] = 1;
+			} else {
+				filterValue[1] = 0;
+			}
+			
+			if(request.getParameter("achat-3") != null) {
+				filterValue[2] = 1;
+			} else {
+				filterValue[2] = 0;
+			}
+			
+		} else {
+			
+			if(request.getParameter("vente-1") != null) {
+				filterValue[0] = 1;
+			} else {
+				filterValue[0] = 0;
+			}
+			
+			if(request.getParameter("vente-2") != null) {
+				filterValue[1] = 1;
+			} else {
+				filterValue[1] = 0;
+			}
+			
+			if(request.getParameter("vente-3") != null) {
+				filterValue[2] = 1;
+			} else {
+				filterValue[2] = 0;
+			}
+			
+		}
+		
+		request.setAttribute("filterType", filterType);
+		request.setAttribute("filterValue", filterValue);
 		
 		List<ArticleVendu> lstArticleVendu;
-		lstArticleVendu = ArticleVenduManager.getInstance().afficherListeWithFilter(name, categorie, type, checked);
+		lstArticleVendu = ArticleVenduManager.getInstance().afficherListeWithFilter(name, categorie, type, filterType, filterValue, u);
 		request.setAttribute("listeArticleVendu", lstArticleVendu);
 		
 		List<Categorie> lstCategorie;
