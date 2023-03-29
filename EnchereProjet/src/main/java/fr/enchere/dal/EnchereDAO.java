@@ -13,7 +13,9 @@ public class EnchereDAO {
 	
 	private final String SQLINSERT= "insert into enchere (dateEnchere, montant_enchere, "
 			+ "noUtilisateur, noArticle) values(?,?,?,?)";
+	private final String SQLDELETE= "delete * from enchere where noArticle=?";
 	private final static String SQLSELECTBYNOARTICLE = "select * from enchere where noArticle=?";
+	private final String SQLSELECTALLBYNOUTILISATEUR = "select * from enchere where noUtilisateur=?";
 	
 	public void insert(Enchere e) {
 		Connection cnx = null;
@@ -56,6 +58,44 @@ public class EnchereDAO {
 		return encheres;
 	}
 	
+	public void deleteByNoArticle(int noArticle) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		try {
+			stmt = cnx.prepareStatement(SQLDELETE);
+			stmt.setInt(1, noArticle);
+			stmt.executeUpdate();
+			cnx.close();
+			System.out.println("Enchere supprimé avec succès");
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public List<Enchere> selectAllByNoUtilisateur() {
+		Connection cnx;
+		PreparedStatement stmt;
+		ResultSet rs;
+		ArrayList<Enchere> listeEnchere = null;
+		cnx = UtilBDD.getConnection();
+		
+		try {
+			stmt = cnx.prepareStatement(SQLSELECTALLBYNOUTILISATEUR);
+			rs = stmt.executeQuery();
+			listeEnchere = new ArrayList<>();
+			
+			while (rs.next()) {
+				listeEnchere.add(rsToEnchere(rs));
+			}
+			cnx.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listeEnchere;
+	}
+	
 	public static Enchere getBestEnchere(int id) {
 		List<Enchere> encheres = new ArrayList<Enchere>();
 		Enchere enchere = null;
@@ -87,7 +127,6 @@ public class EnchereDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return enchere;
 	}
 }

@@ -30,6 +30,7 @@ public class ArticleVenduDAO {
 			+ "dateFinEncheres=?,miseAPrix=?,prixVente=?,noCategorie=? where noArticle=?";
 	private final static String SQLUPDATEPRIXVENTE = "update ArticleVendu set prixVente=? where noArticle=?";
 	private final static String SQLUPDATEETATVENTE = "update ArticleVendu set etatVente=? where noArticle=?";
+	private final static String SQLUPDATENOACQUEREUR = "update ArticleVendu set noAcquereur=? where noArticle=?";
 	
 	public ArticleVenduDAO() {
 	}
@@ -146,7 +147,8 @@ public class ArticleVenduDAO {
 							rs.getInt("prixVente"),
 							rs.getString("etatvente"),
 							rs.getInt("noUtilisateur"),
-							rs.getInt("noCategorie"));
+							rs.getInt("noCategorie"),
+							rs.getInt("noAcquereur"));
 			}
 		catch (SQLException e) 
 		{
@@ -243,6 +245,7 @@ public class ArticleVenduDAO {
 				a.setEtatVente("Cr");
 			} else if (sdf.parse(a.getDateFinEncheres()).before(dateDuJour)) {
 				a.setEtatVente("Et");
+				updateAcquereur(a);
 			} else {
 				a.setEtatVente("Ec");
 			}
@@ -256,10 +259,27 @@ public class ArticleVenduDAO {
 				stmt.setInt(2, a.getNoArticle());
 				stmt.executeUpdate();
 				cnx.close();
-				System.out.println("update");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void updateAcquereur(ArticleVendu a) {
+		Connection cnx;
+		PreparedStatement stmt;
+		cnx = UtilBDD.getConnection();
+		
+		Enchere e = EnchereDAO.getBestEnchere(a.getNoArticle());
+		
+		try {
+			stmt = cnx.prepareStatement(SQLUPDATENOACQUEREUR);
+			stmt.setInt(1, e.getNoUtilisateur());		
+			stmt.setInt(2, a.getNoArticle());
+			stmt.executeUpdate();
+			cnx.close();
+		} catch (Exception e2) {
+			e2.printStackTrace();
 		}
 	}
 }
