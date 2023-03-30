@@ -89,6 +89,20 @@
 							</c:choose>
 							<p>Prix: ${ a.prixVente } points</p>
 							<p>Fin de l'enchère: ${ a.dateFinEncheres }</p>
+							<c:choose>
+								<c:when test="${ a.etatVente == 'Ec' }">
+									<p>Etat : En Cours</p>
+								</c:when>
+								<c:when test="${ a.etatVente == 'Cr' }">
+									<p>Etat : Crée</p>
+								</c:when>
+								<c:when test="${ a.etatVente == 'Et' }">
+									<p>Etat : Terminé</p>
+								</c:when>
+								<c:when test="${ a.etatVente == 'Re' }">
+									<p>Etat : Retrait effectué</p>
+								</c:when>
+							</c:choose>
 							<p>Vendeur: <a href="Profil?id=${ a.noUtilisateur }">Voir l'utilisateur</a></p>	
 						</div>
 					</article>

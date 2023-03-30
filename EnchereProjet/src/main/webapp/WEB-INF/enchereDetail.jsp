@@ -60,6 +60,23 @@
 					</p>
 				</span>
 			</div>
+			<div><span>
+				<p>Etat : </p>
+				<c:choose>
+								<c:when test="${ article.etatVente == 'Ec' }">
+									<p>En Cours</p>
+								</c:when>
+								<c:when test="${ article.etatVente == 'Cr' }">
+									<p>Crée</p>
+								</c:when>
+								<c:when test="${ article.etatVente == 'Et' }">
+									<p>Terminé</p>
+								</c:when>
+								<c:when test="${ article.etatVente == 'Re' }">
+									<p>Retrait effectué</p>
+								</c:when>
+							</c:choose>
+			</span></div>
 			<div>
 				<span><p>Vendeur :</p><p>${ user.pseudo }</p></span>
 			</div>

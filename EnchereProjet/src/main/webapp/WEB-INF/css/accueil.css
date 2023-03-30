@@ -100,12 +100,12 @@ select option {
 
 .accueil-article {
 	border: 2px inset deepskyblue;
-	display: flex;
-	width: 400px;
-	height: 175px;
-	margin: 10px 32px;
-	text-align: left;
-	padding: 10px 0;
+    display: flex;
+    width: 400px;
+    height: 215px;
+    margin: 10px 32px;
+    text-align: left;
+    padding: 10px 0;
 }
 
 .accueil-article div {
