@@ -86,11 +86,7 @@ public class UtilisateurDAO {
 			stmt.setString(8, u.getCodePostal());
 			stmt.setInt(9, u.getNoUtilisateur());
 			stmt.executeUpdate();
-			ResultSet rs = stmt.getGeneratedKeys();
-			rs.next();
-			u.setNoUtilisateur(rs.getInt(1));
 			cnx.close();
-			System.out.println("Inscription réussi.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			try {
