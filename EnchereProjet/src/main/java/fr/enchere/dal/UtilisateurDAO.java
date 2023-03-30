@@ -43,8 +43,8 @@ public class UtilisateurDAO {
 		try {
 			stmt = cnx.prepareStatement(SQLINSERT, PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, u.getPseudo());
-			stmt.setString(2, u.getPrenom());
-			stmt.setString(3, u.getNom());
+			stmt.setString(2, u.getNom());
+			stmt.setString(3, u.getPrenom());
 			stmt.setString(4, u.getMotDePasse());
 			stmt.setString(5, u.getEmail());
 			stmt.setString(6, u.getTelephone());
