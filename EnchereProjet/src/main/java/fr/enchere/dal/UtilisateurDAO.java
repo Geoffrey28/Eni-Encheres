@@ -47,9 +47,9 @@ public class UtilisateurDAO {
 			stmt.setString(3, u.getNom());
 			stmt.setString(4, u.getMotDePasse());
 			stmt.setString(5, u.getEmail());
-			stmt.setInt(6, u.getTelephone());
+			stmt.setString(6, u.getTelephone());
 			stmt.setString(7, u.getRue());
-			stmt.setInt(8, u.getCodePostal());
+			stmt.setString(8, u.getCodePostal());
 			stmt.setString(9, u.getVille());
 			stmt.executeUpdate();
 			ResultSet rs = stmt.getGeneratedKeys();
@@ -80,10 +80,10 @@ public class UtilisateurDAO {
 			stmt.setString(2, u.getNom());
 			stmt.setString(3, u.getPrenom());
 			stmt.setString(4, u.getEmail());
-			stmt.setInt(5, u.getTelephone());
+			stmt.setString(5, u.getTelephone());
 			stmt.setString(6, u.getRue());
 			stmt.setString(7, u.getVille());
-			stmt.setInt(8, u.getCodePostal());
+			stmt.setString(8, u.getCodePostal());
 			stmt.setInt(9, u.getNoUtilisateur());
 			stmt.executeUpdate();
 			ResultSet rs = stmt.getGeneratedKeys();
@@ -299,10 +299,10 @@ public class UtilisateurDAO {
 							rs.getString("prenom"),
 							rs.getString("motDePasse"),
 							rs.getString("email"),
-							rs.getInt("telephone"),
+							rs.getString("telephone"),
 							rs.getString("rue"),
 							rs.getString("ville"),
-							rs.getInt("codePostal"),
+							rs.getString("codePostal"),
 							rs.getInt("credit"),
 							rs.getBoolean("administrateur"),
 							rs.getBoolean("disabled"));
