@@ -74,6 +74,18 @@
 					<p>Téléphone :</p>
 					<p>${ user.telephone }</p>
 				</div>
+				<div>
+					<p>Rue :</p>
+					<p>${ user.rue }</p>
+				</div>
+				<div>
+					<p>Code postal :</p>
+					<p>${ user.codePostal }</p>
+				</div>
+				<div>
+					<p>Ville :</p>
+					<p>${ user.ville }</p>
+				</div>
 			</c:if>
 		</div>		
 	</div>
