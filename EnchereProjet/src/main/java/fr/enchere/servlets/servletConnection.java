@@ -42,6 +42,13 @@ public class servletConnection extends HttpServlet {
 		}
 		session.setAttribute("check", check);
 		if(u != null) {
+			
+			if (u.isDisabled()) {
+				session.setAttribute("disable", true);
+				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/login.jsp");
+				rd.forward(request, response);
+			}
+			
 			session.setAttribute("userConnected", u);
 			Cookie connectionMemo;
 			connectionMemo = new Cookie("lastLogin", u.getPseudo());

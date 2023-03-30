@@ -18,6 +18,9 @@
 		<c:if test="${ check }">
 			<p>Email ou mot de passe incorrect.</p>
 		</c:if>
+		<c:if test="${ disable }">
+			<p>Compte désactivé.</p>
+		</c:if>
 		<form action="Connection" method="post">
 			<input type="text" name="pseudo" placeholder="Pseudo ou Email"><br>
 			<input type="password" name="motdepasse" placeholder="Mot de Passe"><br>
