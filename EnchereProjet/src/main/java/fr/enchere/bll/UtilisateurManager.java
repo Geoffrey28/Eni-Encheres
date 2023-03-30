@@ -25,6 +25,7 @@ public class UtilisateurManager {
 	
 	public void ajouter(Utilisateur utilisateur) {
 		utilisateur.setNom(utilisateur.getNom().toUpperCase());
+		utilisateur.setMotDePasse(utilisateur.getMotDePasse());
 		try {
 			utilisateurDAO.insert(utilisateur);
 		} catch (Exception e) {

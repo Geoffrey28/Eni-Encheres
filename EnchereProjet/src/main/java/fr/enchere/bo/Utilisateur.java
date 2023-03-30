@@ -22,6 +22,8 @@ public class Utilisateur {
 	private boolean administrateur;
 	private boolean disabled;
 	
+	public Utilisateur() {
+	}
 	
 	public Utilisateur(String pseudo, String nom, String prenom, String motDePasse, String email, String telephone,
 			String rue, String ville, String codePostal) throws CodePostalException {
@@ -186,7 +188,7 @@ public class Utilisateur {
 
 
 	public void setMotDePasse(String motDePasse) {
-		this.motDePasse = motDePasse;
+		this.motDePasse = hashPwd(motDePasse);
 	}
 
 
@@ -267,8 +269,7 @@ public class Utilisateur {
 
 
 
-	public static String hashPwd(String pwd)
-	{
+	public static String hashPwd(String pwd) {
 		MessageDigest md = null;
 		StringBuffer sb = new StringBuffer();
 		byte[] reponse;

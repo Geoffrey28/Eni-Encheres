@@ -28,14 +28,15 @@ public class servletConnection extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String pseudo, motdepasse;
-		Utilisateur u = null;
+		Utilisateur u = new Utilisateur();
 		Boolean check = false;
 		pseudo = request.getParameter("pseudo");
 		motdepasse = request.getParameter("motdepasse");
 		HttpSession session;
 		session = request.getSession();
 		
-		u = UtilisateurManager.getInstance().login(pseudo, motdepasse);
+		u.setMotDePasse(motdepasse);
+		u = UtilisateurManager.getInstance().login(pseudo, u.getMotDePasse());
 
 		if (u == null) {
 			check = true;
