@@ -54,8 +54,9 @@ public class servletInscription extends HttpServlet {
 						
 						HttpSession session;
 						session = request.getSession();
-							
-						u = UtilisateurManager.getInstance().login(pseudo, MotDePasse);
+						
+						user.setMotDePasse(MotDePasse);
+						u = UtilisateurManager.getInstance().login(pseudo, user.getMotDePasse());
 						
 						if(u != null) {
 							session.setAttribute("userConnected", u);

@@ -29,6 +29,10 @@ h3 {
     border-radius: 10px;
 }
 
+#errorMessage {
+	text-align: center;
+}
+
 a {
 	color: white;
 	text-decoration: none;
