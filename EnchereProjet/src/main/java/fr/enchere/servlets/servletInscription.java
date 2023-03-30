@@ -35,8 +35,8 @@ public class servletInscription extends HttpServlet {
 		noUtilisateur = request.getParameter("noUtilisateur");
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
-		int telephone = Integer.parseInt(request.getParameter("telephone"));
-		int codePostal = Integer.parseInt(request.getParameter("codepostal"));
+		String telephone = request.getParameter("telephone");
+		String codePostal = request.getParameter("codepostal");
 		String rue = request.getParameter("rue");
 		String prenom = request.getParameter("prenom");
 		String email = request.getParameter("email");

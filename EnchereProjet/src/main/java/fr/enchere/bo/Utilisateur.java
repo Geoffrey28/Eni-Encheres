@@ -14,17 +14,17 @@ public class Utilisateur {
 	private String prenom;
 	private String motDePasse;
 	private String email;
-	private int telephone;
+	private String telephone;
 	private String rue;
 	private String ville;
-	private int codePostal;
+	private String codePostal;
 	private int credit;
 	private boolean administrateur;
 	private boolean disabled;
 	
 	
-	public Utilisateur(String pseudo, String nom, String prenom, String motDePasse, String email, int telephone,
-			String rue, String ville, int codePostal) throws CodePostalException {
+	public Utilisateur(String pseudo, String nom, String prenom, String motDePasse, String email, String telephone,
+			String rue, String ville, String codePostal) throws CodePostalException {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -40,7 +40,7 @@ public class Utilisateur {
 
 
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String motDePasse, String email,
-			int telephone, String rue, String ville, int codePostal) throws CodePostalException {
+			String telephone, String rue, String ville, String codePostal) throws CodePostalException {
 		super();
 		NoUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -55,7 +55,7 @@ public class Utilisateur {
 	}
 	
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String motDePasse, String email,
-			int telephone, String rue, String ville, int codePostal, int credit, boolean administrateur) throws CodePostalException {
+			String telephone, String rue, String ville, String codePostal, int credit, boolean administrateur) throws CodePostalException {
 		super();
 		NoUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -75,7 +75,7 @@ public class Utilisateur {
 	
 	
 	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String motDePasse, String email,
-			int telephone, String rue, String ville, int codePostal, int credit, boolean administrateur,
+			String telephone, String rue, String ville, String codePostal, int credit, boolean administrateur,
 			boolean disabled) {
 		super();
 		NoUtilisateur = noUtilisateur;
@@ -105,8 +105,8 @@ public class Utilisateur {
 		this.disabled = disabled;
 	}
 	
-	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, int telephone,
-			String rue, String ville, int codePostal) throws CodePostalException {
+	public Utilisateur(int noUtilisateur, String pseudo, String nom, String prenom, String email, String telephone,
+			String rue, String ville, String codePostal) throws CodePostalException {
 		super();
 		NoUtilisateur = noUtilisateur;
 		this.pseudo = pseudo;
@@ -203,13 +203,13 @@ public class Utilisateur {
 
 
 
-	public int getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
 
 
-	public void setTelephone(int telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 
@@ -227,14 +227,14 @@ public class Utilisateur {
 
 
 
-	public int getCodePostal() {
+	public String getCodePostal() {
 		return codePostal;
 	}
 
 
 
-	public void setCodePostal(int codePostal) throws CodePostalException {
-		if(codePostal > 10000 && codePostal < 98999) {
+	public void setCodePostal(String codePostal) throws CodePostalException {
+		if(Integer.parseInt(codePostal) > 10000 && Integer.parseInt(codePostal) < 98999) {
 			this.codePostal = codePostal;
 		} else {
 			throw new CodePostalException("Le code postal doit être composé de 5 chiffres et être compris entre 10000 et 98999.");
