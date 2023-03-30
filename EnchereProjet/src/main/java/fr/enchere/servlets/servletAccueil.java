@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.enchere.bll.ArticleVenduManager;
 import fr.enchere.bll.CategorieManager;
+import fr.enchere.bll.UtilisateurManager;
 import fr.enchere.bo.ArticleVendu;
 import fr.enchere.bo.Categorie;
 import fr.enchere.bo.Utilisateur;
@@ -31,6 +32,14 @@ public class servletAccueil extends HttpServlet {
 		request.setAttribute("listeArticleVendu", lstArticleVendu);
 		
 		int countArticle = ArticleVenduManager.getInstance().countArticles();
+		
+		List<Utilisateur> lstUser = UtilisateurManager.getInstance().afficherListe();
+		String[] tabPseudo = new String[100];
+		for (Utilisateur u : lstUser) {
+			tabPseudo[u.getNoUtilisateur()] = u.getPseudo();
+		}
+		
+		request.setAttribute("listePseudo", tabPseudo);
 		
 		List<Categorie> lstCategorie;
 		lstCategorie = CategorieManager.getInstance().afficherListe();

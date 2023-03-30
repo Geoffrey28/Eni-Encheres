@@ -103,7 +103,7 @@
 									<p>Etat : Retrait effectué</p>
 								</c:when>
 							</c:choose>
-							<p>Vendeur: <a href="Profil?id=${ a.noUtilisateur }">Voir l'utilisateur</a></p>	
+							<p>Vendeur: <a href="Profil?id=${ a.noUtilisateur }">${ listePseudo[a.noUtilisateur] }</a></p>	
 						</div>
 					</article>
 				</c:forEach>
