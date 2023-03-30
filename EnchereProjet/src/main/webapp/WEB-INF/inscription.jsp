@@ -101,9 +101,6 @@
 				
 					<label for="nom">Nom : </label>
 				 	<input type="text" name="nom" placeholder="Nom" value="${userConnected.nom}" required><br>
-				
-					<label for="nom">Nom : </label>
-					<input type="text" name="nom" placeholder="Nom" value="${userConnected.nom}" required><br>
 					
 					<label for="telephone">Téléphone : </label>
 					<input type="tel" name="telephone" placeholder="Téléphone" pattern="[0-9]{10}" maxlength="10" value="${userConnected.telephone}" required><br>
@@ -120,7 +117,7 @@
 					<label for="ville">Ville : </label>
 					<input type="text" name="ville" placeholder="Ville" value="${userConnected.ville}" required><br>
 
-				 	<label for="nouveaumotdepasse">Confirmation : </label>
+				 	<label for="nouveaumotdepasse">Nouveau mot de passe : </label>
 					<input type="password" placeholder="Nouveau mot de passe" id="new_password" ><br>
 	
 					<label for="motdepasseconfirmation">Confirmation : </label>
