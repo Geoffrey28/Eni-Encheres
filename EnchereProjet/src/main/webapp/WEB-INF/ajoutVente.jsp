@@ -8,14 +8,33 @@
 <title>Les objets sont nos amis - Nouvelle vente</title>
 <style><%@include file="/WEB-INF/css/ajoutVente.css"%></style>
 <%@include file="/WEB-INF/header.jspf"%>
+        <script>
+            /* Cette fonction permet d'afficher une vignette pour chaque image sélectionnée */
+            function readFilesAndDisplayPreview(files) {
+                let imageList = document.querySelector('#list'); 
+                imageList.innerHTML = "";
+                
+                for ( let file of files ) {
+                    let reader = new FileReader();
+                    
+                    reader.addEventListener( "load", function( event ) {
+                        let span = document.createElement('span');
+                        span.innerHTML = '<img height="600" src="' + event.target.result + '" />';
+                        imageList.appendChild( span );
+                    });
+
+                    reader.readAsDataURL( file );
+                }
+            }
+        </script>
 </head>
 <body>
-	<div id="newAuction-img">
+	<div id="list">
 		<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png">
 	</div>
 	<div id="newAuction-div">
 		<h2>Nouvelle vente</h2>	
-		<form id="newAuction-form" action="AjoutVente" method="post">
+		<form id="newAuction-form" action="AjoutVente" method="post" enctype="multipart/form-data">
 			<div>
 				<label for="nomArticle">Article : </label>
 				<input type="text" name="nomArticle" required>
@@ -37,7 +56,9 @@
 			<div id="newAuction-picture">
 				<p>Photo : </p>
 				<div>
-					<input type="file" id="image" name="image">
+					<input type="file" id="image" name="image" accept="images/*" multiple
+                   onchange="readFilesAndDisplayPreview(this.files);">
+                  	<input type="submit" value="/Images" />
 					<label for="image">Uploader</label>
 				</div>
 			</div>
