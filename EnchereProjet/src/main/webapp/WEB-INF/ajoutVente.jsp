@@ -12,7 +12,7 @@
         <script>
             /* Cette fonction permet d'afficher une vignette pour chaque image sélectionnée */
             function readFilesAndDisplayPreview(files) {
-                let imageList = document.querySelector('#list'); 
+                let imageList = document.querySelector('#newAuction-img'); 
                 imageList.innerHTML = "";
                 
                 for ( let file of files ) {
@@ -30,7 +30,7 @@
         </script>
 </head>
 <body>
-	<div id="list">
+	<div id="newAuction-img">
 		<img alt="Image vente" src="https://cdn-icons-png.flaticon.com/512/251/251319.png">
 	</div>
 	<div id="newAuction-div">
