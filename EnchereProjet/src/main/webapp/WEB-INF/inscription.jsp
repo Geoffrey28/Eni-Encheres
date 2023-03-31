@@ -15,7 +15,7 @@
 <body>
 	<div id="inscription">
 		<c:if test="${ empty userConnected}"><h3>Inscription</h3></c:if>
-		<c:if test="${ !empty userConnected }"><h3>Modifier le profil de ${ user.pseudo }</h3></c:if>
+		<c:if test="${ !empty userConnected }"><h3>Modifier le profil de ${userConnected.pseudo}</h3></c:if>
 			
 		<!-- User déconnecté -->
 		<c:if test="${ empty userConnected }">
@@ -51,7 +51,16 @@
 				 	<input type="text" name="rue" placeholder="Nom de rue" required><br>
 				 	
 					<label for="codepostal">Code postal : </label>
-				 	<input type="number" name="codepostal" pattern="[0-9]{5}" placeholder="Code Postal" required><br>	
+				 	<input type="number" name="codepostal" pattern="[0-9]{5}" placeholder="Code Postal" required><br>
+				 					
+					<label for="telephone">Téléphone : </label>
+					<input type="tel" name="telephone" pattern="[0-9]{10}" maxlength="10" placeholder="ex: 0344568238" required><br>
+					
+					<label for="codepostal">Code postal : </label>
+				 	<input type="number" name="codepostal" pattern="[0-9]{5}" placeholder="Code Postal" required><br>
+				 	
+					<label for="rue">Nom de rue : </label>
+				 	<input type="text" name="rue" placeholder="Nom de rue" required><br>
 				 			
 					<label for="ville">Ville : </label>
 				 	<input type="text" name="ville" placeholder="Ville" required><br>
